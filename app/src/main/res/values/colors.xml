@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="cherish_status_bar_color">#000000</color>
+    <color name="cherish_green_main">#1AD287</color>
+    <color name="cherish_green_sub">#00ABA2</color>
+    <color name="cherish_pink_sub">#F7596C</color>
+    <color name="cherish_text_gray">#AAAAAA</color>
+    <color name="cherish_light_gray">#F0F0F0</color>
+    <color name="cherish_light_black">#454545</color>
+    <color name="cherish_divide_gray">#E9E9E9</color>
+    <color name="cherish_black">#101010</color>
+    <color name="cherish_dark_62">#9e252930</color>
+    <color name="cherish_text_box_gray">#F5F5F5</color>
+    <color name="cherish_purple">#929AC9</color>
+    <color name="cherish_gray">#c4c4c4</color>
+    <color name="cherish_next_watering_btn_color">#5c5c5c</color>
+    <color name="cherish_calendar_chip_background_color">#ddf8ed</color>
+    <color name="cherish_calendar_chip_text_color">#19b777</color>
+
+    <color name="cherish_stuki_background_color">#9ab7de</color>
+    <color name="cherish_rosemary_background_color">#f1b0bc</color>
+    <color name="cherish_sun_background_color">#9ec8ec</color>
+    <color name="cherish_american_blue_background_color">#aab3d1</color>
+    <color name="cherish_dandelion_background_color">#97cdbd</color>
+
+    <color name="cherish_pass_text_gray">#c4c4c4</color>
+    <color name="cherish_my_page_bg">#eff1f5</color>
+    <color name="cherish_watered_color">#bfe9f9</color>
+
+    <color name="cherish_wither_background_color">#89898f</color>
+
+    <color name="plantid1">#F1B0BC</color>
+    <color name="plantid2">#AAB3D1</color>
+    <color name="plantid3">#97CDBD</color>
+    <color name="plantid4">#9AB7DE</color>
+    <color name="plantid5">#9EC8EC</color>
+
+    <color name="btn_next_un">#f5f5f5</color>
+
+
+
+</resources>

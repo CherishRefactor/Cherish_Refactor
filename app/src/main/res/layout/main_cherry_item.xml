@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="onClick"
+            type="kotlin.jvm.functions.Function2"/>
+
+        <import type="kotlin.jvm.functions.Function1" />
+
+        <import type="kotlin.Unit" />
+
+        <import type="com.example.cherish_refactor.data.source.remote.api.User" />
+
+        <variable
+            name="user"
+            type="com.example.cherish_refactor.data.source.remote.api.User" />
+
+        <variable
+            name="position"
+            type="Integer" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_item_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> onClick.invoke(user,position)}"
+        android:background="@drawable/selector_home_bottom_sheet_list_item">
+
+        <ImageView
+            android:id="@+id/home_item_first_selector"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/home_selected_plant_indicator_american_blue"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@id/main_user_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/main_user_img"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="@dimen/margin_8dp"
+            android:background="@drawable/home_bottom_sheet_item_selector"
+            app:plantUrl="@{user.thumbnailImageUrl}"
+            app:layout_constraintBottom_toTopOf="@id/main_user_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/water_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="36dp"
+            android:background="@drawable/main_water_bg"
+            app:layout_constraintBottom_toBottomOf="@id/main_user_img"
+            app:layout_constraintEnd_toEndOf="@+id/main_user_img"
+            app:layout_constraintStart_toStartOf="@id/main_user_img"
+            app:layout_constraintTop_toTopOf="@id/main_user_img" />
+
+        <ImageView
+            android:id="@+id/main_user_water"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="36dp"
+            android:src="@drawable/group_359"
+            app:layout_constraintBottom_toBottomOf="@id/main_user_img"
+            app:layout_constraintEnd_toEndOf="@+id/main_user_img"
+            app:layout_constraintStart_toStartOf="@id/main_user_img"
+            app:layout_constraintTop_toTopOf="@id/main_user_img" />
+
+        <TextView
+            android:id="@+id/main_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:includeFontPadding="false"
+            android:text="@{user.nickName}"
+            android:textColor="@color/cherish_light_black"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/main_user_img"
+            app:layout_constraintStart_toStartOf="@+id/main_user_img"
+            app:layout_constraintTop_toBottomOf="@+id/main_user_img" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

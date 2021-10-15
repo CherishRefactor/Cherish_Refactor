@@ -1,0 +1,167 @@
+<resources>
+    <string name="app_name">Cherish_refactor</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="cycle">
+        <item>month</item>
+        <item>week</item>
+        <item>day</item>
+    </string-array>
+    <string-array name="week">
+        <item>Every</item>
+    </string-array>
+    <string-array name="day">
+        <item>day</item>
+    </string-array>
+    <string-array name="ampm">
+        <item>AM</item>
+        <item>PM</item>
+    </string-array>
+
+
+    <string name="watering_description">고민하기보다 일단 해보는거에요.\n시시콜콜한 이야기도 좋아요!</string>
+    <string name="next_watering_description">시시콜콜한 이야기도 좋아요!</string>
+    <string name="watering">물주기</string>
+    <string name="next_time">다음에 할게요</string>
+    <string name="contact_common_text">무슨 대화를 해볼까요?</string>
+    <string name="review_common_text">오늘 연락은 어떠셨나요?</string>
+    <string name="review_keyword_text">키워드를 입력해주세요!</string>
+    <string name="review_memo_text">메모를 입력해주세요!</string>
+    <string name="review_admin_button_text">등록완료</string>
+    <string name="review_pass_button_text">건너뛰기</string>
+    <string name="review_limit_chips_number_text">키워드는 3개까지 쓸 수 있어요</string>
+    <string name="review_limit_memo_number_text">리뷰는 100자 까지 작성할 수 있어요</string>
+    <string name="review_limit_chips_keyword_wordcount_text">키워드는 5글자까지 작성할 수 있어요</string>
+    <string name="review_max_keyword">5</string>
+    <string name="review_max_memo">100</string>
+    <string name="review_word_count_divider">/</string>
+    <string name="no_review_warning_text">키워드 또는 메모를 입력 후 등록을 완료해주세요!</string>
+
+    <string name="home_user_affection">애정도</string>
+    <string name="home_bottom_sheet_title_text">나의 소중한 사람들</string>
+    <string name="home_watering_text">물주기</string>
+    <string name="home_user_add_text">추가하기</string>
+
+    <string name="dialog_delay_watering_text">일 후 물주기</string>
+    <string name="dialog_delay_watering_description">*물주기를 미루면</string>
+    <string name="dialog_delay_watering_sub_description">식물의 애정도가 -1점씩 감소해요</string>
+    <string name="dialog_delay_watering_admin_text">확인</string>
+
+    <string name="myPage_title_text">My Page</string>
+    <string name="myPage_user_description_text">의 체리쉬가든</string>
+    <string name="myPage_watering_text">물주기 횟수</string>
+    <string name="myPage_postpone_text">미룬 횟수</string>
+    <string name="myPage_complete_text">성장완료</string>
+    <string name="myPage_search_box_text">연락처 검색</string>
+    <string name="myPage_cancel_text">취소</string>
+    <string name="myPage_add_phone_text">식물 등록하러 가기</string>
+    <string name="myPage_search_text">식물 검색</string>
+
+    <string name="calendar_future_watering_text">물 주는 날</string>
+    <string name="calendar_watered_text">물 준 날</string>
+    <string name="calendar_day_bullet">●</string>
+
+    <string name="review_keyword_count_error">키워드는 3개까지 입력할 수 있어요!</string>
+
+    <string name="home_blank_enroll_plant_text">식물을 추가해주세요!</string>
+    <string name="home_blank_no_enroll_plant_text">아직 등록한 식물이 없어요</string>
+    <string name="home_blank_start_btn_text">시작하기</string>
+
+    <string name="enroll_phone_text">식물 등록하기</string>
+
+    <string name="detail_plant_with">함께한 날</string>
+    <string name="dialog_sign_up_close">확인</string>
+    <string name="sign_up_title">회원가입</string>
+    <string name="sign_up_email">이메일을 입력해주세요</string>
+    <string name="sign_up_email_hint">Ex) cherish@naver.com</string>
+    <string name="sign_up_email_ok">사용가능한 이메일입니다.</string>
+    <string name="sign_up_pw_usable">사용가능한 비밀번호입니다.</string>
+    <string name="sign_up_email_no">사용하실 수 없는 이메일입니다.</string>
+    <string name="sign_up_pw">비밀번호를 입력해주세요</string>
+    <string name="sign_up_pw_hint">영문, 숫자, 특수문자 포함 8자이상</string>
+    <string name="sign_up_pw_again">비밀번호를 다시 입력해주세요</string>
+    <string name="sign_up_pw_again_ok">비밀번호가 일치합니다.</string>
+    <string name="sign_up_button_finish">완료</string>
+    <string name="sign_up_button_next">다음</string>
+    <string name="sign_up_phone">전화번호를 입력해주세요</string>
+    <string name="sign_up_phone_hint">ex)01012345678</string>
+    <string name="sign_up_certification_number">인증번호 받기</string>
+    <string name="sign_up_certification_text">인증번호를 입력해주세요</string>
+    <string name="sign_up_certification_hint">인증번호 입력</string>
+    <string name="sign_up_certification_again">재발송</string>
+    <string name="sign_up_certification_check">올바르지 않은 인증번호입니다.</string>
+    <string name="sign_up_sex_text">성별을 입력해주세요</string>
+    <string name="sign_up_age_hint">Ex)2021</string>
+    <string name="sign_up_age_text">나이(출생년도)를 입력해주세요</string>
+    <string name="sign_up_text">Cherish의 더 나은 서비스를 위해 활용됩니다!</string>
+    <string name="sign_up_service1">\'시작하기\'버튼을 누르면 cherish의 개인정보보호 정책과\n 서비스 이용 약관을 읽고 동의한 것으로 간주합니다.</string>
+    <string name="sign_up_nickname_text">사용할 닉네임을 입력해주세요</string>
+    <string name="sign_up_select_gender">여성</string>
+    <string name="sign_up_nickname_hint">최대 8글자</string>
+    <string name="sign_up_nickname_ok">사용하실 수 있는 닉네임입니다.</string>
+
+    <string name="pw_finding_email">가입했던 이메일을 입력해주세요</string>
+    <string name="pw_finding_email_finish">등록된 번호로\n인증번호를 보내드렸어요!</string>
+    <string name="pw_finding_new_password">새로운 비밀번호를 입력해주세요</string>
+
+    <string name="contentDescription">image</string>
+
+    <string name="plant_pop_up_third">3단계</string>
+    <string name="plant_pop_up_second">2단계</string>
+    <string name="plant_pop_up_first">1단계</string>
+
+    <string name="user_modify_camera">카메라</string>
+    <string name="user_modify_gallery">갤러리</string>
+    <string name="user_modify_delete">삭제</string>
+
+    <string name="setting_more">더 보기</string>
+    <string name="setting_about_cherish">About Cherish</string>
+    <string name="setting_private">개인정보처리방침</string>
+    <string name="setting_service">서비스이용약관</string>
+    <string name="setting_one_by_one">1대1 문의하기</string>
+    <string name="setting_logout">로그아웃</string>
+    <string name="setting_watering_alarm">물주기 알림</string>
+    <string name="setting_trash">회원탈퇴</string>
+
+    <string name="user_modify_nickname">닉네임은 최대 6글자까지 가능합니다.</string>
+    <string name="user_modify_finish">변경완료</string>
+    <string name="user_modify_mine">내 정보 수정</string>
+
+    <string name="sign_in_error">아이디 또는 비밀번호를 확인해주세요</string>
+
+    <string name="certification_number_error">인증번호가 일치하지 않아요</string>
+
+    <string name="finding_id_no">아니오</string>
+    <string name="finding_id_copy">메일 복사</string>
+    <string name="finding_id_cherish">Cherish에 메일로\n 문의하시겠어요?</string>
+    <string name="finding_id_mail">co.cherishteam@gmail.com 으로\n 문의 주시면 계정을 찾아드릴게요!</string>
+
+    <string name="delete_user_question">정말 계정을 삭제하시겠어요?</string>
+    <string name="delete_user_small">소중한 식물들이 모두 삭제되고 되돌릴 수 없어요.</string>
+    <string name="delete_user_yes">네, 삭제할게요.</string>
+    <string name="delete_user_no">계속 함께 할게요!</string>
+
+    <string name="notification_cherish_need_to_watering_user_channel_name" translatable="true">물주기</string>
+    <string name="notification_cherish_need_to_watering_user_channel_description">물주기 기간을 알려줍니다</string>
+    <string name="notification_cherish_need_to_watering_user_channel_id" translatable="false">need_to_watering_channel</string>
+
+    <string name="notification_cherish_recall_review_channel_id" translatable="false">recall_review_channel</string>
+    <string name="notification_cherish_recall_review_channel_name" translatable="true">리뷰</string>
+    <string name="notification_cherish_recall_review_channel_description">물준 다음 리뷰를 알려줍니다</string>
+
+    <string name="notification_recall_review_title">물주기를 까먹진 않으셨나요?</string>
+    <string name="notification_recall_review_subtitle">연락했던 식물이 물주기를 기다리고 있어요</string>
+
+
+    <string name="not_keyword">키워드를 입력하지 않았어요!</string>
+
+
+    <string name="empty_date">_ _</string>
+    <string name="empty_note">메모를 입력하지 않았어요!</string>
+    <string name="empty_keyword">등록된 키워드가 없어요</string>
+</resources>

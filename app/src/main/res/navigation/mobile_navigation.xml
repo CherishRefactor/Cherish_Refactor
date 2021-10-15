@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/main_home">
+
+    <fragment
+        android:id="@+id/main_home"
+        android:name="com.example.cherish_refactor.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_detailPlantFragment"
+            app:destination="@id/detailPlantFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/main_manage_plant"
+        android:name="com.example.cherish_refactor.ui.manage.ManagePlantFragment"
+        android:label="manage"
+        tools:layout="@layout/fragment_manage_plant">
+        <action
+            android:id="@+id/action_managePlantFragment_to_detailPlantFragment"
+            app:destination="@id/detailPlantFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/main_setting"
+        android:name="com.example.cherish_refactor.ui.setting.SettingFragment"
+        android:label="setting"
+        tools:layout="@layout/fragment_setting"/>
+
+    <fragment
+        android:id="@+id/detailPlantFragment"
+        android:name="com.example.cherish_refactor.ui.detail.DetailPlantFragment"
+        android:label="DetailPlantFragment"
+        tools:layout="@layout/fragment_detail_plant" >
+        <argument
+            android:name="cherishId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+
+</navigation>

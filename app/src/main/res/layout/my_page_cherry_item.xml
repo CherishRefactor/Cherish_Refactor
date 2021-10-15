@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="myPageCherishData"
+            type="com.example.cherish_refactor.data.source.remote.api.MyPageCherishData" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+
+        <ImageView
+            android:id="@+id/mypage_user_img"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:contentDescription="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/mypage_cherry_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:includeFontPadding="false"
+            android:textColor="#454545"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="20sp"
+            android:text=""
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/mypage_user_img"
+            app:layout_constraintTop_toTopOf="@+id/mypage_user_img" />
+
+        <TextView
+            android:id="@+id/mypage_cherry_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:includeFontPadding="false"
+            android:text=""
+            android:textSize="14sp"
+            android:textColor="#a7a7a7"
+            android:letterSpacing="-0.01"
+            android:lineSpacingExtra="10sp"
+            app:layout_constraintBottom_toBottomOf="@+id/mypage_user_img"
+            app:layout_constraintStart_toStartOf="@+id/mypage_cherry_nickname"
+            app:layout_constraintTop_toBottomOf="@+id/mypage_cherry_nickname" />
+
+        <TextView
+            android:id="@+id/mypage_cherry_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:includeFontPadding="false"
+            android:text=""
+            android:textColor="#a7a7a7"
+            android:letterSpacing="-0.01"
+            android:lineSpacingExtra="10sp"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/mypage_cherry_name"
+            app:layout_constraintStart_toEndOf="@+id/mypage_cherry_name"
+            app:layout_constraintTop_toTopOf="@+id/mypage_cherry_name" />
+
+
+        <TextView
+            android:id="@+id/my_page_d_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/my_page_chip_red"
+            android:gravity="center"
+            android:fontFamily="@font/roboto_regular"
+            android:text=""
+            android:includeFontPadding="false"
+            android:textColor="@color/cherish_pink_sub"
+            app:layout_constraintBottom_toBottomOf="@+id/mypage_user_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/mypage_user_img" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

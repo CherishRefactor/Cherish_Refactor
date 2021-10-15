@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.example.cherish_refactor.ui.home.HomeViewModel" />
+
+        <variable
+            name="total"
+            type="com.example.cherish_refactor.ui.home.HomeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/home_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/home_plant_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:main_bg="@{vm.selectedCherishUser.plantName}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/home_plant_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:main_plant="@{vm.selectedCherishUser.plantName}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <ImageView
+            android:id="@+id/home_plant_watering_animation_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/home_remain_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_16dp"
+            android:layout_marginTop="29dp"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/white"
+            android:text="@{String.valueOf(vm.selectedCherishUser.DDay)}"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:autoSizeTextType="uniform"
+            android:includeFontPadding="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/home_selected_user_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosanscjkkr_bold"
+            android:textColor="@color/white"
+            android:includeFontPadding="false"
+            android:text="@{vm.selectedCherishUser.plantModifier}"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:autoSizeTextType="uniform"
+            app:layout_constraintStart_toStartOf="@+id/home_remain_date"
+            app:layout_constraintTop_toBottomOf="@+id/home_remain_date" />
+
+        <TextView
+            android:id="@+id/home_selected_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosanscjkkr_regular"
+            android:includeFontPadding="false"
+            android:textColor="@color/white"
+            android:text="@{vm.selectedCherishUser.nickName}"
+            android:textSize="28sp"
+            android:autoSizeTextType="uniform"
+            app:layout_constraintStart_toStartOf="@+id/home_selected_user_status"
+            app:layout_constraintTop_toBottomOf="@+id/home_selected_user_status" />
+
+        <Button
+            android:id="@+id/home_watering_btn"
+            style="@style/RoundButton.WhiteMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:drawableLeft="@drawable/icn_water"
+            android:font="@font/notosanscjkkr_medium"
+            android:includeFontPadding="false"
+            android:textStyle="normal"
+            android:text="@string/home_watering_text"
+            app:layout_constraintStart_toStartOf="@+id/home_selected_user_name"
+            app:layout_constraintTop_toBottomOf="@+id/home_selected_user_name" />
+
+        <ImageView
+            android:id="@+id/home_move_plant_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="40dp"
+            android:src="@drawable/main_icn_move_detailview"
+            app:layout_constraintBottom_toTopOf="@id/home_affection_rating"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/home_affection_progressbar"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="13dp"
+            android:layout_height="165dp"
+            android:layout_marginStart="@dimen/margin_29dp"
+            android:layout_marginTop="5dp"
+            android:setProgressBarBackground="@{vm.selectedCherishUser.growth}"
+            android:setProgressbarAnimation="@{vm.selectedCherishUser.growth}"
+            android:max="100"
+            app:layout_constraintStart_toStartOf="@id/home_watering_btn"
+            app:layout_constraintTop_toBottomOf="@+id/home_watering_btn" />
+
+        <TextView
+            android:id="@+id/home_affection_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:includeFontPadding="false"
+            android:textColor="@color/black"
+            android:layout_marginTop="2dp"
+            android:textSize="12sp"
+            android:text="@{String.valueOf(vm.selectedCherishUser.growth)}"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/home_affection_progressbar"
+            app:layout_constraintStart_toStartOf="@id/home_affection_progressbar"
+            app:layout_constraintTop_toBottomOf="@+id/home_affection_progressbar" />
+
+        <TextView
+            android:id="@+id/home_user_like_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:font="@font/notosanscjkkr_regular"
+            android:text="@string/home_user_affection"
+            android:layout_marginTop="2dp"
+            android:includeFontPadding="false"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@id/home_affection_rating"
+            app:layout_constraintStart_toStartOf="@id/home_affection_rating"
+            app:layout_constraintTop_toBottomOf="@+id/home_affection_rating" />
+
+        <View
+            android:id="@+id/home_modal_animate_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0"
+            android:background="#99000000" />
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/home_standardBottomSheet"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/dialog_round_corner"
+                app:behavior_fitToContents="false"
+                app:behavior_hideable="false"
+                app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/modal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/home_bottom_sheet_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="19dp"
+                    android:fontFamily="@font/notosanscjkkr_bold"
+                    android:text="@string/home_bottom_sheet_title_text"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/home_cherry_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="19dp"
+                    android:text="@{vm.total.toString()}"
+                    android:fontFamily="@font/notosanscjkkr_bold"
+                    android:textColor="@color/cherish_green_main"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/home_bottom_sheet_title"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/home_user_add_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/notosanscjkkr_medium"
+                    android:text="@string/home_user_add_text"
+                    android:textColor="@color/cherish_text_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/home_bottom_sheet_title" />
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/margin_8dp"
+                    android:layout_marginEnd="@dimen/margin_8dp"
+                    android:layout_marginBottom="?attr/actionBarSize"
+                    android:overScrollMode="never"
+                    android:paddingBottom="?attr/actionBarSize"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/home_user_add_text">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/home_user_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:overScrollMode="never" />
+                </androidx.core.widget.NestedScrollView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
