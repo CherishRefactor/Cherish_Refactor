@@ -101,6 +101,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home){
         binding.homeWateringBtn.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_home_to_detailPlantFragment)
         }
+        binding.homeUserAddText.setOnClickListener {
+            findNavController().navigate(R.id.action_main_home_to_phoneBookFragment)
+        }
     }
 
     /*fun setListener(){

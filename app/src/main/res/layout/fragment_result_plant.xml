@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.example.cherish_refactor.ui.enroll.ResultPlantViewModel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:background="#ffffff"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/textView_modify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/notosanscjkkr_light"
+        android:includeFontPadding="false"
+        android:letterSpacing="-0.03"
+        android:lineSpacingExtra="11.4sp"
+        android:text="혼자서도 씩씩한"
+        android:textColor="#454545"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/imageView_url"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="225dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_modify_under" />
+
+    <TextView
+        android:id="@+id/plant_explanation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="19dp"
+        android:fontFamily="@font/notosanscjkkr_regular"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:letterSpacing="-0.02"
+        android:lineSpacingExtra="8sp"
+        android:text="한달에 한번이지만 홀씨가 있어서 어디론가 정착을
+\n 감성적으로 주기와 관계를 연결짓는 문장이 필요하다?"
+
+        android:textColor="#707070"
+        android:textSize="@dimen/text_14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tip_box" />
+
+    <Button
+        android:id="@+id/startbtn"
+        style="@style/RoundButton.purple"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="20dp"
+        android:text="시작하기"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tip_box"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="97dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="97dp"
+        android:background="@drawable/plant_tip_box"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_url">
+
+        <View
+            android:id="@+id/view_flower"
+            android:layout_width="2dp"
+            android:layout_height="11dp"
+            android:layout_marginStart="51dp"
+            android:background="#9099cc"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_flower"
+            app:layout_constraintEnd_toStartOf="@+id/textViewflower_mean"
+            app:layout_constraintStart_toStartOf="@id/tip_box"
+            app:layout_constraintTop_toTopOf="@+id/textView_flower" />
+
+        <TextView
+            android:id="@+id/textView_flower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="3dp"
+            android:text="꽃말"
+            android:fontFamily="@font/notosanscjkkr_regular"
+            android:includeFontPadding="false"
+            android:textColor="#b3d7b9"
+            android:letterSpacing="-0.02"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/view_flower"
+            app:layout_constraintStart_toStartOf="@id/tip_box"
+            app:layout_constraintTop_toTopOf="@+id/tip_box" />
+
+        <TextView
+            android:id="@+id/textViewflower_mean"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="58dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:fontFamily="@font/notosanscjkkr_regular"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.02"
+            android:text="인연에서의 행복"
+            android:textColor="#b3d7b9"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tip_box"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tip_box" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView_modify_under"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/notosanscjkkr_bold"
+        android:includeFontPadding="false"
+        android:text="따뜻한 민들레"
+        android:letterSpacing="-0.03"
+        android:lineSpacingExtra="11.4sp"
+        android:textColor="#454545"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_modify" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

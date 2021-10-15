@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_home_to_detailPlantFragment"
             app:destination="@id/detailPlantFragment" />
+        <action
+            android:id="@+id/action_main_home_to_phoneBookFragment"
+            app:destination="@id/phoneBookFragment" />
     </fragment>
     <fragment
         android:id="@+id/main_manage_plant"
@@ -39,5 +42,10 @@
             app:argType="integer"
             android:defaultValue="0" />
     </fragment>
+    <fragment
+        android:id="@+id/phoneBookFragment"
+        android:name="com.example.cherish_refactor.ui.enroll.PhoneBookFragment"
+        android:label="PhoneBookFragment"
+        tools:layout="@layout/fragment_phone_book"/>
 
 </navigation>
