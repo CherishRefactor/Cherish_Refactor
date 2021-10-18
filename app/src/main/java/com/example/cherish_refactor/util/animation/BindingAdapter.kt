@@ -92,3 +92,13 @@ fun main_plant(
         )
         .into(imageView)
 }
+
+@BindingAdapter("result")
+fun setText(view: TextView, text: String){
+    view.text = text.split('\n')[0]
+}
+
+@BindingAdapter("result2")
+fun setText2(view: TextView, text: String){
+    view.text = text.split('\n')[1]
+}

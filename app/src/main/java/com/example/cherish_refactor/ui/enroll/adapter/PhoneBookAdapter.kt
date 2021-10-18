@@ -96,15 +96,15 @@ class PhoneBookAdapter :
     inner class Holder(private val binding: ItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        var mPhone: Phone? = null
+
         var radioButton = binding.radioButton
         var consPhoneNumber = binding.searchPhoneItem
 
 
         fun setPhone(phone: Phone) {
-            this.mPhone = phone
-            binding.textName.text = phone.name
-            binding.textPhone.text = phone.phone
+            binding.vm = phone
+           // binding.textName.text = phone.name
+           // binding.textPhone.text = phone.phone
         }
     }
 

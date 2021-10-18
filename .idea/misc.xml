@@ -11,11 +11,15 @@
         <entry key="app/src/main/res/drawable-v24/progress_drawable_vertical.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/hastag_bg.xml" value="0.32135416666666666" />
         <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.22962962962962963" />
+        <entry key="app/src/main/res/drawable/picker_popup_bg.xml" value="0.37447916666666664" />
         <entry key="app/src/main/res/font/cherish_font.xml" value="0.21851851851851853" />
         <entry key="app/src/main/res/layout/activity_aboutcherish.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_onboarding.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/dialog_birth_picker.xml" value="0.19444444444444445" />
+        <entry key="app/src/main/res/layout/dialog_clock_picker.xml" value="0.35833333333333334" />
+        <entry key="app/src/main/res/layout/dialog_date_picker.xml" value="0.35833333333333334" />
         <entry key="app/src/main/res/layout/dialog_loading.xml" value="0.24635416666666668" />
         <entry key="app/src/main/res/layout/dialog_warning_keyword_limit_error.xml" value="0.24635416666666668" />
         <entry key="app/src/main/res/layout/dialog_watering.xml" value="0.24635416666666668" />
