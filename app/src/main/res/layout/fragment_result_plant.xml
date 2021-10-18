@@ -5,7 +5,7 @@
     <data>
         <variable
             name="vm"
-            type="com.example.cherish_refactor.ui.enroll.ResultPlantViewModel" />
+            type="com.example.cherish_refactor.ui.enroll.EnrollmentViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -22,7 +22,7 @@
         android:includeFontPadding="false"
         android:letterSpacing="-0.03"
         android:lineSpacingExtra="11.4sp"
-        android:text="혼자서도 씩씩한"
+        app:result='@{vm.resultPlant.data.plant.modifier}'
         android:textColor="#454545"
         android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +38,7 @@
         android:layout_marginTop="14dp"
         android:layout_marginEnd="37dp"
         android:layout_marginBottom="225dp"
-
+        app:plantUrl="@{vm.resultPlant.data.plant.image_url}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,9 +56,7 @@
         android:includeFontPadding="false"
         android:letterSpacing="-0.02"
         android:lineSpacingExtra="8sp"
-        android:text="한달에 한번이지만 홀씨가 있어서 어디론가 정착을
-\n 감성적으로 주기와 관계를 연결짓는 문장이 필요하다?"
-
+        android:text="@{vm.resultPlant.data.plant.explanation}"
         android:textColor="#707070"
         android:textSize="@dimen/text_14sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -131,7 +129,7 @@
             android:fontFamily="@font/notosanscjkkr_regular"
             android:includeFontPadding="false"
             android:letterSpacing="-0.02"
-            android:text="인연에서의 행복"
+            android:text="@{vm.resultPlant.data.plant.flower_meaning}"
             android:textColor="#b3d7b9"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/tip_box"
@@ -147,7 +145,7 @@
         android:layout_marginTop="10dp"
         android:fontFamily="@font/notosanscjkkr_bold"
         android:includeFontPadding="false"
-        android:text="따뜻한 민들레"
+        app:result2="@{vm.resultPlant.data.plant.modifier}"
         android:letterSpacing="-0.03"
         android:lineSpacingExtra="11.4sp"
         android:textColor="#454545"

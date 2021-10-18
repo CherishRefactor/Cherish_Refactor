@@ -13,7 +13,7 @@ import com.example.cherish_refactor.ui.base.BaseFragment
 class ResultPlantFragment : BaseFragment<FragmentResultPlantBinding>(R.layout.fragment_result_plant) {
 
 
-    private val viewModel: ResultPlantViewModel by viewModels()
+    private val viewModel: EnrollmentViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

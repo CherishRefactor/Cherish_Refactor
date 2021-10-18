@@ -6,13 +6,12 @@ import android.os.Bundle
 import android.provider.ContactsContract
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cherish_refactor.R
 import com.example.cherish_refactor.databinding.FragmentPhoneBookBinding
@@ -41,8 +40,13 @@ class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragme
         binding.vm=viewModel
         checkPermission(CAMERA_PERMISSION, CAMERA_PERMISSION_REQUEST)
         checkPermission(STORAGE_PERMISSION, STORAGE_PERMISSION_REQUEST)
-
+        setHasOptionsMenu(true)
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.toolbar_menu, menu)
     }
 
     private fun setListeners() {
@@ -56,6 +60,12 @@ class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragme
             }
 
         })
+        binding.buttonnext.setOnClickListener{
+
+            findNavController().navigate(PhoneBookFragmentDirections.actionPhoneBookFragmentToEnrollPlantFragment(phoneBookAdapter.phonename,phoneBookAdapter.phonenumber))
+            // 이름 , 전화번호
+
+        }
     }
 
     fun checkPermission(permissions: Array<String>, permissionRequestNumber:Int){
@@ -104,11 +114,6 @@ class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragme
             }
         }
     }
-
-    fun toast(message: String){
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-    }
-
 
 
 

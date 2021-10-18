@@ -46,6 +46,25 @@
         android:id="@+id/phoneBookFragment"
         android:name="com.example.cherish_refactor.ui.enroll.PhoneBookFragment"
         android:label="PhoneBookFragment"
-        tools:layout="@layout/fragment_phone_book"/>
+        tools:layout="@layout/fragment_phone_book">
+        <action
+            android:id="@+id/action_phoneBookFragment_to_enrollPlantFragment"
+            app:destination="@id/enrollPlantFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/enrollPlantFragment"
+        android:name="com.example.cherish_refactor.ui.enroll.EnrollPlantFragment"
+        android:label="EnrollPlantFragment"
+        tools:layout="@layout/fragment_enroll_plant">
+        <argument
+            android:name="name"
+            app:argType="string"
+            android:defaultValue="" />
+        <argument
+            android:name="phone"
+            app:argType="string"
+            android:defaultValue="" />
+
+    </fragment>
 
 </navigation>
