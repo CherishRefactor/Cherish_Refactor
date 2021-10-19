@@ -12,10 +12,6 @@ import com.example.cherish_refactor.databinding.FragmentSettingBinding
 import com.example.cherish_refactor.ui.base.BaseFragment
 import com.example.cherish_refactor.ui.splash.SplashActivity
 
-
-/**
- * 환경 설정 뷰
- */
 class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_setting) {
 
     private val settingViewModel: SettingViewModel by viewModels()
@@ -26,8 +22,13 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_s
         super.onCreateView(inflater, container, savedInstanceState)
         binding.vm = settingViewModel
         setListener()
-
+        requestSetting()
         return binding.root
+    }
+
+
+    private fun requestSetting(){
+        settingViewModel.requestSettingUser(609)
     }
 
     private fun setListener(){

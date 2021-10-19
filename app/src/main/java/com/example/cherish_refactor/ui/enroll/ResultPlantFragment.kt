@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.cherish_refactor.R
 import com.example.cherish_refactor.databinding.FragmentResultPlantBinding
 import com.example.cherish_refactor.ui.base.BaseFragment
@@ -14,6 +16,7 @@ class ResultPlantFragment : BaseFragment<FragmentResultPlantBinding>(R.layout.fr
 
 
     private val viewModel: EnrollmentViewModel by viewModels()
+    private val args by navArgs<ResultPlantFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,9 +25,19 @@ class ResultPlantFragment : BaseFragment<FragmentResultPlantBinding>(R.layout.fr
         // Inflate the layout for this fragment
         super.onCreateView(inflater, container, savedInstanceState)
         binding.vm=viewModel
-
-
+        requestResult()
+        setListener()
         return binding.root
+    }
+
+    private fun requestResult(){
+        viewModel.requestEnrollPlant(args.resultPlant!!)
+    }
+
+    private fun setListener(){
+        binding.startbtn.setOnClickListener {
+            findNavController().popBackStack(R.id.action_resultPlantFragment_to_main_home,true)
+        }
     }
 
 /*
@@ -88,25 +101,6 @@ class ResultPlantFragment : BaseFragment<FragmentResultPlantBinding>(R.layout.fr
         binding.textViewflowerMean.text = arguments?.getString("plant_mean")
 
 
-    }*/
-
-  /*  fun setListeners() {
-        binding.startbtn.setOnClickListener {
-            // LoadingDialog를 보여주면 됨
-            val intent = Intent(requireContext(), MainActivity::class.java)
-
-            if (activity?.intent?.getIntExtra("codeFirstStart", -1) == 1) {
-                intent.flags =
-                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-                intent.putExtra("userId", viewModel.userId)
-                intent.putExtra("userNickname", viewModel.userNickname)
-                startActivity(intent)
-            } else {
-                activity?.finish()
-
-
-            }
-        }
     }*/
 
 

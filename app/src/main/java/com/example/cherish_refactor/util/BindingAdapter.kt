@@ -1,4 +1,4 @@
-package com.example.cherish_refactor.util.animation
+package com.example.cherish_refactor.util
 
 import android.widget.ImageView
 import android.widget.ProgressBar
@@ -9,6 +9,7 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.cherish_refactor.R
+import com.example.cherish_refactor.util.animation.ProgressbarAnimation
 
 
 @BindingAdapter("plantUrl")
@@ -94,11 +95,15 @@ fun main_plant(
 }
 
 @BindingAdapter("result")
-fun setText(view: TextView, text: String){
-    view.text = text.split('\n')[0]
+fun setText(view: TextView, text: String?){
+    if (text != null) {
+        view.text = text.split("\n")[0]
+    }
 }
 
 @BindingAdapter("result2")
-fun setText2(view: TextView, text: String){
-    view.text = text.split('\n')[1]
+fun setText2(view: TextView, text: String?){
+    if (text != null) {
+        view.text = text.split("\n")[1]
+    }
 }

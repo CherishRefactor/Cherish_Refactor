@@ -17,6 +17,9 @@ class HomeViewModel : BaseViewModel() {
     private val _selectedCherishUser = MutableLiveData<User>()
     val selectedCherishUser: LiveData<User> = _selectedCherishUser
 
+    private val _selectedCherishId = MutableLiveData<Int>()
+    val selectedCherishId: LiveData<Int> = _selectedCherishId
+
 
      val total = MutableLiveData<Int>()
 
@@ -28,12 +31,14 @@ class HomeViewModel : BaseViewModel() {
 
             total.postValue(response.userData.totalUser)
             //setSelectedUser(response.userData.userList[0])
+            _selectedCherishId.value=response.userData.userList[0].id
             _selectedCherishUser.postValue(response.userData.userList[0])
         }
     }
 
     fun setSelectedUser(user: User) {
         _selectedCherishUser.value=user
+        _selectedCherishId.value=user.id
 
     }
 
