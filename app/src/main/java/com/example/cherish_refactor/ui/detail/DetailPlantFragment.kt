@@ -2,14 +2,11 @@ package com.example.cherish_refactor.ui.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.databinding.BindingAdapter
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.example.cherish_refactor.R
 import com.example.cherish_refactor.databinding.FragmentDetailPlantBinding
 import com.example.cherish_refactor.ui.base.BaseFragment
@@ -23,7 +20,7 @@ class DetailPlantFragment : BaseFragment<FragmentDetailPlantBinding>(R.layout.fr
     }
 
     private val detailPlantViewModel: DetailPlantViewModel by viewModels()
-    private val args:DetailPlantFragmentArgs by navArgs()
+    private val args by navArgs<DetailPlantFragmentArgs>()
 
 
 
@@ -36,8 +33,8 @@ class DetailPlantFragment : BaseFragment<FragmentDetailPlantBinding>(R.layout.fr
         binding.plantDetailVM=detailPlantViewModel
         requestPlantDetail()
         setListener()
-
-
+        setHasOptionsMenu(true)
+       // updateToolbar()
         return binding.root
     }
 
@@ -46,6 +43,7 @@ class DetailPlantFragment : BaseFragment<FragmentDetailPlantBinding>(R.layout.fr
 
         binding.tbDetail.inflateMenu(R.menu.toolbar_menu)
         binding.tbDetail.title = "식물 카드"
+
         binding.tbDetail.setOnMenuItemClickListener {
             when(it.itemId){
                 R.id.calendar ->{
@@ -62,21 +60,30 @@ class DetailPlantFragment : BaseFragment<FragmentDetailPlantBinding>(R.layout.fr
             }
 
         }
+
+
+        //clearToolbarMenu()
+        //updateToolbar()
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        binding.tbDetail.menu.findItem(R.id.trash).isVisible = false
+
+        super.onPrepareOptionsMenu(menu)
     }
     fun clearToolbarMenu() {
         binding.tbDetail.menu.clear()
     }
 
     fun updateToolbar() {
-        var isEditing = false
-         isEditing = !isEditing
+
         val saveItem = binding.tbDetail.menu.findItem(R.id.trash)
-        saveItem.isVisible = isEditing
+        binding.tbDetail.menu.getItem(2).isVisible = false
 
     }
 
     private fun requestPlantDetail(){
-        detailPlantViewModel.requestPlantDetail(4154)
+        detailPlantViewModel.requestPlantDetail(args.cherishId)
 
     }
 

@@ -40,14 +40,10 @@ class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragme
         binding.vm=viewModel
         checkPermission(CAMERA_PERMISSION, CAMERA_PERMISSION_REQUEST)
         checkPermission(STORAGE_PERMISSION, STORAGE_PERMISSION_REQUEST)
-        setHasOptionsMenu(true)
+
         return binding.root
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.toolbar_menu, menu)
-    }
 
     private fun setListeners() {
         phoneBookAdapter.setItemClickListener(object : PhoneBookAdapter.ItemClickListener {
@@ -174,7 +170,7 @@ class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragme
         // searchName에 값이 있을 때만 검색을 사용한다
         if (search.isNotEmpty()) {
 
-            where = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " OR "+ContactsContract.CommonDataKinds.Phone.NUMBER + " LIKE ?"
+            where = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " LIKE ? OR "+ContactsContract.CommonDataKinds.Phone.NUMBER + " LIKE ?"
             whereValues = arrayOf("%$search%")
         }
 

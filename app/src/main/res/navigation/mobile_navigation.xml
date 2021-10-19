@@ -16,6 +16,7 @@
         <action
             android:id="@+id/action_main_home_to_phoneBookFragment"
             app:destination="@id/phoneBookFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/main_manage_plant"
@@ -64,7 +65,26 @@
             android:name="phone"
             app:argType="string"
             android:defaultValue="" />
+        <action
+            android:id="@+id/action_enrollPlantFragment_to_resultPlantFragment"
+            app:destination="@id/resultPlantFragment" />
 
+    </fragment>
+    <fragment
+        android:id="@+id/resultPlantFragment"
+        android:name="com.example.cherish_refactor.ui.enroll.ResultPlantFragment"
+        android:label="ResultPlantFragment"
+        tools:layout="@layout/fragment_result_plant">
+        <action
+            android:id="@+id/action_resultPlantFragment_to_main_home"
+            app:destination="@id/main_home"
+            app:popUpTo="@id/main_home"
+            app:popUpToInclusive="true"/>
+        <argument
+            android:name="resultPlant"
+            android:defaultValue="@null"
+            app:argType="com.example.cherish_refactor.data.source.remote.api.PlantEnrollRequest"
+            app:nullable="true" />
     </fragment>
 
 </navigation>

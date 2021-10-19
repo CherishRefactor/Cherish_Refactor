@@ -40,21 +40,27 @@ class EnrollmentViewModel : BaseViewModel() {
 
     }
 
-    fun requestEnrollPlant(userid:Int){
+    fun requestResult():PlantEnrollRequest{
+        if (birth.value==" ") {
+            this.birth.value="00/00"
+        }
+        val body =
+            PlantEnrollRequest(
+                name = nickname.value!!,
+                nickname = nickname.value!!,
+                birth = birth.value!!,
+                phone = phone.value!!,
+                cycle_date = date.value!!.split(" ")[1].toInt(),
+                notice_time = clock.value?.substring(0, 5)!!,
+                water_notice = true,
+                UserId = 609
+
+            )
+        return body
+    }
+
+    fun requestEnrollPlant(body:PlantEnrollRequest){
         viewModelScope.launch {
-
-            val body =
-                PlantEnrollRequest(
-                    name = nickname.value!!,
-                    nickname = nickname.value!!,
-                    birth = birth.value!!,
-                    phone = phone.value!!,
-                    cycle_date = date.value!!.toInt(),
-                    notice_time = clock.value!!,
-                    water_notice = true,
-                    UserId = userid.toInt()
-
-                )
             var response = RetrofitBuilder.cherishAPI.enrollCherish(body)
 
             _resultPlant.postValue(response)

@@ -1,6 +1,5 @@
 package com.example.cherish_refactor.data.source.remote.api
 
-import retrofit2.Call
 import retrofit2.http.*
 
 interface CherishAPI {
@@ -23,12 +22,9 @@ interface CherishAPI {
         ): PlantEnrollResponse
 
 
+        @GET("user/{id}")
+        suspend fun SettingUserPage(
+            @Path("id") userId: Int
+        ): MyPageUserRes
 
-
-        interface MyPageAPI {
-            @GET("user/{id}")
-            fun fetchUserPage(
-                @Path("id") userId: Int
-            ): Call<MyPageUserRes>
-        }
 }

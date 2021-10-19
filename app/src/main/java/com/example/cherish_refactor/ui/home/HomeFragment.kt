@@ -96,7 +96,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home){
                 //viewModel.cherishUserId.value!!
                 args.userId
             )*/
-            findNavController().navigate(R.id.action_navigation_home_to_detailPlantFragment)
+
+            findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToDetailPlantFragment(viewModel.selectedCherishId.value!!))
         }
         binding.homeWateringBtn.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_home_to_detailPlantFragment)

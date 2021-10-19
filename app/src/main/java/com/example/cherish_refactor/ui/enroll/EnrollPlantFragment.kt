@@ -1,17 +1,19 @@
 package com.example.cherish_refactor.ui.enroll
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.cherish_refactor.R
 import com.example.cherish_refactor.databinding.FragmentEnrollPlantBinding
 import com.example.cherish_refactor.ui.base.BaseFragment
-import com.example.cherish_refactor.util.animation.BirthPickerDialog
-import com.example.cherish_refactor.util.animation.ClockPickerDialog
-import com.example.cherish_refactor.util.animation.DatePickerDialog
+import com.example.cherish_refactor.util.dialog.BirthPickerDialog
+import com.example.cherish_refactor.util.dialog.ClockPickerDialog
+import com.example.cherish_refactor.util.dialog.DatePickerDialog
 
 
 class EnrollPlantFragment : BaseFragment<FragmentEnrollPlantBinding>(R.layout.fragment_enroll_plant) {
@@ -53,6 +55,13 @@ class EnrollPlantFragment : BaseFragment<FragmentEnrollPlantBinding>(R.layout.fr
                 enrollmentViewModel.requestdate(it)
             }.show(childFragmentManager, "")
         }
+        binding.detailOkBtn.setOnClickListener {
+            //enrollmentViewModel.requestEnrollPlant(609)
+            findNavController().navigate(EnrollPlantFragmentDirections.actionEnrollPlantFragmentToResultPlantFragment(enrollmentViewModel.requestResult()))
+
+        }
+
+
     }
 
 
