@@ -10,6 +10,9 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.cherish_refactor.R
+import com.example.cherish_refactor.data.source.remote.api.CalendarResponse
+import com.example.cherish_refactor.ui.detail.calendar.CherishMaterialCalendarView
+import com.example.cherish_refactor.ui.detail.calendar.DotDecorator
 import com.example.cherish_refactor.util.animation.ProgressbarAnimation
 
 
@@ -115,4 +118,31 @@ fun setDelayVisibility(textView: TextView, dDay: Int) {
         textView.visibility = View.INVISIBLE
     else
         textView.visibility = View.VISIBLE
+}
+
+@BindingAdapter("android:addDecorator")
+fun addDecorator(
+    cherishMaterialCalendarView: CherishMaterialCalendarView,
+    calendarResponse: CalendarResponse
+) {
+
+    calendarResponse.waterData.calendarData.forEach {
+
+        cherishMaterialCalendarView.addDecorator(
+            DotDecorator(
+                ContextCompat.getColor(
+                    cherishMaterialCalendarView.context,
+                    R.color.cherish_green_sub
+                ), DateUtil.convertDateToCalendarDay(it.wateredDate)
+            )
+        )
+    }
+    cherishMaterialCalendarView.addDecorator(
+        DotDecorator(
+            ContextCompat.getColor(
+                cherishMaterialCalendarView.context,
+                R.color.cherish_pink_sub
+            ), DateUtil.convertDateToCalendarDay(calendarResponse.waterData.futureWaterDate)
+        )
+    )
 }

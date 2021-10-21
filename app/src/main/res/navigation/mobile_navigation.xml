@@ -52,6 +52,9 @@
         <action
             android:id="@+id/action_detailPlantFragment_to_detailModifyFragment"
             app:destination="@id/detailModifyFragment" />
+        <action
+            android:id="@+id/action_detailPlantFragment_to_calendarFragment"
+            app:destination="@id/calendarFragment" />
     </fragment>
     <fragment
         android:id="@+id/phoneBookFragment"
@@ -116,6 +119,15 @@
             android:name="cherishId"
             android:defaultValue="0"
             app:argType="integer"/>
+    </fragment>
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.example.cherish_refactor.ui.detail.calendar.CalendarFragment"
+        android:label="CalendarFragment" >
+        <argument
+            android:name="cherishId"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
 
 

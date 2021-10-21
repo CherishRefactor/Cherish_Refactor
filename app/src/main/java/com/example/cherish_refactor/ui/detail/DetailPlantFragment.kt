@@ -1,7 +1,10 @@
 package com.example.cherish_refactor.ui.detail
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -40,6 +43,7 @@ class DetailPlantFragment : BaseFragment<FragmentDetailPlantBinding>(R.layout.fr
             when(it.itemId){
                 R.id.calendar ->{
                     // 캘린더로 넘어
+                    findNavController().navigate(DetailPlantFragmentDirections.actionDetailPlantFragmentToCalendarFragment(args.cherishId))
                     true
 
                 }
@@ -57,17 +61,18 @@ class DetailPlantFragment : BaseFragment<FragmentDetailPlantBinding>(R.layout.fr
         }
 
     }
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+   /* override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.calendar ->{
                 // 캘린더로 넘어
+                findNavController().navigate(R.id.action_detailPlantFragment_to_calendarFragment)
                 true
 
             }
             else -> return super.onOptionsItemSelected(item)
         }
     }
-
+*/
 
 
     override fun onPrepareOptionsMenu(menu: Menu) {

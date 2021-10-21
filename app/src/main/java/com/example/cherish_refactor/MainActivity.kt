@@ -2,6 +2,7 @@ package com.example.cherish_refactor
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -18,9 +19,17 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigationView = findViewById(R.id.nav_view)
 
-        val navController = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main)?.findNavController()
+        val navController =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main)
+                ?.findNavController()
         navController?.let {
             bottomNavigationView.setupWithNavController(navController)
+        }
+
+
+        navController?.addOnDestinationChangedListener { controller, destination, arguments ->
+            bottomNavigationView.isVisible = destination.id != R.id.calendarFragment
+
         }
 
     }

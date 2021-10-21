@@ -26,6 +26,7 @@
         <entry key="app/src/main/res/layout/dialog_loading.xml" value="0.24635416666666668" />
         <entry key="app/src/main/res/layout/dialog_warning_keyword_limit_error.xml" value="0.24635416666666668" />
         <entry key="app/src/main/res/layout/dialog_watering.xml" value="0.24635416666666668" />
+        <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.20925925925925926" />
         <entry key="app/src/main/res/layout/fragment_detail_plant.xml" value="0.19435897435897437" />
         <entry key="app/src/main/res/layout/fragment_enroll_modify_plant.xml" value="0.271875" />
