@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/main_home"
-        android:icon="@drawable/ic_btn_more"
+        android:icon="@drawable/main_tab_home"
         android:title="home" />
 
     <item
         android:id="@+id/main_manage_plant"
-        android:icon="@drawable/icn_cancel"
+        android:icon="@drawable/main_tab_user"
         android:title="manage" />
 
     <item
         android:id="@+id/main_setting"
-        android:icon="@drawable/icon_gnb_back"
+        android:icon="@drawable/main_tab_more"
         android:title="setting" />
 </menu>
