@@ -1,5 +1,6 @@
 package com.example.cherish_refactor.util
 
+import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -106,4 +107,12 @@ fun setText2(view: TextView, text: String?){
     if (text != null) {
         view.text = text.split("\n")[1]
     }
+}
+
+@BindingAdapter("android:delayVisiblity")
+fun setDelayVisibility(textView: TextView, dDay: Int) {
+    if (dDay < 0)
+        textView.visibility = View.INVISIBLE
+    else
+        textView.visibility = View.VISIBLE
 }

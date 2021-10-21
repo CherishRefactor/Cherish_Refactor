@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -13,6 +14,7 @@ import com.example.cherish_refactor.R
 import com.example.cherish_refactor.databinding.FragmentHomeBinding
 import com.example.cherish_refactor.ui.base.BaseFragment
 import com.example.cherish_refactor.ui.home.adapter.HomeCherryListAdapter
+import com.example.cherish_refactor.util.dialog.WateringDialogFragment
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home){
@@ -100,7 +102,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home){
             findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToDetailPlantFragment(viewModel.selectedCherishId.value!!))
         }
         binding.homeWateringBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_home_to_detailPlantFragment)
+
+                if (viewModel.selectedCherishUser.value?.dDay!! <= 0) {
+                    WateringDialogFragment().show(parentFragmentManager, TAG)
+                } else {
+                    Toast.makeText(context, "물 줄수있는 날이 아니에요 ㅠ",Toast.LENGTH_SHORT).show()
+                }
+
         }
         binding.homeUserAddText.setOnClickListener {
             findNavController().navigate(R.id.action_main_home_to_phoneBookFragment)

@@ -31,7 +31,14 @@
         android:id="@+id/main_setting"
         android:name="com.example.cherish_refactor.ui.setting.SettingFragment"
         android:label="setting"
-        tools:layout="@layout/fragment_setting"/>
+        tools:layout="@layout/fragment_setting">
+        <action
+            android:id="@+id/action_main_setting_to_userModifyFragment"
+            app:destination="@id/userModifyFragment" />
+        <action
+            android:id="@+id/action_main_setting_to_aboutCherishFragment"
+            app:destination="@id/aboutCherishFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/detailPlantFragment"
@@ -42,6 +49,9 @@
             android:name="cherishId"
             app:argType="integer"
             android:defaultValue="0" />
+        <action
+            android:id="@+id/action_detailPlantFragment_to_detailModifyFragment"
+            app:destination="@id/detailModifyFragment" />
     </fragment>
     <fragment
         android:id="@+id/phoneBookFragment"
@@ -86,5 +96,27 @@
             app:argType="com.example.cherish_refactor.data.source.remote.api.PlantEnrollRequest"
             app:nullable="true" />
     </fragment>
+    <fragment
+        android:id="@+id/userModifyFragment"
+        android:name="com.example.cherish_refactor.ui.setting.UserModifyFragment"
+        android:label="UserModifyFragment"
+        tools:layout="@layout/fragment_user_modify"/>
+    <fragment
+        android:id="@+id/aboutCherishFragment"
+        android:name="com.example.cherish_refactor.ui.setting.AboutCherishFragment"
+        android:label="AboutCherishFragment"
+        tools:layout="@layout/fragment_about_cherish"/>
+    <fragment
+        android:id="@+id/detailModifyFragment"
+        android:name="com.example.cherish_refactor.ui.detail.DetailModifyFragment"
+        android:label="DetailModifyFragment"
+        tools:layout="@layout/fragment_detail_modify_plant">
+
+        <argument
+            android:name="cherishId"
+            android:defaultValue="0"
+            app:argType="integer"/>
+    </fragment>
+
 
 </navigation>

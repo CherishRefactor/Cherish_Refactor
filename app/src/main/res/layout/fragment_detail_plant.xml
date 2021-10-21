@@ -19,6 +19,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/tb_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="식물 카드"
+            app:layout_constraintBottom_toBottomOf="@+id/tb_detail"
+            app:layout_constraintEnd_toEndOf="@+id/tb_detail"
+            app:layout_constraintStart_toStartOf="@+id/tb_detail"
+            app:layout_constraintTop_toTopOf="@+id/tb_detail" />
+
         <androidx.appcompat.widget.Toolbar
             android:gravity="center"
             android:id="@+id/tb_detail"
@@ -26,7 +36,10 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" >
+
+
+        </androidx.appcompat.widget.Toolbar>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cons2"
