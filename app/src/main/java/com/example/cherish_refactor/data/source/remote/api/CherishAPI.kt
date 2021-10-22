@@ -61,4 +61,32 @@ interface CherishAPI {
         @Path("id") userId: Int
     ): UserResult
 
+    @Headers("Content-Type:application/json")
+    @DELETE("cherish/{id}")
+    suspend fun plantdelete(
+        @Path("id") cherishid: Int
+    ):PlantDeleteResponse
+
+    @Headers("Content-Type:application/json")
+    @POST("cherish/checkPhone")
+    suspend fun checkphone(
+        @Body body: CheckPhoneRequest
+    ): DefaultResponse
+
+    @POST("pushReview")
+    suspend fun sendRemindReviewNotification(
+        @Body notificationRemindReviewReq: ReviewRequest
+    ): UtilResponseWithOutStatus
+
+    @Headers("Content-Type:application/json")
+    @POST("water")
+    suspend fun reviewWatering(
+        @Body reviewWateringReq: ReviewSendRequest
+    ): ReviewSendResponse
+
+    @PUT("calendar")
+    suspend fun reviewModify(
+        @Body reviseReviewReq: ReviewModifyRequest
+    ): UtilResponseWithOutStatus
+
 }

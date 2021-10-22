@@ -41,6 +41,10 @@ class DetailPlantFragment : BaseFragment<FragmentDetailPlantBinding>(R.layout.fr
         binding.tbDetail.menu.findItem(R.id.trash).isVisible = false
         binding.tbDetail.setOnMenuItemClickListener {
             when(it.itemId){
+                R.id.home ->{
+                    findNavController().popBackStack()
+                    true
+                }
                 R.id.calendar ->{
                     // 캘린더로 넘어
                     findNavController().navigate(DetailPlantFragmentDirections.actionDetailPlantFragmentToCalendarFragment(args.cherishId))

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.cherish_refactor.R
 import com.example.cherish_refactor.databinding.FragmentSettingBinding
 import com.example.cherish_refactor.ui.base.BaseFragment
@@ -47,7 +48,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_s
             startActivity(intent)
         }
         binding.constraintLayoutAboutCherish.setOnClickListener {
-
+            findNavController().navigate(R.id.action_main_setting_to_aboutCherishFragment)
         }
 
         binding.constraintLayoutInfo.setOnClickListener {
@@ -66,8 +67,11 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_s
             startActivity(intent)
         }
         binding.settingNextNickname.setOnClickListener {
+            findNavController().navigate(R.id.action_main_setting_to_userModifyFragment)
         }
         binding.settingUsernickname.setOnClickListener {
+
+            findNavController().navigate(R.id.action_main_setting_to_userModifyFragment)
         }
         binding.friendsCons.setOnClickListener {
 

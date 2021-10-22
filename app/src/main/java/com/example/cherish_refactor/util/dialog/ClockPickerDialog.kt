@@ -24,7 +24,7 @@ class ClockPickerDialog(private val doAfterConfirm: (date: String) -> Unit) :
 
         val view = inflater.inflate(R.layout.dialog_clock_picker,container,false)
         val binding = DialogClockPickerBinding.bind(view)
-
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         val clock_hour: NumberPicker = view.findViewById(R.id.numberPicker_clock)
         val clock_minute: NumberPicker = view.findViewById(R.id.numberPicker2_clock)

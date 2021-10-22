@@ -19,20 +19,21 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigationView = findViewById(R.id.nav_view)
 
-        val navController =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main)
-                ?.findNavController()
+        val navController = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main)?.findNavController()
         navController?.let {
             bottomNavigationView.setupWithNavController(navController)
         }
 
 
         navController?.addOnDestinationChangedListener { controller, destination, arguments ->
-            bottomNavigationView.isVisible = destination.id != R.id.calendarFragment
+            bottomNavigationView.isVisible =
+                !(destination.id == R.id.calendarFragment || destination.id == R.id.aboutCherishFragment || destination.id == R.id.reviewFragment
+                    || destination.id == R.id.detailModifyFragment)
 
         }
 
     }
+
 
 
 }

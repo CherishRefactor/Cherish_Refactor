@@ -6,7 +6,7 @@
     <data>
         <variable
             name="vm"
-            type="com.example.cherish_refactor.ui.detail.calendar.CalendarViewModel" />
+            type="com.example.cherish_refactor.ui.home.HomeViewModel" />
 
 
     </data>
@@ -193,6 +193,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="16dp"
                     android:background="@color/white"
+                    android:calendarAllowChange="@{vm.isCalendarChange}"
                     app:layout_constraintEnd_toEndOf="@id/review_all_text"
                     app:layout_constraintStart_toStartOf="@id/review_all_text"
                     app:layout_constraintBottom_toBottomOf="parent" />

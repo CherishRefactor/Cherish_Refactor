@@ -1,13 +1,13 @@
 package com.example.cherish_refactor.ui.home
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.cherish_refactor.data.source.remote.api.CalendarResponse
-import com.example.cherish_refactor.data.source.remote.api.User
+import com.example.cherish_refactor.data.source.remote.api.*
 import com.example.cherish_refactor.data.source.remote.singleton.RetrofitBuilder
 import com.example.cherish_refactor.ui.base.BaseViewModel
+import com.example.cherish_refactor.util.DateUtil
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class HomeViewModel : BaseViewModel() {
@@ -25,7 +25,11 @@ class HomeViewModel : BaseViewModel() {
     private val _calendarData = MutableLiveData<CalendarResponse>()
     val calendarData: LiveData<CalendarResponse> = _calendarData
 
+    val selectedDay = MutableLiveData<CalendarResponse.WaterData.CalendarData>()
+
      val total = MutableLiveData<Int>()
+
+    var selectedFirst = mutableListOf<User>()
 
     fun requestMainCherishItem(userId :Int){
         viewModelScope.launch {
@@ -35,11 +39,18 @@ class HomeViewModel : BaseViewModel() {
 
             total.postValue(response.userData.totalUser)
             //setSelectedUser(response.userData.userList[0])
+
+            
             _selectedCherishId.value=response.userData.userList[0].id
             _selectedCherishUser.postValue(response.userData.userList[0])
 
+            selectedFirst.add(0,response.userData.userList[0])
+            selectedFirst.addAll(response.userData.userList)
+
+            //user.value[0].
             //requestCalendar(response.userData.userList[0].id)
         }
+
     }
 
     fun setSelectedUser(user: User) {
@@ -50,21 +61,105 @@ class HomeViewModel : BaseViewModel() {
 
     fun requestCalendar(){
         viewModelScope.launch {
-            kotlin.runCatching {
-                selectedCherishUser.value?.let { RetrofitBuilder.cherishAPI.getCalendarData(it.id)}
-            }.onSuccess {
-                _calendarData.postValue(it)
-            }
 
-            Log.d("fffff",_selectedCherishId.value.toString())
+
+               val response = RetrofitBuilder.cherishAPI.getCalendarData(_selectedCherishId.value!!)
+                _calendarData.postValue(response)
+                //selectedDay.postValue(response.waterData.calendarData[0])
+
         }
-           // selectedCherishUser.value?.let { RetrofitBuilder.cherishAPI.getCalendarData(it.id)
-            //val response= RetrofitBuilder.cherishAPI.getCalendarData(_selectedCherishId.value!!)
-                //_calendarData.postValue(response)
 
     }
 
+    val _isCalendarChange = MutableLiveData<Boolean>()
+    val isCalendarChange:LiveData<Boolean> = _isCalendarChange
 
+    init{
+        _isCalendarChange.value=false
+    }
+
+
+
+    fun fetchCalendarData() = viewModelScope.launch(Dispatchers.IO) {
+       // Log.d("ffff",selectedCherishUser.value.toString())
+        runCatching {
+            selectedCherishUser.value?.let {RetrofitBuilder.cherishAPI.getCalendarData(it.id) }
+        }.onSuccess {
+            _calendarData.postValue(it)
+        }.onFailure { error ->
+            //errorHandleLivedata.postValue(error.message)
+        }
+    }
+
+    fun requestReview(){
+        viewModelScope.launch(Dispatchers.IO) {
+            runCatching {
+                val body=ReviewRequest(selectedCherishUser.value!!.id)
+                RetrofitBuilder.cherishAPI.sendRemindReviewNotification(body)
+
+            }.onSuccess {
+                //SimpleLogger.logI(it.message)
+            }.onFailure { error ->
+                //errorHandleLivedata.postValue(error.message)
+            }
+        }
+
+    }
+
+     val memo = MutableLiveData<String>()
+
+
+
+    fun sendReviewToServer(chip1:String,chip2:String, chip3:String) = viewModelScope.launch {
+        runCatching {
+            val body = ReviewSendRequest(memo.value,chip1,chip2,chip3,selectedCherishUser.value!!.id)
+            val response = RetrofitBuilder.cherishAPI.reviewWatering(body)
+        }.onSuccess {
+            //reviewWateringRes = it
+        }.onFailure { error ->
+           // errorHandleLivedata.value = error.message
+        }
+    }
+
+    fun sendReviewModify(chip1:String,chip2:String, chip3:String,memo:String) = viewModelScope.launch {
+        runCatching {
+            val date =DateUtil.convertDateToString(
+                selectedDay.value?.wateredDate!!
+            )
+            val body = ReviewModifyRequest(selectedCherishUser.value!!.id,date,memo,chip1,chip2,chip3)
+            val response = RetrofitBuilder.cherishAPI.reviewModify(body)
+
+        }.onSuccess {
+            // Toast를 띄우는건?
+        }.onFailure { error ->
+            //errorHandleLiveData.value = error.message
+        }
+    }
+
+    //val selectedDay: LiveData<CalendarResponse.WaterData.CalendarData> = _selectedDay
+
+   /* private val _calendarData = MutableLiveData<CalendarResponse>()
+    val calendarData: LiveData<CalendarResponse> = _calendarData
+
+
+    val selectedDay = MutableLiveData<CalendarResponse.WaterData.CalendarData>()
+    //val selectedDay: LiveData<CalendarResponse.WaterData.CalendarData> = _selectedDay
+
+
+
+    fun requestCalendar(cherishId:Int){
+        viewModelScope.launch {
+
+            val response = RetrofitBuilder.cherishAPI.getCalendarData(cherishId)
+
+            _calendarData.postValue(response)
+
+
+        }
+        // selectedCherishUser.value?.let { RetrofitBuilder.cherishAPI.getCalendarData(it.id)
+        //val response= RetrofitBuilder.cherishAPI.getCalendarData(_selectedCherishId.value!!)
+        //_calendarData.postValue(response)
+    }*/
 
 
     fun requestMainView(id:Int){

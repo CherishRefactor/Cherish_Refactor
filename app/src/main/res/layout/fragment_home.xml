@@ -33,6 +33,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:main_plant="@{vm.selectedCherishUser.plantName}"
+            setImageSizeGrowth="@{vm.selectedCherishUser.growth}"
+            setImageSizePlantName="@{vm.selectedCherishUser.plantName}"
+            setImageSizedDay="@{vm.selectedCherishUser.DDay}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
 
@@ -54,7 +57,7 @@
             android:layout_marginTop="29dp"
             android:fontFamily="@font/roboto_bold"
             android:textColor="@color/white"
-            android:text="@{String.valueOf(vm.selectedCherishUser.DDay)}"
+            app:homeday="@{vm.selectedCherishUser.DDay}"
             android:textSize="40sp"
             android:textStyle="bold"
             android:autoSizeTextType="uniform"
@@ -122,7 +125,7 @@
             android:setProgressBarBackground="@{vm.selectedCherishUser.growth}"
             android:setProgressbarAnimation="@{vm.selectedCherishUser.growth}"
             android:max="100"
-            app:layout_constraintStart_toStartOf="@id/home_watering_btn"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/home_watering_btn" />
 
         <TextView

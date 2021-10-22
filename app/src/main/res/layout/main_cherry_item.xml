@@ -34,6 +34,7 @@
             android:id="@+id/home_item_first_selector"
             android:layout_width="64dp"
             android:layout_height="64dp"
+            android:setSelectedPlantStrokeColor="@{user.plantName}"
             android:src="@drawable/home_selected_plant_indicator_american_blue"
             android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@id/main_user_name"

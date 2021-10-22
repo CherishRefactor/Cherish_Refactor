@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.cherish_refactor.R
@@ -19,7 +19,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home){
 
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: HomeViewModel by activityViewModels()
     private lateinit var standardBottomSheetBehavior: BottomSheetBehavior<View>
     private val homeCherryListAdapter by lazy{ HomeCherryListAdapter()}
 
@@ -77,11 +77,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home){
 
     private fun getCherishItem(){
         viewModel.requestMainCherishItem(609)
+       // homeCherryListAdapter.data.add(0,viewModel.selectedFirst.value!!)
+
 
     }
     private fun observer(){
         viewModel.user.observe(viewLifecycleOwner){
+            //homeCherryListAdapter.data[0]=it[0]
+
             homeCherryListAdapter.setItem(it)
+
         }
 
     }
@@ -90,8 +95,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home){
 
     private fun setListener(){
         homeCherryListAdapter.onClick = { user ,position->
-            Log.d("asdf",user.toString())
+            homeCherryListAdapter.seletedPosition=position
+            homeCherryListAdapter.data.removeAt(0)
+            Log.d("asdf",position.toString())
             viewModel.setSelectedUser(user)
+            homeCherryListAdapter.data.add(0,user)
+            homeCherryListAdapter.notifyItemChanged(0)
+
+            // 클릭하면 맨처음에 하나 생겨나야함
+
         }
         binding.homeMovePlantDetail.setOnClickListener {
             /*navigateDetailPlant(
@@ -105,6 +117,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home){
 
                 if (viewModel.selectedCherishUser.value?.dDay!! <= 0) {
                     WateringDialogFragment().show(parentFragmentManager, TAG)
+                    findNavController().navigate(R.id.action_main_home_to_reviewFragment)
                 } else {
                     Toast.makeText(context, "물 줄수있는 날이 아니에요 ㅠ",Toast.LENGTH_SHORT).show()
                 }

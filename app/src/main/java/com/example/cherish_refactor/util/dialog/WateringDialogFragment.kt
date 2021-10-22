@@ -37,7 +37,7 @@ class WateringDialogFragment : DialogFragment() {
     }
 
     fun navigateContact() {
-        parentFragmentManager.let { fm -> ContactDialogFragment().show(fm, TAG) }
+       ContactDialogFragment().show(parentFragmentManager, TAG)
         dismiss()
     }
 /*

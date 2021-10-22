@@ -28,6 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="48dp"
+                android:layout_marginHorizontal="105dp"
                 android:src="@drawable/asset_5_2_1"
                 app:layout_constraintBottom_toTopOf="@id/contact_user_name"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -88,6 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="23dp"
                 android:layout_marginBottom="54dp"
+                android:layout_marginStart="40dp"
                 android:onClick="@{() -> dialogContact.navigateCall()}"
                 android:src="@drawable/contact_icn_call"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -105,6 +107,7 @@
                 android:src="@drawable/contact_icn_kakaotalk"
                 android:onClick="@{() -> dialogContact.navigateKakao()}"
                 app:tint="@color/black"
+                android:layout_marginHorizontal="12dp"
                 app:layout_constraintEnd_toStartOf="@id/contact_message"
                 app:layout_constraintStart_toEndOf="@id/contact_call"
                 app:layout_constraintTop_toBottomOf="@id/contact_chip_layout" />
@@ -118,6 +121,7 @@
                 android:src="@drawable/contact_icn_text"
                 android:onClick="@{() -> dialogContact.navigateToSendMessage()}"
                 app:tint="@color/black"
+                android:layout_marginEnd="40dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/contact_kakao_talk"
                 app:layout_constraintTop_toBottomOf="@id/contact_chip_layout" />

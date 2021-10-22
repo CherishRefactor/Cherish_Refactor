@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_main_home_to_phoneBookFragment"
             app:destination="@id/phoneBookFragment" />
+        <action
+            android:id="@+id/action_main_home_to_reviewFragment"
+            app:destination="@id/reviewFragment" />
 
     </fragment>
     <fragment
@@ -123,11 +126,49 @@
     <fragment
         android:id="@+id/calendarFragment"
         android:name="com.example.cherish_refactor.ui.detail.calendar.CalendarFragment"
-        android:label="CalendarFragment" >
+        android:label="CalendarFragment"
+        tools:layout="@layout/fragment_calendar">
         <argument
             android:name="cherishId"
             app:argType="integer"
             android:defaultValue="0" />
+        <action
+            android:id="@+id/action_calendarFragment_to_reviewModifyFragment"
+            app:destination="@id/reviewModifyFragment"
+            app:popUpTo="@id/calendarFragment"/>
+    </fragment>
+    <dialog
+        android:id="@+id/deletePlantDialog"
+        android:name="com.example.cherish_refactor.util.dialog.DeletePlantDialog"
+        android:label="DeletePlantDialog" >
+        <action
+            android:id="@+id/action_deletePlantDialog_to_main_home"
+            app:destination="@id/main_home" />
+    </dialog>
+    <fragment
+        android:id="@+id/reviewFragment"
+        android:name="com.example.cherish_refactor.ui.review.ReviewFragment"
+        android:label="ReviewFragment" >
+
+        <action
+            android:id="@+id/action_reviewFragment_to_main_home"
+            app:destination="@id/main_home" />
+    </fragment>
+    <dialog
+        android:id="@+id/contactDialogFragment"
+        android:name="com.example.cherish_refactor.util.dialog.ContactDialogFragment"
+        android:label="ContactDialogFragment" >
+        <action
+            android:id="@+id/action_contactDialogFragment_to_reviewFragment"
+            app:destination="@id/reviewFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/reviewModifyFragment"
+        android:name="com.example.cherish_refactor.ui.review.ReviewModifyFragment"
+        android:label="ReviewModifyFragment" >
+        <action
+            android:id="@+id/action_reviewModifyFragment_to_calendarFragment"
+            app:destination="@id/calendarFragment" />
     </fragment>
 
 

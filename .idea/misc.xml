@@ -20,14 +20,18 @@
         <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.2765625" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1" />
         <entry key="app/src/main/res/layout/dialog_birth_picker.xml" value="0.19444444444444445" />
+        <entry key="app/src/main/res/layout/dialog_check_phone.xml" value="0.28177083333333336" />
         <entry key="app/src/main/res/layout/dialog_clock_picker.xml" value="0.35833333333333334" />
         <entry key="app/src/main/res/layout/dialog_contact.xml" value="0.190625" />
         <entry key="app/src/main/res/layout/dialog_date_picker.xml" value="0.35833333333333334" />
+        <entry key="app/src/main/res/layout/dialog_delete_plant.xml" value="0.7588126159554731" />
         <entry key="app/src/main/res/layout/dialog_loading.xml" value="0.24635416666666668" />
         <entry key="app/src/main/res/layout/dialog_warning_keyword_limit_error.xml" value="0.24635416666666668" />
         <entry key="app/src/main/res/layout/dialog_watering.xml" value="0.24635416666666668" />
+        <entry key="app/src/main/res/layout/fragment_about_cherish.xml" value="0.2765625" />
         <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.20925925925925926" />
+        <entry key="app/src/main/res/layout/fragment_detail_modify_plant.xml" value="0.2786458333333333" />
         <entry key="app/src/main/res/layout/fragment_detail_plant.xml" value="0.19435897435897437" />
         <entry key="app/src/main/res/layout/fragment_enroll_modify_plant.xml" value="0.271875" />
         <entry key="app/src/main/res/layout/fragment_enroll_plant.xml" value="0.24739583333333334" />
@@ -41,6 +45,8 @@
         <entry key="app/src/main/res/layout/fragment_plant.xml" value="0.2657407407407407" />
         <entry key="app/src/main/res/layout/fragment_plant_search.xml" value="0.24114583333333334" />
         <entry key="app/src/main/res/layout/fragment_result_plant.xml" value="0.24739583333333334" />
+        <entry key="app/src/main/res/layout/fragment_review.xml" value="0.4381909547738693" />
+        <entry key="app/src/main/res/layout/fragment_review_modify.xml" value="0.22239583333333332" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.2657407407407407" />
         <entry key="app/src/main/res/layout/fragment_sign_in.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_user_modify.xml" value="0.24114583333333334" />
@@ -49,6 +55,7 @@
         <entry key="app/src/main/res/layout/main_cherry_item.xml" value="0.23854166666666668" />
         <entry key="app/src/main/res/layout/my_page_cherry_item.xml" value="0.19739583333333333" />
         <entry key="app/src/main/res/layout/view_chip_black_action.xml" value="0.35833333333333334" />
+        <entry key="app/src/main/res/layout/view_max_keyword.xml" value="0.28177083333333336" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/toolbar_menu.xml" value="0.25" />
       </map>

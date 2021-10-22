@@ -3,10 +3,12 @@ package com.example.cherish_refactor.ui.detail
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.cherish_refactor.R
 import com.example.cherish_refactor.databinding.FragmentDetailModifyPlantBinding
 import com.example.cherish_refactor.ui.base.BaseFragment
+import com.example.cherish_refactor.util.dialog.DeletePlantDialog
 
 
 class DetailModifyFragment : BaseFragment<FragmentDetailModifyPlantBinding>(R.layout.fragment_detail_modify_plant) {
@@ -24,6 +26,34 @@ class DetailModifyFragment : BaseFragment<FragmentDetailModifyPlantBinding>(R.la
         requestModifyView()
 
         return binding.root
+    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.tbDetailModify.inflateMenu(R.menu.toolbar_menu)
+        binding.tbDetailModify.menu.findItem(R.id.calendar).isVisible = false
+        binding.tbDetailModify.menu.findItem(R.id.setting).isVisible = false
+        binding.tbDetailModify.isHapticFeedbackEnabled
+        binding.tbDetailModify.setOnMenuItemClickListener {
+            when(it.itemId){
+                R.id.home ->{
+                    findNavController().popBackStack()
+                    true
+                }
+                R.id.trash ->{
+                    DeletePlantDialog(args.cherishId).show(parentFragmentManager,"delete")
+
+                    true
+                }
+                else -> false
+            }
+
+        }
+
     }
 
     fun requestModifyView(){

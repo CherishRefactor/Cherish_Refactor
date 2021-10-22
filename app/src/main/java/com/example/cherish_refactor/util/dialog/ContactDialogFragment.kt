@@ -7,11 +7,12 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import com.example.cherish_refactor.R
 import com.example.cherish_refactor.databinding.DialogContactBinding
 import com.example.cherish_refactor.ui.home.HomeViewModel
@@ -21,9 +22,10 @@ import com.example.cherish_refactor.util.FlexBoxExtension.addBlackChipModeChoice
 import com.example.cherish_refactor.util.FlexBoxExtension.clearChips
 
 
-class ContactDialogFragment : DialogFragment() {
+class ContactDialogFragment() : DialogFragment() {
 
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: HomeViewModel by activityViewModels()
+    private lateinit var binding:DialogContactBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,20 +33,26 @@ class ContactDialogFragment : DialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         val view = inflater.inflate(R.layout.dialog_contact, container, false)
-        val binding= DialogContactBinding.bind(view)
+        binding= DialogContactBinding.bind(view)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.vm = viewModel
         binding.dialogContact = this
-        viewModel.requestCalendar()
+        //viewModel.requestCalendar(4154)
+        viewModel.fetchCalendarData()
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        setChip(binding)
+        setChip()
         return binding.root
     }
 
 
-    private fun setChip(binding: DialogContactBinding) {
+    private fun setChip() {
+        viewModel.selectedCherishUser.observe(viewLifecycleOwner){
+            Log.d("fffff",it.toString())
+        }
         viewModel.calendarData.observe(viewLifecycleOwner) {
+
+            //Log.d("fffff",it.toString())
             binding.contactChipLayout.apply {
                 clearChips()
                 if (it?.waterData?.calendarData?.isNullOrEmpty()!!) {
@@ -121,11 +129,15 @@ class ContactDialogFragment : DialogFragment() {
     }
 
     private fun startReview() {
+        //doAfterConfirm()
+        dismiss()
 
     }
 
     private fun sendRemindReviewNotification() {
        // viewModel.sendRemindReview(NotificationRemindReviewReq(viewModel.selectedCherishUser.value!!.id))
+
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

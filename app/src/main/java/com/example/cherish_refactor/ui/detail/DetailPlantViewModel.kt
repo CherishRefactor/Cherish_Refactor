@@ -79,7 +79,12 @@ class DetailPlantViewModel : BaseViewModel() {
 
            val response =  RetrofitBuilder.cherishAPI.plantmodify(body)
         }
+    }
 
+    fun requestPlantDelete(cherishId: Int){
+        viewModelScope.launch {
+            val response = RetrofitBuilder.cherishAPI.plantdelete(cherishId)
+        }
 
     }
 

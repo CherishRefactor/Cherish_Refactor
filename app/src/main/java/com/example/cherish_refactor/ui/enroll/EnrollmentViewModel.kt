@@ -41,7 +41,7 @@ class EnrollmentViewModel : BaseViewModel() {
     }
 
     fun requestResult():PlantEnrollRequest{
-        if (birth.value==" ") {
+        if (birth.value==null) {
             this.birth.value="00/00"
         }
         val body =
