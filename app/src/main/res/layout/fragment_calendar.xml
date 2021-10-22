@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.example.cherish_refactor.ui.home.HomeViewModel" />
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cherish_light_gray"
+        tools:context=".ui.detail.calendar.CalendarFragment">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_calendar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="식물캘린더"
+            app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/toolbar"
+            app:layout_constraintTop_toTopOf="@+id/toolbar" />
+        <ImageButton
+            android:id="@+id/btn_calendar_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/icon_gnb_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/calendar_card_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_16dp"
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:layout_marginEnd="@dimen/margin_16dp"
+            app:cardCornerRadius="@dimen/radius_20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_calendar_back">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.example.cherish_refactor.ui.detail.calendar.CherishMaterialCalendarView
+                    android:id="@+id/calendar_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:mcv_calendarMode="month"
+                    app:mcv_selectionColor="@color/cherish_text_gray"
+                    app:mcv_selectionMode="single"
+                    app:mcv_showOtherDates="all" />
+
+                <TextView
+                    android:id="@+id/calendar_future_watering_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_10dp"
+                    android:layout_marginBottom="@dimen/margin_14dp"
+                    android:fontFamily="@font/notosanscjkkr_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/calendar_future_watering_text"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/calendar_view" />
+
+                <TextView
+                    android:id="@+id/calendar_future_watering_day_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="@dimen/margin_14dp"
+                    android:text="@string/calendar_day_bullet"
+                    android:textColor="@color/cherish_pink_sub"
+                    android:textSize="@dimen/text_12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/calendar_future_watering_day"
+                    app:layout_constraintTop_toBottomOf="@id/calendar_view" />
+
+                <TextView
+                    android:id="@+id/calendar_watered_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_14dp"
+                    android:layout_marginBottom="@dimen/margin_14dp"
+                    android:fontFamily="@font/notosanscjkkr_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/calendar_watered_text"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/calendar_future_watering_day_indicator"
+                    app:layout_constraintTop_toBottomOf="@id/calendar_view" />
+
+                <TextView
+                    android:id="@+id/calendar_watered_day_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="@dimen/margin_14dp"
+                    android:text="@string/calendar_day_bullet"
+                    android:textColor="@color/cherish_green_sub"
+                    android:textSize="@dimen/text_12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/calendar_watered_day"
+                    app:layout_constraintTop_toBottomOf="@id/calendar_view" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/calendar_memo_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="@dimen/radius_20dp"
+            app:layout_constraintEnd_toEndOf="@id/calendar_card_view"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/calendar_card_view"
+            app:layout_constraintTop_toBottomOf="@id/calendar_card_view">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp">
+
+                <TextView
+                    android:id="@+id/calendarView_selected_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="@{vm.selectedDay.wateredDate.toString()}"
+                    android:textColor="@color/cherish_light_black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/calendarView_memo_revise_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icn_pencil"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/calendarView_chip_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:foregroundGravity="center"
+                    app:layout_constraintTop_toBottomOf="@id/calendarView_memo_revise_btn" />
+
+                <TextView
+                    android:id="@+id/review_all_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@{vm.selectedDay.review}"
+                    app:layout_constraintBottom_toTopOf="@id/review_back"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/calendarView_chip_layout"
+                    app:layout_constraintVertical_bias="0.0001" />
+
+                <ImageButton
+                    android:id="@+id/review_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
+                    android:background="@color/white"
+                    android:calendarAllowChange="@{vm.isCalendarChange}"
+                    app:layout_constraintEnd_toEndOf="@id/review_all_text"
+                    app:layout_constraintStart_toStartOf="@id/review_all_text"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -16,8 +16,25 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cons"
+        android:background="@drawable/plant_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tb_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="식물 카드"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:includeFontPadding="false"
+            android:textColor="#454545"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="8sp"
+            android:textSize="@dimen/text_16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tb_detail"
+            app:layout_constraintEnd_toEndOf="@+id/tb_detail"
+            app:layout_constraintStart_toStartOf="@+id/tb_detail"
+            app:layout_constraintTop_toTopOf="@+id/tb_detail" />
 
         <androidx.appcompat.widget.Toolbar
             android:gravity="center"
@@ -26,7 +43,10 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" >
+
+
+        </androidx.appcompat.widget.Toolbar>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cons2"
@@ -336,8 +356,9 @@
 
                 <TextView
                     android:id="@+id/usermemo"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:ellipsize="end"
                     android:fontFamily="@font/notosanscjkkr_regular"
                     android:includeFontPadding="false"
@@ -388,8 +409,8 @@
 
                 <TextView
                     android:id="@+id/usermemo2"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:ellipsize="end"
                     android:fontFamily="@font/notosanscjkkr_regular"

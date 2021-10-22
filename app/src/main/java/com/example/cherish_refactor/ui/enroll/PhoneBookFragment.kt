@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.provider.ContactsContract
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -18,6 +20,7 @@ import com.example.cherish_refactor.databinding.FragmentPhoneBookBinding
 import com.example.cherish_refactor.domain.entity.Phone
 import com.example.cherish_refactor.ui.base.BaseFragment
 import com.example.cherish_refactor.ui.enroll.adapter.PhoneBookAdapter
+import com.example.cherish_refactor.util.dialog.CheckPhoneDialogFragment
 
 
 class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragment_phone_book) {
@@ -38,6 +41,8 @@ class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragme
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
         binding.vm=viewModel
+
+        observer()
         checkPermission(CAMERA_PERMISSION, CAMERA_PERMISSION_REQUEST)
         checkPermission(STORAGE_PERMISSION, STORAGE_PERMISSION_REQUEST)
 
@@ -57,10 +62,21 @@ class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragme
 
         })
         binding.buttonnext.setOnClickListener{
-
-            findNavController().navigate(PhoneBookFragmentDirections.actionPhoneBookFragmentToEnrollPlantFragment(phoneBookAdapter.phonename,phoneBookAdapter.phonenumber))
+            viewModel.requestCheckPhone(phoneBookAdapter.phonenumber,609)
             // 이름 , 전화번호
 
+
+        }
+    }
+
+    fun observer(){
+        viewModel.isCheckPhone.observe(viewLifecycleOwner){
+            if(it==true){
+                CheckPhoneDialogFragment().show(parentFragmentManager,"phonebook")
+            }else{
+                findNavController().navigate(PhoneBookFragmentDirections.actionPhoneBookFragmentToEnrollPlantFragment(phoneBookAdapter.phonename,phoneBookAdapter.phonenumber))
+
+            }
         }
     }
 
@@ -69,7 +85,7 @@ class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragme
 
         when(permissionResult){
             PackageManager.PERMISSION_GRANTED -> {
-                Toast.makeText(requireContext(), "Permission Granted", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(requireContext(), "Permission Granted", Toast.LENGTH_SHORT).show()
                 // Go Main Function
                 startProcess()
                 setListeners()

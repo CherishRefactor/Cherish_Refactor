@@ -28,6 +28,12 @@
     <TextView
         android:id="@+id/tv_enroll"
         android:text="식물 상세 입력"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"
+        android:textColor="#454545"
+        android:letterSpacing="-0.03"
+        android:lineSpacingExtra="8sp"
+        android:textSize="@dimen/text_16sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/back_enroll"
@@ -279,6 +285,7 @@
                 android:layout_marginStart="13dp"
                 android:text="@{vm.clock}"
                 android:textColor="#454545"
+                android:hint="00:00 AM"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/editclock"
                 app:layout_constraintTop_toTopOf="@+id/editclock" />

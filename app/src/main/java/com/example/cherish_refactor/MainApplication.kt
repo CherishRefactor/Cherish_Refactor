@@ -6,6 +6,7 @@ import com.example.cherish_refactor.ui.home.HomeViewModel
 import com.example.cherish_refactor.ui.manage.ManageViewModel
 import com.example.cherish_refactor.ui.manage.PlantViewModel
 import com.example.cherish_refactor.ui.setting.SettingViewModel
+import com.example.cherish_refactor.util.PixelRatio
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
 import org.koin.android.ext.koin.androidLogger
@@ -28,6 +29,13 @@ class MainApplication : Application() {
             // use modules
             modules(myViewModel)
         }
+        initializeSingletons()
+    }
+    companion object {
+        lateinit var pixelRatio: PixelRatio
+    }
+    private fun initializeSingletons() {
+          pixelRatio = PixelRatio(this)
     }
 
     val myViewModel = module {
