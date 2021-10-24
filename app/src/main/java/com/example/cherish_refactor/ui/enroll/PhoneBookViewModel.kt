@@ -16,8 +16,24 @@ class PhoneBookViewModel :BaseViewModel() {
      val phone = MutableLiveData<String>()
 
 
-     val _isCheckPhone = MutableLiveData<Boolean>()
+     private val _isCheckPhone = MutableLiveData<Boolean>()
      val isCheckPhone : LiveData<Boolean> = _isCheckPhone
+
+     private val _isNextPhone = MutableLiveData<Boolean>()
+     val isNextPhone : LiveData<Boolean> = _isNextPhone
+     
+     init{
+          _isNextPhone.value=false
+     }
+
+
+     fun nextPhone(){
+          _isNextPhone.value=true
+     }
+
+     fun noNextPhone(){
+          _isNextPhone.value=false
+     }
 
      fun requestCheckPhone(phoneNumber : String, userId :Int){
 

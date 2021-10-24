@@ -14,6 +14,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cherish_refactor.R
 import com.example.cherish_refactor.databinding.FragmentPhoneBookBinding
@@ -27,6 +28,7 @@ class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragme
 
     private val viewModel: PhoneBookViewModel by viewModels()
     private val phoneBookAdapter: PhoneBookAdapter by lazy { PhoneBookAdapter() }
+    private val args by navArgs<PhoneBookFragmentArgs>()
 
     var searchText = ""
 
@@ -56,13 +58,13 @@ class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragme
                 if (radio) {
                     binding.buttonnext.setBackgroundColor(Color.parseColor("#1AD287"))
                     binding.buttonnext.setTextColor(Color.parseColor("#ffffff"))
-
+                    viewModel.nextPhone()
                 }
             }
 
         })
         binding.buttonnext.setOnClickListener{
-            viewModel.requestCheckPhone(phoneBookAdapter.phonenumber,609)
+            viewModel.requestCheckPhone(phoneBookAdapter.phonenumber,args.cherishId)
             // 이름 , 전화번호
 
 
@@ -78,6 +80,7 @@ class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragme
 
             }
         }
+
     }
 
     fun checkPermission(permissions: Array<String>, permissionRequestNumber:Int){

@@ -25,12 +25,41 @@ class DetailPlantViewModel : BaseViewModel() {
     val date = MutableLiveData<String>()
     val clock = MutableLiveData<String>()
 
+    private val _gage = MutableLiveData<Int>()
+    val gage : LiveData<Int> = _gage
+
+    private val _isEmptyMemo = MutableLiveData<Boolean>()
+    val isEmptyMemo : LiveData<Boolean> = _isEmptyMemo
+
+    private val _isEmptyMemo2 = MutableLiveData<Boolean>()
+    val isEmptyMemo2 : LiveData<Boolean> = _isEmptyMemo2
+
+     val _isTouch = MutableLiveData<Boolean>()
+    //val isTouch : LiveData<Boolean> = _isTouch
+
+    init{
+        _isTouch.value=false
+    }
+
 
     fun requestPlantDetail(cherishId: Int) {
         viewModelScope.launch {
             try{
                 val response = RetrofitBuilder.cherishAPI.DetailPlant(cherishId)
                 _plantDetail.postValue(DataToEntity.PlantDetail(response.data))
+                _gage.postValue((response.data.gage*100).toInt())
+                if(response.data.reviews.size==0){
+                    _isEmptyMemo.postValue(true)
+                    _isEmptyMemo2.postValue(true)
+                }else if(response.data.reviews.size==1){
+                    _isEmptyMemo.postValue(false)
+                    _isEmptyMemo2.postValue(true)
+                } else{
+                    _isEmptyMemo.postValue(false)
+                    _isEmptyMemo2.postValue(false)
+                }
+
+
 
             }catch (e:HttpException){
 

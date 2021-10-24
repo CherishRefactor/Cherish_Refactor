@@ -89,4 +89,19 @@ interface CherishAPI {
         @Body reviseReviewReq: ReviewModifyRequest
     ): UtilResponseWithOutStatus
 
+    @POST("checkSameEmail")
+    suspend fun postEmail(
+        @Body body: SignUpCheckRequest
+    ): DefaultResponse
+
+    @POST("login/signup")
+    suspend fun postSignUp(
+        @Body body: SignUpRequest
+    ): SignUpResponse
+
+    @POST("login/phoneAuth")
+    suspend fun postAuth(
+        @Body body: PhoneAuthResponse
+    ): PhoneAuthRequest
+
 }

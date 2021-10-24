@@ -14,11 +14,15 @@ import com.example.cherish_refactor.R
 import com.example.cherish_refactor.data.source.remote.api.CalendarResponse
 import com.example.cherish_refactor.ui.detail.calendar.CherishMaterialCalendarView
 import com.example.cherish_refactor.ui.detail.calendar.DotDecorator
+import com.example.cherish_refactor.util.FlexBoxExtension.addChipCalendar
+import com.example.cherish_refactor.util.FlexBoxExtension.clearChips
 import com.example.cherish_refactor.util.ImageViewExtension.matchSizeImageView
 import com.example.cherish_refactor.util.ImageViewExtension.resizeImageView
 import com.example.cherish_refactor.util.ImageViewExtension.setMargin
 import com.example.cherish_refactor.util.PixelUtil.dp
 import com.example.cherish_refactor.util.animation.ProgressbarAnimation
+import com.google.android.flexbox.FlexboxLayout
+import com.prolificinteractive.materialcalendarview.CalendarDay
 import kotlin.math.abs
 
 
@@ -533,5 +537,41 @@ fun calendarAllowChange(imageButton: ImageButton, focus: Boolean) {
         imageButton.setImageResource(R.drawable.icn_allow_top)
     } else {
         imageButton.setImageResource(R.drawable.icn_allow)
+    }
+}
+@BindingAdapter(
+    value = ["android:userStatus1", "android:userStatus2", "android:userStatus3"],
+    requireAll = false
+)
+fun showChips(
+    flexboxLayout: FlexboxLayout,
+    userStatus1: String?,
+    userStatus2: String?,
+    userStatus3: String?
+) {
+    flexboxLayout.clearChips()
+    flexboxLayout.apply {
+        if (userStatus1 != "null" && userStatus1 != " " && userStatus1 != "") {
+            userStatus1?.let { addChipCalendar(it) }
+        }
+        if (userStatus2 != "null" && userStatus2 != " " && userStatus2 != "") {
+            userStatus2?.let { addChipCalendar(it) }
+        }
+        if (userStatus3 != "null" && userStatus3 != " " && userStatus3 != "") {
+            userStatus3?.let { addChipCalendar(it) }
+        }
+    }
+}
+
+@BindingAdapter("android:showMemo")
+fun showMemo(textView: TextView, memoText: String?) {
+    textView.text = " "
+    textView.text = memoText
+}
+
+@BindingAdapter("android:showDate")
+fun showDate(textView: TextView, date: CalendarDay?) {
+    date?.let {
+        textView.text = "${it.year}년 ${it.month}월 ${it.day}일"
     }
 }

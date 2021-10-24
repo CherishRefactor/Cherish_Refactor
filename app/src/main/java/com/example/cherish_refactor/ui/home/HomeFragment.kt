@@ -2,7 +2,6 @@ package com.example.cherish_refactor.ui.home
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,8 +31,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home){
         standardBottomSheetBehavior = BottomSheetBehavior.from(binding.homeStandardBottomSheet)
         getCherishItem()
         setListener()
-        observer()
+
         setAdapter()
+        observer()
         setBottom()
         addBottomSheetCallback()
         return binding.root
@@ -94,13 +94,22 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home){
 
 
     private fun setListener(){
-        homeCherryListAdapter.onClick = { user ,position->
-            homeCherryListAdapter.seletedPosition=position
-            homeCherryListAdapter.data.removeAt(0)
-            Log.d("asdf",position.toString())
+        homeCherryListAdapter.onClick = { user,position ->
+            //homeCherryListAdapter.notifyDataSetChanged()
+            homeCherryListAdapter.setOp(position)
+            //homeCherryListAdapter.seletedPosition=position
+            //homeCherryListAdapter.data.clear()
+            //homeCherryListAdapter.data.add(0,user)
+            //homeCherryListAdapter.setchange(user)
+            //homeCherryListAdapter.data.removeAt(0)
+            //Log.d("asdf",position.toString())
             viewModel.setSelectedUser(user)
-            homeCherryListAdapter.data.add(0,user)
+            homeCherryListAdapter.data[0]=user
+            //homeCherryListAdapter.data.add(0,user)
             homeCherryListAdapter.notifyItemChanged(0)
+            homeCherryListAdapter.notifyItemRangeChanged(0, homeCherryListAdapter.data.size)
+            //homeCherryListAdapter.notifyDataSetChanged()
+
 
             // 클릭하면 맨처음에 하나 생겨나야함
 
@@ -117,7 +126,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home){
 
                 if (viewModel.selectedCherishUser.value?.dDay!! <= 0) {
                     WateringDialogFragment().show(parentFragmentManager, TAG)
-                    findNavController().navigate(R.id.action_main_home_to_reviewFragment)
+
                 } else {
                     Toast.makeText(context, "물 줄수있는 날이 아니에요 ㅠ",Toast.LENGTH_SHORT).show()
                 }
@@ -203,7 +212,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home){
         intent.putExtra("selectedUserDday", viewModel.selectedCherishUser.value!!.dDay)
         startActivityForResult(intent, CODE_MOVE_DETAIL_PLANT)
     }*/
-
 
 
     companion object {

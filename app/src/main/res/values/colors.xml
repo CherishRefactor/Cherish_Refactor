@@ -47,5 +47,9 @@
     <color name="btn_next_un">#f5f5f5</color>
 
 
+    <color name="progress_green">#31d693</color>
+    <color name="progress_red">#F7596C</color>
+
+
 
 </resources>

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.cherish_refactor.R
 import com.example.cherish_refactor.databinding.FragmentReviewModifyBinding
 import com.example.cherish_refactor.ui.base.BaseFragment
@@ -20,7 +21,7 @@ import com.example.cherish_refactor.util.writeKeyword
 class ReviewModifyFragment : BaseFragment<FragmentReviewModifyBinding>(R.layout.fragment_review_modify) {
 
     private val viewModel: HomeViewModel by activityViewModels()
-
+    private val args by navArgs<ReviewModifyFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,10 +46,10 @@ class ReviewModifyFragment : BaseFragment<FragmentReviewModifyBinding>(R.layout.
     fun setListener(){
         binding.reviseReviewAdminAccept.setOnClickListener {
 
-            viewModel.sendReviewModify(binding.reviseReviewFlexBox.getChip(0)?.text.toString(),
+            viewModel.sendReviewModify(args.cherishId!!,binding.reviseReviewFlexBox.getChip(0)?.text.toString(),
                 binding.reviseReviewFlexBox.getChip(1)?.text.toString(),binding.reviseReviewFlexBox.getChip(2)?.text.toString(),binding.reviseReviewMemo.text.toString())
 
-            findNavController().navigate(R.id.action_reviewModifyFragment_to_calendarFragment)
+            findNavController().navigate(ReviewModifyFragmentDirections.actionReviewModifyFragmentToCalendarFragment(args.cherishId))
         }
     }
 

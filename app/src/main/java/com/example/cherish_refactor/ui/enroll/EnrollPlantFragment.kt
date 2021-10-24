@@ -1,13 +1,19 @@
 package com.example.cherish_refactor.ui.enroll
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.appcompat.app.AppCompatDialog
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.example.cherish_refactor.R
 import com.example.cherish_refactor.databinding.FragmentEnrollPlantBinding
 import com.example.cherish_refactor.ui.base.BaseFragment
@@ -18,7 +24,7 @@ import com.example.cherish_refactor.util.dialog.DatePickerDialog
 
 class EnrollPlantFragment : BaseFragment<FragmentEnrollPlantBinding>(R.layout.fragment_enroll_plant) {
 
-
+    private lateinit var progressDialog: AppCompatDialog
     private val enrollmentViewModel :EnrollmentViewModel by viewModels()
     private val args by navArgs<EnrollPlantFragmentArgs>()
 
@@ -57,12 +63,37 @@ class EnrollPlantFragment : BaseFragment<FragmentEnrollPlantBinding>(R.layout.fr
         }
         binding.detailOkBtn.setOnClickListener {
             //enrollmentViewModel.requestEnrollPlant(609)
-            findNavController().navigate(EnrollPlantFragmentDirections.actionEnrollPlantFragmentToResultPlantFragment(enrollmentViewModel.requestResult()))
+            progressON()
+            Handler(Looper.getMainLooper()).postDelayed({
+                findNavController().navigate(EnrollPlantFragmentDirections.actionEnrollPlantFragmentToResultPlantFragment(enrollmentViewModel.requestResult()))
+                progressOFF()
+            }, 4000)
 
         }
 
 
     }
+    fun progressON() {
+
+        progressDialog = AppCompatDialog(context)
+        progressDialog.setCancelable(false)
+        progressDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        progressDialog.setContentView(R.layout.dialog_progress)
+        progressDialog.findViewById<ImageView>(R.id.imageViewProgress)?.let {
+            Glide.with(this).load(R.raw.cherish_loading).into(
+                it
+            )
+        }
+        progressDialog.show()
+
+    }
+
+    fun progressOFF() {
+        if (progressDialog != null && progressDialog.isShowing) {
+            progressDialog.dismiss()
+        }
+    }
+
 
 
 

@@ -6,7 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cherish_refactor.R
-import com.example.cherish_refactor.ui.signin.SignInActivity
+import com.example.cherish_refactor.ui.onboarding.OnBoardingActivity
 
 
 class SplashActivity : AppCompatActivity() {
@@ -17,7 +17,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this@SplashActivity,SignInActivity::class.java))
+            startActivity(Intent(this@SplashActivity,OnBoardingActivity::class.java))
             finish()
         }, 2000)
 

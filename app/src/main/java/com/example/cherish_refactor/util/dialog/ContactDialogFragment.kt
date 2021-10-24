@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.cherish_refactor.R
 import com.example.cherish_refactor.databinding.DialogContactBinding
 import com.example.cherish_refactor.ui.home.HomeViewModel
@@ -22,10 +23,10 @@ import com.example.cherish_refactor.util.FlexBoxExtension.addBlackChipModeChoice
 import com.example.cherish_refactor.util.FlexBoxExtension.clearChips
 
 
-class ContactDialogFragment() : DialogFragment() {
+class ContactDialogFragment : DialogFragment() {
 
     private val viewModel: HomeViewModel by activityViewModels()
-    private lateinit var binding:DialogContactBinding
+    private lateinit var binding: DialogContactBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,7 +34,7 @@ class ContactDialogFragment() : DialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         val view = inflater.inflate(R.layout.dialog_contact, container, false)
-        binding= DialogContactBinding.bind(view)
+        binding = DialogContactBinding.bind(view)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.vm = viewModel
         binding.dialogContact = this
@@ -47,24 +48,20 @@ class ContactDialogFragment() : DialogFragment() {
 
 
     private fun setChip() {
-        viewModel.selectedCherishUser.observe(viewLifecycleOwner){
-            Log.d("fffff",it.toString())
-        }
-        viewModel.calendarData.observe(viewLifecycleOwner) {
+        viewModel.selectedCherishUser.observe(viewLifecycleOwner) {
+            Log.d("fffff", it.toString())
 
-            //Log.d("fffff",it.toString())
+
+        }
+        viewModel.selectedDay.observe(viewLifecycleOwner) {
             binding.contactChipLayout.apply {
                 clearChips()
-                if (it?.waterData?.calendarData?.isNullOrEmpty()!!) {
-                    it.waterData.calendarData.let { calendarData ->
-                        if (calendarData.last().userStatus1 != "" && calendarData.last().userStatus1 != "null")
-                            addBlackChipModeChoice(it.waterData.calendarData.last().userStatus1)
-                        if (calendarData.last().userStatus2 != "" && calendarData.last().userStatus2 != "null")
-                            addBlackChipModeChoice(it.waterData.calendarData.last().userStatus2)
-                        if (calendarData.last().userStatus3 != "" && calendarData.last().userStatus3 != "null")
-                            addBlackChipModeChoice(it.waterData.calendarData.last().userStatus3)
-                    }
-                }
+                if (it.userStatus1 != "" && it.userStatus1 != "null")
+                    addBlackChipModeChoice(it.userStatus1)
+                if (it.userStatus2 != "" && it.userStatus2 != "null")
+                    addBlackChipModeChoice(it.userStatus2)
+                if (it.userStatus3 != "" && it.userStatus3 != "null")
+                    addBlackChipModeChoice(it.userStatus3)
             }
         }
     }
@@ -131,6 +128,7 @@ class ContactDialogFragment() : DialogFragment() {
     private fun startReview() {
         //doAfterConfirm()
         dismiss()
+        findNavController().navigate(R.id.action_main_home_to_reviewFragment)
 
     }
 

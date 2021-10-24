@@ -7,6 +7,7 @@ import com.example.cherish_refactor.data.source.remote.api.*
 import com.example.cherish_refactor.data.source.remote.singleton.RetrofitBuilder
 import com.example.cherish_refactor.ui.base.BaseViewModel
 import com.example.cherish_refactor.util.DateUtil
+import com.prolificinteractive.materialcalendarview.CalendarDay
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -25,7 +26,22 @@ class HomeViewModel : BaseViewModel() {
     private val _calendarData = MutableLiveData<CalendarResponse>()
     val calendarData: LiveData<CalendarResponse> = _calendarData
 
+    private val _isEmptyMemo = MutableLiveData<Boolean>()
+    val isEmptyMemo: LiveData<Boolean> = _isEmptyMemo
+
+
+    fun showMemo(){
+
+        _isEmptyMemo.value=false
+    }
+
+    fun noShowMemo(){
+        _isEmptyMemo.value=true
+    }
+
     val selectedDay = MutableLiveData<CalendarResponse.WaterData.CalendarData>()
+
+    val selectedNullDay = MutableLiveData<CalendarDay>()
 
      val total = MutableLiveData<Int>()
 
@@ -59,11 +75,11 @@ class HomeViewModel : BaseViewModel() {
 
     }
 
-    fun requestCalendar(){
+    fun requestCalendar(cherishId:Int){
         viewModelScope.launch {
 
 
-               val response = RetrofitBuilder.cherishAPI.getCalendarData(_selectedCherishId.value!!)
+               val response = RetrofitBuilder.cherishAPI.getCalendarData(cherishId)
                 _calendarData.postValue(response)
                 //selectedDay.postValue(response.waterData.calendarData[0])
 
@@ -121,16 +137,17 @@ class HomeViewModel : BaseViewModel() {
         }
     }
 
-    fun sendReviewModify(chip1:String,chip2:String, chip3:String,memo:String) = viewModelScope.launch {
+    fun sendReviewModify(cherishId:Int,chip1:String,chip2:String, chip3:String,memo:String) = viewModelScope.launch {
         runCatching {
             val date =DateUtil.convertDateToString(
                 selectedDay.value?.wateredDate!!
             )
-            val body = ReviewModifyRequest(selectedCherishUser.value!!.id,date,memo,chip1,chip2,chip3)
+            val body = ReviewModifyRequest(cherishId,date,memo,chip1,chip2,chip3)
             val response = RetrofitBuilder.cherishAPI.reviewModify(body)
 
         }.onSuccess {
             // Toast를 띄우는건?
+           // Toast.makeText(context, "물 줄수있는 날이 아니에요 ㅠ", Toast.LENGTH_SHORT).show()
         }.onFailure { error ->
             //errorHandleLiveData.value = error.message
         }
