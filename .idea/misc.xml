@@ -18,6 +18,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_onboarding.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.2765625" />
+        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.2171875" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1" />
         <entry key="app/src/main/res/layout/dialog_birth_picker.xml" value="0.19444444444444445" />
         <entry key="app/src/main/res/layout/dialog_check_phone.xml" value="0.28177083333333336" />
@@ -26,6 +27,7 @@
         <entry key="app/src/main/res/layout/dialog_date_picker.xml" value="0.35833333333333334" />
         <entry key="app/src/main/res/layout/dialog_delete_plant.xml" value="0.7588126159554731" />
         <entry key="app/src/main/res/layout/dialog_loading.xml" value="0.24635416666666668" />
+        <entry key="app/src/main/res/layout/dialog_progress.xml" value="0.26510416666666664" />
         <entry key="app/src/main/res/layout/dialog_warning_keyword_limit_error.xml" value="0.24635416666666668" />
         <entry key="app/src/main/res/layout/dialog_watering.xml" value="0.24635416666666668" />
         <entry key="app/src/main/res/layout/fragment_about_cherish.xml" value="0.2765625" />
@@ -49,6 +51,10 @@
         <entry key="app/src/main/res/layout/fragment_review_modify.xml" value="0.22239583333333332" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.2657407407407407" />
         <entry key="app/src/main/res/layout/fragment_sign_in.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_sign_up_dialog.xml" value="0.2171875" />
+        <entry key="app/src/main/res/layout/fragment_sign_up_first.xml" value="0.2171875" />
+        <entry key="app/src/main/res/layout/fragment_sign_up_fourth.xml" value="0.2171875" />
+        <entry key="app/src/main/res/layout/fragment_sign_up_second.xml" value="0.2171875" />
         <entry key="app/src/main/res/layout/fragment_user_modify.xml" value="0.24114583333333334" />
         <entry key="app/src/main/res/layout/item_layout.xml" value="0.24635416666666668" />
         <entry key="app/src/main/res/layout/item_layout_plant.xml" value="0.19739583333333333" />

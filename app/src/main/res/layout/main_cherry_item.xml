@@ -3,6 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View"/>
+
+        <!--<variable
+            name="onClick"
+            type="Function1&lt;User, Unit>" />-->
         <variable
             name="onClick"
             type="kotlin.jvm.functions.Function2"/>
@@ -60,6 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginTop="36dp"
+            android:visibility="@{user.DDay&lt;=0 ? View.VISIBLE : View.INVISIBLE}"
             android:background="@drawable/main_water_bg"
             app:layout_constraintBottom_toBottomOf="@id/main_user_img"
             app:layout_constraintEnd_toEndOf="@+id/main_user_img"
@@ -73,6 +79,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="36dp"
             android:src="@drawable/group_359"
+            android:visibility="@{user.DDay&lt;=0 ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintBottom_toBottomOf="@id/main_user_img"
             app:layout_constraintEnd_toEndOf="@+id/main_user_img"
             app:layout_constraintStart_toStartOf="@id/main_user_img"

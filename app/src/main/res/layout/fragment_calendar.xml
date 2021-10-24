@@ -7,6 +7,7 @@
         <variable
             name="vm"
             type="com.example.cherish_refactor.ui.home.HomeViewModel" />
+        <import type="android.view.View"/>
 
 
     </data>
@@ -156,7 +157,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_bold"
-                    android:text="@{vm.selectedDay.wateredDate.toString()}"
+                    android:showDate="@{vm.selectedNullDay}"
                     android:textColor="@color/cherish_light_black"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -174,6 +175,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:foregroundGravity="center"
+                    android:visibility="@{vm.isEmptyMemo==true ? View.INVISIBLE :View.VISIBLE}"
+                    android:userStatus1="@{vm.selectedDay.userStatus1}"
+                    android:userStatus2="@{vm.selectedDay.userStatus2}"
+                    android:userStatus3="@{vm.selectedDay.userStatus3}"
                     app:layout_constraintTop_toBottomOf="@id/calendarView_memo_revise_btn" />
 
                 <TextView
@@ -182,6 +187,7 @@
                     android:layout_height="0dp"
                     android:layout_marginTop="16dp"
                     android:text="@{vm.selectedDay.review}"
+                    android:visibility="@{vm.isEmptyMemo==true ? View.INVISIBLE :View.VISIBLE}"
                     app:layout_constraintBottom_toTopOf="@id/review_back"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
