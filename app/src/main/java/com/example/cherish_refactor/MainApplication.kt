@@ -6,6 +6,7 @@ import com.example.cherish_refactor.ui.home.HomeViewModel
 import com.example.cherish_refactor.ui.manage.ManageViewModel
 import com.example.cherish_refactor.ui.manage.PlantViewModel
 import com.example.cherish_refactor.ui.setting.SettingViewModel
+import com.example.cherish_refactor.util.MyKeyStore
 import com.example.cherish_refactor.util.PixelRatio
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
@@ -28,6 +29,7 @@ class MainApplication : Application() {
             androidFileProperties()
             // use modules
             modules(myViewModel)
+            MyKeyStore.init(this@MainApplication)
         }
         initializeSingletons()
     }

@@ -2,13 +2,14 @@ package com.example.cherish_refactor.ui.signin
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import com.example.cherish_refactor.MainActivity
 import com.example.cherish_refactor.R
 import com.example.cherish_refactor.databinding.ActivitySignInBinding
 import com.example.cherish_refactor.ui.base.BaseActivity
 import com.example.cherish_refactor.ui.splash.HomeBlankActivity
-import com.example.cherish_refactor.util.MySharedPreference
+import com.example.cherish_refactor.util.MyKeyStore
 
 class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sign_in) {
 
@@ -26,7 +27,7 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
     fun login(){
         binding.loginBtn.setOnClickListener {
             signInViewModel.requestLogIn()
-            MySharedPreference.setUserId(this, binding.editTextTextPersonName.toString())
+            //MySharedPreference.setUserId(this, binding.editTextTextPersonName.toString())
 
         }
     }
@@ -56,15 +57,17 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
     }
 
     private fun autoLogin() {
+        Log.d("autologin1111",MyKeyStore.getUserId().toString())
+        //login()
         // 자동 로그인이 되고 아무것도 없으면 블랭크 있으면 메인
-        if(MySharedPreference.getUserId(this).isBlank()) {
+        if(MyKeyStore.getUserId()==-1) {
+
             login()
-        }
-        else { // SharedPreferences 안에 값이 저장되어 있을 때 -> MainActivity로 이동
-                val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+        }else{
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
+
     }
 
 }

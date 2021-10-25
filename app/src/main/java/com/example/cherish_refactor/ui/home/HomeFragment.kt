@@ -9,10 +9,13 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.cherish_refactor.MainApplication
 import com.example.cherish_refactor.R
 import com.example.cherish_refactor.databinding.FragmentHomeBinding
 import com.example.cherish_refactor.ui.base.BaseFragment
 import com.example.cherish_refactor.ui.home.adapter.HomeCherryListAdapter
+import com.example.cherish_refactor.util.MyKeyStore
+import com.example.cherish_refactor.util.PixelUtil.dp
 import com.example.cherish_refactor.util.dialog.WateringDialogFragment
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
@@ -34,15 +37,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home){
 
         setAdapter()
         observer()
-        setBottom()
+        //setBottom()
         addBottomSheetCallback()
         return binding.root
     }
 
-    private fun setBottom(){
+    private fun slideDownBottomSheet() {
         standardBottomSheetBehavior.apply {
             state = BottomSheetBehavior.STATE_COLLAPSED
-            peekHeight = 160
+            peekHeight = (MainApplication.pixelRatio.screenHeight.dp / 5.dp)
         }
     }
 
@@ -58,9 +61,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home){
                 val lowerSlide = 0.3
                 val middleSlide = 0.5
                 if (slideOffset < lowerSlide) {
-                    standardBottomSheetBehavior.peekHeight = 60
+                    standardBottomSheetBehavior.peekHeight = 60.dp
                 } else if (slideOffset <= middleSlide) {
-                    standardBottomSheetBehavior.setPeekHeight(160,
+                    standardBottomSheetBehavior.setPeekHeight(
+                        (MainApplication.pixelRatio.screenHeight.dp / 5.dp),
                         true
                     )
                 }
@@ -76,7 +80,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home){
 
 
     private fun getCherishItem(){
-        viewModel.requestMainCherishItem(609)
+
+        viewModel.requestMainCherishItem(MyKeyStore.getUserId()!!)
        // homeCherryListAdapter.data.add(0,viewModel.selectedFirst.value!!)
 
 
@@ -110,7 +115,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home){
             homeCherryListAdapter.notifyItemRangeChanged(0, homeCherryListAdapter.data.size)
             //homeCherryListAdapter.notifyDataSetChanged()
 
-
+            slideDownBottomSheet()
             // 클릭하면 맨처음에 하나 생겨나야함
 
         }
@@ -128,7 +133,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home){
                     WateringDialogFragment().show(parentFragmentManager, TAG)
 
                 } else {
-                    Toast.makeText(context, "물 줄수있는 날이 아니에요 ㅠ",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "물 줄수있는 날이 아니에요!",Toast.LENGTH_SHORT).show()
                 }
 
         }
@@ -136,82 +141,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home){
             findNavController().navigate(R.id.action_main_home_to_phoneBookFragment)
         }
     }
-
-    /*fun setListener(){
-        binding.homeWateringBtn.setOnClickListener {
-            navigateWatering()
-        }
-
-        binding.homeUserAddText.setOnClickListener {
-            navigatePhoneBook()
-        }
-
-        binding.homeMovePlantDetail.setOnClickListener {
-            navigateDetailPlant(
-                //viewModel.cherishUserId.value!!
-                args.userId
-            )
-        }
-
-    }*/
-
-   /* override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        val receivedMessage = args.userId
-
-    }*/
-
-
-
-
-    /*override fun onItemClick(itemBinding: MainCherryItemBinding, position: Int) {
-        viewModel.selectedCherishUser.value = homeCherryListAdapter.data[position]
-        homeCherryListAdapter.data[0] = homeCherryListAdapter.data[position]
-        viewModel.cherishSelectedPosition.value = position
-        homeCherryListAdapter.notifyItemChanged(0)
-        slideDownBottomSheet()
-    }*/
-
-  /*  private fun initializeRecyclerView(
-        homeCherryListAdapter: HomeCherryListAdapter
-    ) {
-        binding.homeUserList.apply {
-            adapter = homeCherryListAdapter
-            layoutManager = GridLayoutManager(context, 5)
-            addItemDecoration(GridItemDecorator(spanCount = 5, spacing = 6.dp, includeEdge = true))
-            isNestedScrollingEnabled = false
-            setHasFixedSize(true)
-        }
-    }
-*/
-
-    // 화면이동
-   /* private fun navigateWatering() {
-        if (viewModel.selectedCherishUser.value?.dDay!! <= 0) {
-            WateringDialogFragment().show(parentFragmentManager, TAG)
-        } else {
-            longToast(requireContext(), "물 줄수있는 날이 아니에요 ㅠ")
-        }
-    }*/
-
-    /*private fun navigatePhoneBook() {
-        val intent = Intent(context, EnrollmentPhoneActivity::class.java)
-        intent.putExtra("userId", viewModel.cherishUserId.value)
-        startActivity(intent)
-    }*/
-
-    /*private fun navigateDetailPlant(userId: Int?) {
-        val intent = Intent(activity, DetailPlantActivity::class.java)
-        intent.putExtra("userId", userId)
-        intent.putExtra("cherishId", viewModel.selectedCherishUser.value?.id)
-        intent.putExtra("cherishUserPhoneNumber", viewModel.selectedCherishUser.value?.phoneNumber)
-        intent.putExtra("cherishNickname", viewModel.selectedCherishUser.value?.nickName)
-        intent.putExtra("userNickname", viewModel.userNickName.value)
-        intent.putExtra("cherishuserId", viewModel.cherishUserId.value)
-        intent.putExtra("selectedUserDday", viewModel.selectedCherishUser.value!!.dDay)
-        startActivityForResult(intent, CODE_MOVE_DETAIL_PLANT)
-    }*/
 
 
     companion object {

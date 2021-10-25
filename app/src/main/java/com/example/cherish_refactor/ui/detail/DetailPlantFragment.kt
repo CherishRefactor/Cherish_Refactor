@@ -96,7 +96,7 @@ class DetailPlantFragment : BaseFragment<FragmentDetailPlantBinding>(R.layout.fr
     private fun observer(){
         detailPlantViewModel.gage.observe(viewLifecycleOwner){
             binding.test.progress=it
-            if(it<50){
+            if(it<=50){
                 binding.test.setProgressStartColor(Color.parseColor("#F7596C"))
                 binding.test.setProgressEndColor(Color.parseColor("#F7596C"))
             }

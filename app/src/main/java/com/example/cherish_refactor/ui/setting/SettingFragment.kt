@@ -6,12 +6,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.cherish_refactor.MainApplication
 import com.example.cherish_refactor.R
 import com.example.cherish_refactor.databinding.FragmentSettingBinding
 import com.example.cherish_refactor.ui.base.BaseFragment
 import com.example.cherish_refactor.ui.splash.SplashActivity
+import com.example.cherish_refactor.util.MyKeyStore
+import com.example.cherish_refactor.util.MyKeyStore.deleteToken
+import com.example.cherish_refactor.util.MyKeyStore.deleteUserId
+import com.example.cherish_refactor.util.MyKeyStore.deleteUserPassword
+import com.example.cherish_refactor.util.dialog.DeleteUserDialog
 
 class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_setting) {
 
@@ -29,7 +36,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_s
 
 
     private fun requestSetting(){
-        settingViewModel.requestSettingUser(609)
+        settingViewModel.requestSettingUser(MyKeyStore.getUserId()!!)
     }
 
     private fun setListener(){
@@ -73,7 +80,14 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_s
 
             findNavController().navigate(R.id.action_main_setting_to_userModifyFragment)
         }
-        binding.friendsCons.setOnClickListener {
+        binding.friendsCons.setOnClickListener { // 로그아웃 하기
+            Toast.makeText(requireContext(), "로그아웃 되었습니다.",Toast.LENGTH_SHORT).show()
+
+            MainApplication.apply {
+                deleteToken()
+                deleteUserId()
+                deleteUserPassword()
+            }
 
             requireActivity().finish()
             val intent = Intent(requireActivity(), SplashActivity::class.java)
@@ -81,7 +95,16 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_s
         }
         binding.quit.setOnClickListener {
 
+            // 회원탈퇴하기
+            DeleteUserDialog {
+                settingViewModel.requestUserDelete(MyKeyStore.getUserId()!!)
+            }.show(childFragmentManager, "WITHDRAWAL")
+
+
+
+
         }
+
         binding.settingAlarmSetting.setOnCheckedChangeListener { buttonView, isChecked ->
 
         }
