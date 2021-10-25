@@ -63,11 +63,11 @@ class ReviewFragment : BaseFragment<FragmentReviewBinding>(R.layout.fragment_rev
             dialog.show(parentFragmentManager, TAG)
             delay(2000)
             dialog.dismiss()
+            viewModel.isWatered.value=true
             //viewModel.isWatered.value = true
             //parentFragmentManager.beginTransaction().remove(this@ReviewFragment).commit()
             //viewModel.delayFetchUsers()
             //parentFragmentManager.popBackStack()
-
             findNavController().navigate(R.id.action_reviewFragment_to_main_home)
         }
     }

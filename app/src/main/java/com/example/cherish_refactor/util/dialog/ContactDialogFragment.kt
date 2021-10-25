@@ -156,6 +156,7 @@ class ContactDialogFragment : DialogFragment() {
     companion object {
         private const val KAKAO_PACKAGE_NAME = "com.kakao.talk"
         private const val codeThatReviewPage = 1001
+        private const val codeThatDetailReviewPage = 1001
         private const val codeThatGetWatering = 1002
     }
 }

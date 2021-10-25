@@ -31,10 +31,9 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding>(R.layout.fragment
 
         binding.vm=viewModel
         //binding.calendarFragment = this
-        requestCalendarView()
+        //requestCalendarView()
         setListener()
         observer()
-
         return binding.root
     }
 
@@ -45,6 +44,7 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding>(R.layout.fragment
     override fun onResume() {
         binding.calendarView.removeDecorators()
         binding.calendarView.clearSelection()
+        requestCalendarView()
         super.onResume()
 
     }

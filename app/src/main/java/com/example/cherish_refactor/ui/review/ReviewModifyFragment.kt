@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -92,6 +93,21 @@ class ReviewModifyFragment : BaseFragment<FragmentReviewModifyBinding>(R.layout.
         binding.tbReviewModify.setOnMenuItemClickListener {
             when(it.itemId){
                 R.id.trash ->{
+                    val builder = AlertDialog.Builder(requireContext())
+                    builder.setTitle("삭제 하시겠습니까?").setMessage("삭제 시 리뷰를 찾을 수 없습니다")
+                        .setPositiveButton(
+                            "확인"
+                        ) { dialog, which ->
+                            viewModel.requestReviewDelete()
+                            //viewModel.selectedCalendarData.value = null
+                            findNavController().popBackStack()
+                            //parentFragmentManager.popBackStack()
+                        }
+                        .setNegativeButton("취소") { dialog, which ->
+
+                            dialog.dismiss()
+                        }
+                    builder.create().show()
 
                     true
                 }

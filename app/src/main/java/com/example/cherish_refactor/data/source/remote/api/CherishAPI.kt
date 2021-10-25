@@ -109,4 +109,14 @@ interface CherishAPI {
         @Body body: UserDeleteRequest
     ): UserDeleteResponse
 
+    @HTTP(method = "DELETE", path = "calendar", hasBody = true)
+    suspend fun deleteReview(
+        @Body deleteReviewReq: ReviewDeleteRequest
+    ): UtilResponseWithOutStatus
+
+    @PUT("postpone")
+    suspend fun postponeWateringDate(
+        @Body postponeWateringDateReq: PostponeWateringRequest
+    ): PostponeWateringResponse
+
 }

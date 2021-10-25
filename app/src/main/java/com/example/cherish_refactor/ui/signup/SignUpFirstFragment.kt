@@ -32,10 +32,44 @@ class SignUpFirstFragment : BaseFragment<FragmentSignUpFirstBinding>(R.layout.fr
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
+        binding.vm = signUpViewModel
         checkEmail()
-
+        observers()
         return binding.root
     }
+    
+    fun observers(){
+
+
+        signUpViewModel.isEmailCheck.observe(viewLifecycleOwner){
+
+            if(it == true){
+                binding.isUsableEmail.text = "사용가능한 이메일입니다."
+                binding.isUsableEmail.setTextColor(
+                    ContextCompat.getColor(
+                        binding.root.context,
+                        R.color.cherish_green_main
+                    )
+                )
+                binding.signUpButton.setOnClickListener {
+
+                        showPw()
+
+                }
+            }else{
+                binding.isUsableEmail.text = "이미 존재하는 이메일입니다."
+                binding.isUsableEmail.setTextColor(
+                    ContextCompat.getColor(
+                        binding.root.context,
+                        R.color.cherish_pink_sub
+                    )
+                )
+
+            }
+        }
+
+    }
+
 
 
 
@@ -45,14 +79,15 @@ class SignUpFirstFragment : BaseFragment<FragmentSignUpFirstBinding>(R.layout.fr
 
         binding.userEmail.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                email = binding.userEmail.text.toString()
+                email = signUpViewModel.email.value!!
 
                 binding.isUsableEmail.setTextAppearance(R.style.SignUpTextAppearance)
 
                 checkEmail = isEmailValid(email) //이메일 형식 확인
 
                 if (checkEmail) { //이메일 형식 올바르면
-                    checkSameEmail(email) //이메일 중복 확인
+                    signUpViewModel.requestSignUpEmail()
+                    //checkSameEmail(email) //이메일 중복 확인
 
                     binding.isUsableEmail.text = "사용가능한 이메일입니다."
                     binding.isUsableEmail.setTextColor(
@@ -77,27 +112,7 @@ class SignUpFirstFragment : BaseFragment<FragmentSignUpFirstBinding>(R.layout.fr
                     )
 
                     if (!isFinish) {
-                        binding.signUpButton.setOnClickListener {
 
-                            if (isValid) { //중복 없으면
-                                binding.isUsableEmail.text = "사용가능한 이메일입니다."
-                                binding.isUsableEmail.setTextColor(
-                                    ContextCompat.getColor(
-                                        binding.root.context,
-                                        R.color.cherish_green_main
-                                    )
-                                )
-                                showPw()
-                            } else { //중복 있으면
-                                binding.isUsableEmail.text = "이미 존재하는 이메일입니다."
-                                binding.isUsableEmail.setTextColor(
-                                    ContextCompat.getColor(
-                                        binding.root.context,
-                                        R.color.cherish_pink_sub
-                                    )
-                                )
-                            }
-                        }
                     }
 
 
@@ -153,6 +168,7 @@ class SignUpFirstFragment : BaseFragment<FragmentSignUpFirstBinding>(R.layout.fr
         }
 
     }
+
 
     private fun showPw() {
         binding.pwText.visibility = View.VISIBLE

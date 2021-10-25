@@ -1,5 +1,6 @@
 package com.example.cherish_refactor.ui.signup
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.SpannableString
@@ -14,9 +15,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.example.cherish_refactor.R
 import com.example.cherish_refactor.data.source.remote.singleton.RetrofitBuilder
 import com.example.cherish_refactor.databinding.FragmentSignUpFourthBinding
+import com.example.cherish_refactor.ui.signin.SignInActivity
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -30,6 +33,8 @@ class SignUpFourthFragment : Fragment() {
     var sex: Boolean = true
     var birth: String = ""
     private val requestData = RetrofitBuilder
+
+    private val signUpViewModel:SignUpViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -130,6 +135,12 @@ class SignUpFourthFragment : Fragment() {
                     )
 
                     binding.signUpButton.setOnClickListener {
+
+
+
+
+
+
                         requestServer()
                     }
                 } else {
@@ -174,6 +185,12 @@ class SignUpFourthFragment : Fragment() {
         Log.d("phpone", phone)
         Log.d("sex", sex.toString())
         Log.d("birth", birth)
+
+        signUpViewModel.requestSignUp(email,password,nickName,phone,sex.toString(),birth)
+
+        val intent = Intent(context, SignInActivity::class.java)
+        startActivity(intent)
+        requireActivity().finish()
 
     }
 

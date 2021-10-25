@@ -37,12 +37,27 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home){
 
         setAdapter()
         observer()
-        //setBottom()
+        setBottom()
         addBottomSheetCallback()
         return binding.root
     }
 
+    fun setBottom(){
+        standardBottomSheetBehavior.apply {
+            state = BottomSheetBehavior.STATE_COLLAPSED
+            isFitToContents = false
+            peekHeight = (MainApplication.pixelRatio.screenHeight.dp / 5.dp)
+            halfExpandedRatio = 0.23f // 이거 비율만 좀 수정해주면 될듯?
+            expandedOffset = 100.dp
+            isHideable = false
+        }
+    }
+
     private fun slideDownBottomSheet() {
+        /*standardBottomSheetBehavior.apply {
+            state = BottomSheetBehavior.STATE_COLLAPSED
+            peekHeight = 210.dp
+        }*/
         standardBottomSheetBehavior.apply {
             state = BottomSheetBehavior.STATE_COLLAPSED
             peekHeight = (MainApplication.pixelRatio.screenHeight.dp / 5.dp)
@@ -53,6 +68,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home){
         standardBottomSheetBehavior.addBottomSheetCallback(object :
             BottomSheetBehavior.BottomSheetCallback() {
             override fun onStateChanged(bottomSheet: View, newState: Int) {
+                /*if (newState == BottomSheetBehavior.STATE_SETTLING) {
+                    standardBottomSheetBehavior.maxWidth=
+                    standardBottomSheetBehavior.peekHeight=210
+                }*/
 
             }
 
@@ -75,6 +94,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home){
     private fun setAdapter(){
         binding.homeUserList.adapter=homeCherryListAdapter
         binding.homeUserList.layoutManager = GridLayoutManager(context, 5)
+        binding.homeUserList.isNestedScrollingEnabled = false
+        binding.homeUserList.setHasFixedSize(true)
 
     }
 

@@ -24,6 +24,8 @@ class SettingViewModel :BaseViewModel() {
         viewModelScope.launch {
             val response=RetrofitBuilder.cherishAPI.SettingUserPage(userId)
             _user.postValue(response)
+            nickName.postValue(response.myPageUserData.user_nickname)
+            email.postValue(response.myPageUserData.email)
         }
     }
 

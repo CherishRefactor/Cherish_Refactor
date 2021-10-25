@@ -8,15 +8,17 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.cherish_refactor.R
 import com.example.cherish_refactor.databinding.FragmentUserModifyBinding
 import com.example.cherish_refactor.ui.base.BaseFragment
+import com.example.cherish_refactor.util.MyKeyStore
 
 
 class UserModifyFragment : BaseFragment<FragmentUserModifyBinding>(R.layout.fragment_user_modify) {
 
-    private val viewModel: SettingViewModel by viewModels()
+    private val viewModel: SettingViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,10 +34,16 @@ class UserModifyFragment : BaseFragment<FragmentUserModifyBinding>(R.layout.frag
         return binding.root
     }
 
+    fun setView(){
+
+
+    }
+
 
     fun setListener(){
         binding.buttonNickchange.setOnClickListener {
-            viewModel.requestNickNameChange(609)
+            viewModel.requestNickNameChange(MyKeyStore.getUserId()!!)
+            findNavController().popBackStack()
 
         }
 
