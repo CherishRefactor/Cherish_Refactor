@@ -67,6 +67,7 @@ class HomeViewModel : BaseViewModel() {
             //requestCalendar(response.userData.userList[0].id)
         }
 
+
     }
 
     fun setSelectedUser(user: User) {

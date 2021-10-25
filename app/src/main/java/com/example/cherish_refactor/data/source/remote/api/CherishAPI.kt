@@ -104,4 +104,9 @@ interface CherishAPI {
         @Body body: PhoneAuthResponse
     ): PhoneAuthRequest
 
+    @HTTP(method = "DELETE", path = "user", hasBody = true)
+    suspend fun deleteUser(
+        @Body body: UserDeleteRequest
+    ): UserDeleteResponse
+
 }

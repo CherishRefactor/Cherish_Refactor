@@ -98,6 +98,9 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding>(R.layout.fragment
             viewModel._isCalendarChange.value=!viewModel._isCalendarChange.value!!
 
         }
+        binding.btnCalendarBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
     }
 

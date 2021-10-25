@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.cherish_refactor.data.source.remote.api.MyPageUserRes
+import com.example.cherish_refactor.data.source.remote.api.UserDeleteRequest
 import com.example.cherish_refactor.data.source.remote.api.nickNameRequest
 import com.example.cherish_refactor.data.source.remote.singleton.RetrofitBuilder
 import com.example.cherish_refactor.ui.base.BaseViewModel
@@ -39,5 +40,12 @@ class SettingViewModel :BaseViewModel() {
             }
 
         }
+    }
+
+    fun requestUserDelete(userId: Int){
+        viewModelScope.launch {
+            val response = RetrofitBuilder.cherishAPI.deleteUser(UserDeleteRequest(userId))
+        }
+
     }
 }
