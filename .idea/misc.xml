@@ -17,6 +17,7 @@
         <entry key="app/src/main/res/layout/activity_home_blank.xml" value="0.35833333333333334" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_onboarding.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_pw_finding.xml" value="0.2421875" />
         <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.2765625" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.2171875" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1" />
@@ -25,6 +26,7 @@
         <entry key="app/src/main/res/layout/dialog_clock_picker.xml" value="0.35833333333333334" />
         <entry key="app/src/main/res/layout/dialog_contact.xml" value="0.190625" />
         <entry key="app/src/main/res/layout/dialog_date_picker.xml" value="0.35833333333333334" />
+        <entry key="app/src/main/res/layout/dialog_delay_watering.xml" value="0.23333333333333334" />
         <entry key="app/src/main/res/layout/dialog_delete_plant.xml" value="0.7588126159554731" />
         <entry key="app/src/main/res/layout/dialog_delete_user.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/layout/dialog_loading.xml" value="0.24635416666666668" />
@@ -40,6 +42,7 @@
         <entry key="app/src/main/res/layout/fragment_enroll_modify_plant.xml" value="0.271875" />
         <entry key="app/src/main/res/layout/fragment_enroll_plant.xml" value="0.24739583333333334" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_id_finding_dialog.xml" value="0.2421875" />
         <entry key="app/src/main/res/layout/fragment_manage_plant.xml" value="0.24114583333333334" />
         <entry key="app/src/main/res/layout/fragment_my_page_phone_book.xml" value="0.16822916666666668" />
         <entry key="app/src/main/res/layout/fragment_my_page_phone_book_search.xml" value="0.24114583333333334" />
@@ -48,6 +51,8 @@
         <entry key="app/src/main/res/layout/fragment_phone_book.xml" value="0.24739583333333334" />
         <entry key="app/src/main/res/layout/fragment_plant.xml" value="0.2657407407407407" />
         <entry key="app/src/main/res/layout/fragment_plant_search.xml" value="0.24114583333333334" />
+        <entry key="app/src/main/res/layout/fragment_pw_finding_dialog.xml" value="0.2421875" />
+        <entry key="app/src/main/res/layout/fragment_pw_finding_third.xml" value="0.2421875" />
         <entry key="app/src/main/res/layout/fragment_result_plant.xml" value="0.24739583333333334" />
         <entry key="app/src/main/res/layout/fragment_review.xml" value="0.4381909547738693" />
         <entry key="app/src/main/res/layout/fragment_review_modify.xml" value="0.22239583333333332" />

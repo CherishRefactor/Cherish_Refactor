@@ -8,8 +8,11 @@ import com.example.cherish_refactor.MainActivity
 import com.example.cherish_refactor.R
 import com.example.cherish_refactor.databinding.ActivitySignInBinding
 import com.example.cherish_refactor.ui.base.BaseActivity
+import com.example.cherish_refactor.ui.pwfind.PwFindingActivity
+import com.example.cherish_refactor.ui.signup.SignUpActivity
 import com.example.cherish_refactor.ui.splash.HomeBlankActivity
 import com.example.cherish_refactor.util.MyKeyStore
+import com.example.cherish_refactor.util.dialog.IdFindDialog
 
 class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sign_in) {
 
@@ -34,15 +37,20 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
 
     fun setListener(){
         binding.textView31.setOnClickListener {
-
+            //회원가입
+            startActivity(Intent(this,SignUpActivity::class.java))
+            finish()
         }
 
         binding.textView30.setOnClickListener {
-
+            //비밀번호 찾기
+            startActivity(Intent(this,PwFindingActivity::class.java))
+            finish()
         }
 
         binding.textView4.setOnClickListener {
-
+            //아이디 찾기
+            val dialog = IdFindDialog().show(supportFragmentManager, "SignInActivity")
         }
     }
 

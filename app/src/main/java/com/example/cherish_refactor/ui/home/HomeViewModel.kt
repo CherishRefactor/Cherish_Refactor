@@ -29,6 +29,15 @@ class HomeViewModel : BaseViewModel() {
     private val _isEmptyMemo = MutableLiveData<Boolean>()
     val isEmptyMemo: LiveData<Boolean> = _isEmptyMemo
 
+    val _isCalendarChange = MutableLiveData<Boolean>()
+    val isCalendarChange:LiveData<Boolean> = _isCalendarChange
+
+    val isWatered = MutableLiveData<Boolean>()
+
+    init{
+        _isCalendarChange.value=false
+        isWatered.value=false
+    }
 
     fun showMemo(){
 
@@ -88,12 +97,8 @@ class HomeViewModel : BaseViewModel() {
 
     }
 
-    val _isCalendarChange = MutableLiveData<Boolean>()
-    val isCalendarChange:LiveData<Boolean> = _isCalendarChange
 
-    init{
-        _isCalendarChange.value=false
-    }
+
 
 
 
@@ -154,30 +159,14 @@ class HomeViewModel : BaseViewModel() {
         }
     }
 
-    //val selectedDay: LiveData<CalendarResponse.WaterData.CalendarData> = _selectedDay
-
-   /* private val _calendarData = MutableLiveData<CalendarResponse>()
-    val calendarData: LiveData<CalendarResponse> = _calendarData
-
-
-    val selectedDay = MutableLiveData<CalendarResponse.WaterData.CalendarData>()
-    //val selectedDay: LiveData<CalendarResponse.WaterData.CalendarData> = _selectedDay
-
-
-
-    fun requestCalendar(cherishId:Int){
+    fun requestReviewDelete(){
         viewModelScope.launch {
-
-            val response = RetrofitBuilder.cherishAPI.getCalendarData(cherishId)
-
-            _calendarData.postValue(response)
-
-
+            val date =DateUtil.convertDateToString(
+                selectedDay.value?.wateredDate!!
+            )
+            val response = RetrofitBuilder.cherishAPI.deleteReview(ReviewDeleteRequest(selectedCherishUser.value!!.id,date))
         }
-        // selectedCherishUser.value?.let { RetrofitBuilder.cherishAPI.getCalendarData(it.id)
-        //val response= RetrofitBuilder.cherishAPI.getCalendarData(_selectedCherishId.value!!)
-        //_calendarData.postValue(response)
-    }*/
+    }
 
 
     fun requestMainView(id:Int){

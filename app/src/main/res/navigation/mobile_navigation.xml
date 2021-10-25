@@ -58,6 +58,9 @@
         <action
             android:id="@+id/action_detailPlantFragment_to_calendarFragment"
             app:destination="@id/calendarFragment" />
+        <action
+            android:id="@+id/action_detailPlantFragment_to_reviewFragment"
+            app:destination="@id/reviewFragment" />
     </fragment>
     <fragment
         android:id="@+id/phoneBookFragment"

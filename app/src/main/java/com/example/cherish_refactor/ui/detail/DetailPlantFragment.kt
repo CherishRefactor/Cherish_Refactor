@@ -69,18 +69,6 @@ class DetailPlantFragment : BaseFragment<FragmentDetailPlantBinding>(R.layout.fr
         }
 
     }
-   /* override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.calendar ->{
-                // 캘린더로 넘어
-                findNavController().navigate(R.id.action_detailPlantFragment_to_calendarFragment)
-                true
-
-            }
-            else -> return super.onOptionsItemSelected(item)
-        }
-    }
-*/
 
 
     override fun onPrepareOptionsMenu(menu: Menu) {

@@ -36,6 +36,9 @@
             setImageSizeGrowth="@{vm.selectedCherishUser.growth}"
             setImageSizePlantName="@{vm.selectedCherishUser.plantName}"
             setImageSizedDay="@{vm.selectedCherishUser.DDay}"
+            delayPlantGrowth="@{vm.selectedCherishUser.growth}"
+            delayPlantIsWatered="@{vm.isWatered}"
+            delayPlantName="@{vm.selectedCherishUser.plantName}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
 
@@ -44,6 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="100dp"
+            android:wateringAnimation="@{vm.isWatered}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -241,6 +245,7 @@
                         android:id="@+id/home_user_list"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:paddingBottom="?attr/actionBarSize"
                         android:overScrollMode="never" />
                 </androidx.core.widget.NestedScrollView>
             </androidx.constraintlayout.widget.ConstraintLayout>

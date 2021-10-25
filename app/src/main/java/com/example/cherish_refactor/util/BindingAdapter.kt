@@ -2,13 +2,17 @@ package com.example.cherish_refactor.util
 
 import android.annotation.SuppressLint
 import android.graphics.Color
+import android.os.Handler
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.example.cherish_refactor.R
 import com.example.cherish_refactor.data.source.remote.api.CalendarResponse
@@ -573,5 +577,244 @@ fun showMemo(textView: TextView, memoText: String?) {
 fun showDate(textView: TextView, date: CalendarDay?) {
     date?.let {
         textView.text = "${it.year}년 ${it.month}월 ${it.day}일"
+    }
+}
+
+@BindingAdapter("android:wateringAnimation")
+fun wateringAnimation(imageView: ImageView, isWatered: Boolean?) {
+    val fadeAnimation =
+        AnimationUtils.loadAnimation(imageView.context, R.anim.waterinf_fade_out)
+    if (isWatered != null) {
+        if (isWatered == true) {
+            imageView.visibility = View.VISIBLE
+            imageView.animation = fadeAnimation
+            Glide.with(imageView.context)
+                .asGif()
+                .load(R.raw.watering)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(imageView)
+            val delayHandler = Handler(imageView.context.mainLooper)
+            delayHandler.postDelayed({
+                imageView.visibility = View.INVISIBLE
+            }, 3500L)
+        }
+    }
+}
+
+@BindingAdapter(value = ["delayPlantIsWatered", "delayPlantGrowth", "delayPlantName"])
+fun delayChangePlantImage(
+    imageView: ImageView,
+    delayPlantIsWatered: Boolean?,
+    delayPlantGrowth: Int?,
+    delayPlantName: String?
+) {
+    if (delayPlantIsWatered != null) {
+        if (delayPlantIsWatered == false) {
+            if (delayPlantGrowth != null) {
+                when {
+                    delayPlantGrowth <= 25 -> {
+                        Glide.with(imageView)
+                            .asDrawable()
+                            .load(
+                                when (delayPlantName) {
+                                    "민들레" -> R.drawable.dandelion_grayshadow_1
+                                    "로즈마리" -> R.drawable.rosemary_grayshadow_1
+                                    "아메리칸블루" -> R.drawable.americanblue_grayshadow_1
+                                    "스투키" -> R.drawable.stuckyi_grayshadow_1
+                                    "단모환" -> R.drawable.cactus_grayshadow_1
+                                    else -> R.drawable.img_white
+                                }
+                            )
+                        imageView.apply {
+                            when (delayPlantName) {
+                                "민들레" -> {
+                                    resizeImageView(262, 331)
+                                    setMargin(
+                                        top = 0.dp,
+                                        start = 0.dp,
+                                        end = 0.dp,
+                                        bottom = 40.dp
+                                    )
+                                }
+                                "로즈마리" -> {
+                                    resizeImageView(220, 380)
+                                    setMargin(
+                                        top = 0.dp,
+                                        start = 0.dp,
+                                        end = 0.dp,
+                                        bottom = 44.dp
+                                    )
+                                }
+                                "아메리칸블루" -> {
+                                    resizeImageView(249, 368)
+                                    setMargin(
+                                        top = 0.dp,
+                                        start = 0.dp,
+                                        end = 0.dp,
+                                        bottom = 40.dp
+                                    )
+                                }
+                                "스투키" -> {
+                                    resizeImageView(295, 266.6.toInt())
+                                    setMargin(
+                                        top = 0.dp,
+                                        start = 0.dp,
+                                        end = 0.dp,
+                                        bottom = 40.dp
+                                    )
+                                }
+                                "단모환" -> {
+                                    resizeImageView(275, 229)
+                                    setMargin(
+                                        top = 0.dp,
+                                        start = 0.dp,
+                                        end = 0.dp,
+                                        bottom = 44.dp
+                                    )
+                                }
+                                else -> {
+
+                                }
+                            }
+                        }
+                    }
+                    delayPlantGrowth in 26..50 -> {
+                        Glide.with(imageView)
+                            .asDrawable()
+                            .load(
+                                when (delayPlantName) {
+                                    "민들레" -> R.drawable.dandelion_grayshadow_2
+                                    "로즈마리" -> R.drawable.rosemary_grayshadow_2
+                                    "아메리칸블루" -> R.drawable.americanblue_grayshadow_2
+                                    "스투키" -> R.drawable.stuckyi_grayshadow_2
+                                    "단모환" -> R.drawable.cactus_grayshadow_2
+                                    else -> R.drawable.img_white
+                                }
+                            )
+                            .into(imageView)
+                        imageView.apply {
+                            when (delayPlantName) {
+                                "민들레" -> {
+                                    resizeImageView(235, 388)
+                                    setMargin(
+                                        top = 0.dp,
+                                        start = 0.dp,
+                                        end = 0.dp,
+                                        bottom = 40.dp
+                                    )
+                                }
+                                "로즈마리" -> {
+                                    resizeImageView(192, 500)
+                                    setMargin(
+                                        top = 0.dp,
+                                        start = 0.dp,
+                                        end = 0.dp,
+                                        bottom = 40.dp
+                                    )
+                                }
+                                "아메리칸블루" -> {
+                                    resizeImageView(204, 461)
+                                    setMargin(
+                                        top = 0.dp,
+                                        start = 0.dp,
+                                        end = 22.dp,
+                                        bottom = 40.dp
+                                    )
+                                }
+                                "스투키" -> {
+                                    resizeImageView(240, 313)
+                                    setMargin(
+                                        top = 0.dp,
+                                        start = 0.dp,
+                                        end = 0.dp,
+                                        bottom = 40.dp
+                                    )
+                                }
+                                "단모환" -> {
+                                    resizeImageView(283, 350)
+                                    setMargin(
+                                        top = 0.dp,
+                                        start = 0.dp,
+                                        end = 0.dp,
+                                        bottom = 40.dp
+                                    )
+                                }
+                                else -> {
+
+                                }
+                            }
+                        }
+                    }
+                    else -> {
+                        Glide.with(imageView)
+                            .asDrawable()
+                            .load(
+                                when (delayPlantName) {
+                                    "민들레" -> R.drawable.dandelion_grayshadow_3
+                                    "로즈마리" -> R.drawable.rosemary_grayshadow_3
+                                    "아메리칸블루" -> R.drawable.americanblue_grayshadow_3
+                                    "스투키" -> R.drawable.stuckyi_grayshadow_3
+                                    "단모환" -> R.drawable.cactus_grayshadow_3
+                                    else -> R.drawable.img_white
+                                }
+                            )
+                            .into(imageView)
+                        imageView.apply {
+                            when (delayPlantName) {
+                                "민들레" -> {
+                                    resizeImageView(235, 388)
+                                    setMargin(
+                                        top = 0.dp,
+                                        start = 0.dp,
+                                        end = 0.dp,
+                                        bottom = 40.dp
+                                    )
+                                }
+                                "로즈마리" -> {
+                                    resizeImageView(204, 500)
+                                    setMargin(
+                                        top = 0.dp,
+                                        start = 0.dp,
+                                        end = 0.dp,
+                                        bottom = 40.dp
+                                    )
+                                }
+                                "아메리칸블루" -> {
+                                    resizeImageView(204, 461)
+                                    setMargin(
+                                        top = 0.dp,
+                                        start = 0.dp,
+                                        end = 0.dp,
+                                        bottom = 40.dp
+                                    )
+                                }
+                                "스투키" -> {
+                                    resizeImageView(305, 440)
+                                    setMargin(
+                                        top = 0.dp,
+                                        start = 0.dp,
+                                        end = 0.dp,
+                                        bottom = 40.dp
+                                    )
+                                }
+                                "단모환" -> {
+                                    resizeImageView(283, 350)
+                                    setMargin(
+                                        top = 0.dp,
+                                        start = 0.dp,
+                                        end = 0.dp,
+                                        bottom = 40.dp
+                                    )
+                                }
+                                else -> {
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

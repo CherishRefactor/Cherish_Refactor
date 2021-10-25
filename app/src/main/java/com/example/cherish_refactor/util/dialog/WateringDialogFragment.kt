@@ -34,17 +34,20 @@ class WateringDialogFragment : DialogFragment() {
 
 
 
+
+
     }
 
     fun navigateContact() {
        ContactDialogFragment().show(parentFragmentManager, TAG)
         dismiss()
     }
-/*
+
     fun navigateNextTimeContact() {
+        // 다음에 할래요
         DelayWateringDialogFragment().show(parentFragmentManager, TAG)
         dismiss()
-    }*/
+    }
 
 
     companion object {
