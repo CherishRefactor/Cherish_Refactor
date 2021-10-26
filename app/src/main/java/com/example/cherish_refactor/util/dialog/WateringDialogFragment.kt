@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
 import com.example.cherish_refactor.R
 import com.example.cherish_refactor.databinding.DialogWateringBinding
 
@@ -15,6 +16,7 @@ class WateringDialogFragment : DialogFragment() {
 
     //private val viewModel: MainViewModel by activityViewModels()
 
+    var whereId:String = ""
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,18 +31,31 @@ class WateringDialogFragment : DialogFragment() {
         return binding.root
     }
 
+    override fun show(manager: FragmentManager, tag: String?) {
+        if(tag=="detail"){
+            whereId="detail"
+        }else{
+            //home
+            whereId="home"
+        }
+        super.show(manager, tag)
+    }
+
 
     fun setListener(){
-
-
-
 
 
     }
 
     fun navigateContact() {
-       ContactDialogFragment().show(parentFragmentManager, TAG)
-        dismiss()
+        if(whereId=="detail"){
+            ContactDialogFragment().show(parentFragmentManager, "detail")
+            dismiss()
+        }else{
+            ContactDialogFragment().show(parentFragmentManager, "home")
+            dismiss()
+        }
+
     }
 
     fun navigateNextTimeContact() {

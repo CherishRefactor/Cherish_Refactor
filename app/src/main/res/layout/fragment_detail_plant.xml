@@ -269,7 +269,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/notosanscjkkr_bold"
                 android:includeFontPadding="false"
-                android:text="@{PlantDetailVM.plantDetail.birth.toString() == @string/empty_birth ? @string/empty_date :PlantDetailVM.plantDetail.birth}"
+                setBirth="@{PlantDetailVM.plantDetail.birth.toString()}"
                 android:textColor="#454545"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView20"

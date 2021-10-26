@@ -13,6 +13,7 @@ import com.example.cherish_refactor.ui.base.BaseFragment
 import com.example.cherish_refactor.ui.home.HomeViewModel
 import com.example.cherish_refactor.util.FlexBoxExtension.getChip
 import com.example.cherish_refactor.util.FlexBoxExtension.getChipsCount
+import com.example.cherish_refactor.util.MyKeyStore
 import com.example.cherish_refactor.util.countNumberOfCharacters
 import com.example.cherish_refactor.util.dialog.MultiViewDialog
 import com.example.cherish_refactor.util.writeKeyword
@@ -32,10 +33,9 @@ class ReviewFragment : BaseFragment<FragmentReviewBinding>(R.layout.fragment_rev
 
         binding.lifecycleOwner = viewLifecycleOwner
         binding.vm = viewModel
-
+        setNickName()
         setListener()
         //reviewNotificationViewModel.startNotificationTimer()
-
 
         addUserStatusWithChip()
         addLimitNumberOfKeywordCharacters()
@@ -43,6 +43,9 @@ class ReviewFragment : BaseFragment<FragmentReviewBinding>(R.layout.fragment_rev
 
 
         return binding.root
+    }
+    fun setNickName(){
+        viewModel.userNickName.value=MyKeyStore.getUserNickname()
     }
 
     private fun addLimitNumberOfMemoCharacters() {
@@ -109,7 +112,7 @@ class ReviewFragment : BaseFragment<FragmentReviewBinding>(R.layout.fragment_rev
                             )!!.text.toString(),
 
                     )
-                    showLoadingDialog()
+                   // showLoadingDialog()
                 } else {
                     MultiViewDialog(
                         R.layout.dialog_warning_review_limit_error,
