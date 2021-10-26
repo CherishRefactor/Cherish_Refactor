@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.example.cherish_refactor.R
 import com.example.cherish_refactor.data.source.remote.singleton.RetrofitBuilder
 import com.example.cherish_refactor.databinding.FragmentPwFindingSecondBinding
@@ -15,6 +16,8 @@ import com.example.cherish_refactor.util.dialog.PwFindDialog
 
 
 class PwFindingSecondFragment : Fragment() {
+
+    private val viewModel:PwFindViewModel by activityViewModels()
 
     var email: String = ""
     lateinit var binding: FragmentPwFindingSecondBinding
@@ -46,6 +49,13 @@ class PwFindingSecondFragment : Fragment() {
     }
 
     private fun requestServer(email: String) {
+
+        viewModel.requestServer(email)
+
+        viewModel.isData.observe(viewLifecycleOwner){
+            authdata=it
+        }
+       // authdata=viewModel.isData.value!!
         /*requestData.pwFindingAPI.postPwFinding(
             RequestPwFindingData(email = email)
         ).enqueue(

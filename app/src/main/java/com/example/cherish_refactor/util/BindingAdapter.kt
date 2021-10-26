@@ -267,6 +267,15 @@ fun setDelayVisibility(textView: TextView, dDay: Int) {
         textView.visibility = View.VISIBLE
 }
 
+@BindingAdapter("setBirth")
+fun setBirth(view: TextView, birth: String?) {
+    if (birth == "Invalid Date") {
+        view.text = "_ _"
+    } else {
+        view.text = birth
+    }
+}
+
 @BindingAdapter("android:addDecorator")
 fun addDecorator(
     cherishMaterialCalendarView: CherishMaterialCalendarView,

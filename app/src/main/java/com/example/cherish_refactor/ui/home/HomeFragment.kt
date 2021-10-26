@@ -1,6 +1,8 @@
 package com.example.cherish_refactor.ui.home
 
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -160,6 +162,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home){
         }
         binding.homeUserAddText.setOnClickListener {
             findNavController().navigate(R.id.action_main_home_to_phoneBookFragment)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == CODE_MOVE_DETAIL_PLANT) {
+            if (resultCode == Activity.RESULT_OK) {
+                viewModel.isWatered.value = data?.getBooleanExtra("animationTrigger", false)
+            }
         }
     }
 

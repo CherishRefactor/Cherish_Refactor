@@ -66,7 +66,7 @@ class MultiViewDialog(
         dismiss()
     }
 
-   /* override fun onResume() {
+   /*override fun onResume() {
         super.onResume()
         DialogUtil.adjustDialogSize(this, widthRatio = widthRatio, heightRatio = heightRatio)
     }*/

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View"/>
         <variable
             name="vm"
             type="com.example.cherish_refactor.ui.home.HomeViewModel" />
@@ -76,9 +77,9 @@
                 android:layout_marginBottom="28dp"
                 android:fontFamily="@font/notosanscjkkr_regular"
                 android:text="@string/next_time"
-                android:delayVisiblity="@{vm.selectedCherishUser.DDay}"
                 android:textColor="#404040"
                 android:textSize="16sp"
+                android:visibility="@{vm.selectedCherishUser.DDay == 0 ? View.VISIBLE : View.INVISIBLE}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/watering_image_graphic"
                 app:layout_constraintStart_toStartOf="@id/watering_image_graphic"

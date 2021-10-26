@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.cherish_refactor.R
@@ -27,6 +28,8 @@ class ContactDialogFragment : DialogFragment() {
 
     private val viewModel: HomeViewModel by activityViewModels()
     private lateinit var binding: DialogContactBinding
+
+    lateinit var whereId:String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,6 +47,15 @@ class ContactDialogFragment : DialogFragment() {
 
         setChip()
         return binding.root
+    }
+
+    override fun show(manager: FragmentManager, tag: String?) {
+        if(tag=="detail"){
+            whereId="detail"
+        }else{
+            whereId="home"
+        }
+        super.show(manager, tag)
     }
 
 
@@ -127,8 +139,15 @@ class ContactDialogFragment : DialogFragment() {
 
     private fun startReview() {
         //doAfterConfirm()
-        dismiss()
-        findNavController().navigate(R.id.action_main_home_to_reviewFragment)
+        if(whereId=="detail"){
+            findNavController().navigate(R.id.action_detailPlantFragment_to_reviewFragment)
+            dismiss()
+        }else{
+            findNavController().navigate(R.id.action_main_home_to_reviewFragment)
+            dismiss()
+        }
+
+
 
     }
 

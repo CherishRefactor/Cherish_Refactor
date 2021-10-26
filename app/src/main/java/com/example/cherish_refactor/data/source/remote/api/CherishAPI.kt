@@ -119,4 +119,14 @@ interface CherishAPI {
         @Body postponeWateringDateReq: PostponeWateringRequest
     ): PostponeWateringResponse
 
+    @POST("login/findPassword")
+    suspend fun postPwFinding(
+        @Body body: PwFindRequest
+    ): PwFindResponse
+
+    @POST("login/updatePassword")
+    suspend fun postPwFUpdate(
+        @Body body: PwUpdateRequest
+    ): UtilResponseWithOutStatus
+
 }

@@ -9,6 +9,7 @@ import com.example.cherish_refactor.ui.base.BaseViewModel
 import com.example.cherish_refactor.util.DateUtil
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class HomeViewModel : BaseViewModel() {
@@ -16,6 +17,7 @@ class HomeViewModel : BaseViewModel() {
     private val _user = MutableLiveData<List<User>>()
     val user: LiveData<List<User>> = _user
 
+     val userNickName = MutableLiveData<String>()
 
     private val _selectedCherishUser = MutableLiveData<User>()
     val selectedCherishUser: LiveData<User> = _selectedCherishUser
@@ -58,19 +60,39 @@ class HomeViewModel : BaseViewModel() {
 
     fun requestMainCherishItem(userId :Int){
         viewModelScope.launch {
-            val response = RetrofitBuilder.cherishAPI.getCherishUser(userId)
-            _user.postValue(response.userData.userList)
-            //userAPI.getCherishUser(userId)
 
-            total.postValue(response.userData.totalUser)
-            //setSelectedUser(response.userData.userList[0])
+            if(isWatered.value==true){
+                delay(4000)
+                val response = RetrofitBuilder.cherishAPI.getCherishUser(userId)
+                _user.postValue(response.userData.userList)
+                //userAPI.getCherishUser(userId)
 
-            
-            _selectedCherishId.value=response.userData.userList[0].id
-            _selectedCherishUser.postValue(response.userData.userList[0])
+                total.postValue(response.userData.totalUser)
+                //setSelectedUser(response.userData.userList[0])
 
-            selectedFirst.add(0,response.userData.userList[0])
-            selectedFirst.addAll(response.userData.userList)
+
+                _selectedCherishId.value=response.userData.userList[0].id
+                _selectedCherishUser.postValue(response.userData.userList[0])
+
+                selectedFirst.add(0,response.userData.userList[0])
+                selectedFirst.addAll(response.userData.userList)
+
+            }else{
+                val response = RetrofitBuilder.cherishAPI.getCherishUser(userId)
+                _user.postValue(response.userData.userList)
+                //userAPI.getCherishUser(userId)
+
+                total.postValue(response.userData.totalUser)
+                //setSelectedUser(response.userData.userList[0])
+
+
+                _selectedCherishId.value=response.userData.userList[0].id
+                _selectedCherishUser.postValue(response.userData.userList[0])
+
+                selectedFirst.add(0,response.userData.userList[0])
+                selectedFirst.addAll(response.userData.userList)
+            }
+
 
             //user.value[0].
             //requestCalendar(response.userData.userList[0].id)

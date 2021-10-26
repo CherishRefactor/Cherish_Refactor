@@ -1,5 +1,6 @@
 package com.example.cherish_refactor.ui.pwfind
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,9 +10,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.example.cherish_refactor.R
 import com.example.cherish_refactor.data.source.remote.singleton.RetrofitBuilder
 import com.example.cherish_refactor.databinding.FragmentPwFindingThirdBinding
+import com.example.cherish_refactor.ui.signin.SignInActivity
 
 
 class PwFindingThirdFragment : Fragment() {
@@ -22,6 +25,8 @@ class PwFindingThirdFragment : Fragment() {
     var pwAgain: String = "1"
     var email: String = ""
     private val requestData = RetrofitBuilder
+
+    private val viewModel:PwFindViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -197,6 +202,11 @@ class PwFindingThirdFragment : Fragment() {
     }
 
     private fun requestServer(email: String, password1: String, password2: String) {
+        viewModel.requestUpdatePw(email,password1,password2)
+
+        requireActivity().finish()
+        startActivity(Intent(context,SignInActivity::class.java))
+
        /* requestData.updatePasswordAPI.postPwFUpdate(
             RequestUpdatePasswordAPI(email = email, password1 = password1, password2 = password2)
         ).enqueue(
