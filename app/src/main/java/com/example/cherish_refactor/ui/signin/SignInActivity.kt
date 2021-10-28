@@ -59,20 +59,27 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
             if(it==0){
                 startActivity(Intent(this, HomeBlankActivity::class.java))
             }else{
-                startActivity(Intent(this, MainActivity::class.java))
+                Log.d("autologin1111",MyKeyStore.getUserId().toString())
+                val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("setView","Home")
+                startActivity(intent)
+
             }
         }
     }
 
     private fun autoLogin() {
-        Log.d("autologin1111",MyKeyStore.getUserId().toString())
+
         //login()
         // 자동 로그인이 되고 아무것도 없으면 블랭크 있으면 메인
         if(MyKeyStore.getUserId()==-1) {
 
             login()
         }else{
-            startActivity(Intent(this, MainActivity::class.java))
+            Log.d("autologin2222",MyKeyStore.getUserId().toString())
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("setView","Home")
+            startActivity(intent)
             finish()
         }
 

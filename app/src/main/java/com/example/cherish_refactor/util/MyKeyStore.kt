@@ -50,6 +50,8 @@ object MyKeyStore {
 
      fun getUserId(): Int? = sharedPreferences.getInt(loginUserId, -1)
 
+    fun getUserCount(): Int? = sharedPreferences.getInt(loginUserId, -1)
+
      fun setUserPassword(userPassword: String) {
         sharedPreferences.edit().putString(loginUserPassword.toString(), userPassword).apply()
     }

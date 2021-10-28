@@ -101,8 +101,8 @@ interface CherishAPI {
 
     @POST("login/phoneAuth")
     suspend fun postAuth(
-        @Body body: PhoneAuthResponse
-    ): PhoneAuthRequest
+        @Body body: PhoneAuthRequest
+    ): PhoneAuthResponse
 
     @HTTP(method = "DELETE", path = "user", hasBody = true)
     suspend fun deleteUser(
@@ -128,5 +128,11 @@ interface CherishAPI {
     suspend fun postPwFUpdate(
         @Body body: PwUpdateRequest
     ): UtilResponseWithOutStatus
+
+    @GET("plantDetail/{id}")
+    suspend fun fetchUserPage(
+        @Path("id") plantId: Int
+    ): DetailPopUpResponse
+
 
 }

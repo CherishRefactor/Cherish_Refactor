@@ -9,11 +9,14 @@
         <entry key="app/src/main/res/drawable-v24/picker_btn_bg.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/plant_tip_box.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/progress_drawable_vertical.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/detail_pop_up_bg.xml" value="0.2911458333333333" />
         <entry key="app/src/main/res/drawable/hastag_bg.xml" value="0.32135416666666666" />
         <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.22962962962962963" />
         <entry key="app/src/main/res/drawable/picker_popup_bg.xml" value="0.37447916666666664" />
         <entry key="app/src/main/res/font/cherish_font.xml" value="0.21851851851851853" />
         <entry key="app/src/main/res/layout/activity_aboutcherish.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_detail.xml" value="0.27291666666666664" />
+        <entry key="app/src/main/res/layout/activity_enroll.xml" value="0.25885416666666666" />
         <entry key="app/src/main/res/layout/activity_home_blank.xml" value="0.35833333333333334" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_onboarding.xml" value="0.1" />
@@ -30,10 +33,12 @@
         <entry key="app/src/main/res/layout/dialog_delete_plant.xml" value="0.7588126159554731" />
         <entry key="app/src/main/res/layout/dialog_delete_user.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/layout/dialog_loading.xml" value="0.24635416666666668" />
+        <entry key="app/src/main/res/layout/dialog_pop_up.xml" value="0.2984375" />
         <entry key="app/src/main/res/layout/dialog_progress.xml" value="0.26510416666666664" />
         <entry key="app/src/main/res/layout/dialog_warning_keyword_limit_error.xml" value="0.24635416666666668" />
         <entry key="app/src/main/res/layout/dialog_watering.xml" value="0.24635416666666668" />
         <entry key="app/src/main/res/layout/fragment_about_cherish.xml" value="0.2765625" />
+        <entry key="app/src/main/res/layout/fragment_alert_plant_dialog.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.20925925925925926" />
         <entry key="app/src/main/res/layout/fragment_delete_user_dialog.xml" value="0.24583333333333332" />
@@ -42,6 +47,7 @@
         <entry key="app/src/main/res/layout/fragment_enroll_modify_plant.xml" value="0.271875" />
         <entry key="app/src/main/res/layout/fragment_enroll_plant.xml" value="0.24739583333333334" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_home_blank.xml" value="0.2786458333333333" />
         <entry key="app/src/main/res/layout/fragment_id_finding_dialog.xml" value="0.2421875" />
         <entry key="app/src/main/res/layout/fragment_manage_plant.xml" value="0.24114583333333334" />
         <entry key="app/src/main/res/layout/fragment_my_page_phone_book.xml" value="0.16822916666666668" />

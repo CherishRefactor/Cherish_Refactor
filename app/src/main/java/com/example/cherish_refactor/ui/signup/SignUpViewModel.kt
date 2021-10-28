@@ -3,6 +3,7 @@ package com.example.cherish_refactor.ui.signup
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.cherish_refactor.data.source.remote.api.PhoneAuthRequest
 import com.example.cherish_refactor.data.source.remote.api.SignUpCheckRequest
 import com.example.cherish_refactor.data.source.remote.api.SignUpRequest
 import com.example.cherish_refactor.data.source.remote.singleton.RetrofitBuilder
@@ -16,6 +17,10 @@ class SignUpViewModel:BaseViewModel() {
 
      private val _isEmailCheck= MutableLiveData<Boolean>()
     val isEmailCheck:LiveData<Boolean> = _isEmailCheck
+
+    private val _isAuth= MutableLiveData<Int>()
+    val isAuth:LiveData<Int> = _isAuth
+
 
     fun requestSignUpEmail(){
         viewModelScope.launch {
@@ -41,12 +46,11 @@ class SignUpViewModel:BaseViewModel() {
         }
     }
 
-    fun requestAuth(){
+    fun requestAuth(phoneNumber:String){
         viewModelScope.launch {
 
-           /* requestData.phoneAuthAPI.postAuth(
-                RequestPhoneAuthData(phone = phoneNumber)
-            )*/
+            val response = RetrofitBuilder.cherishAPI.postAuth(PhoneAuthRequest(phoneNumber))
+            _isAuth.postValue(response.data)
         }
     }
 }

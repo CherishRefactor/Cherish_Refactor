@@ -66,31 +66,33 @@ class HomeViewModel : BaseViewModel() {
                 val response = RetrofitBuilder.cherishAPI.getCherishUser(userId)
                 _user.postValue(response.userData.userList)
                 //userAPI.getCherishUser(userId)
+                if(response.userData.totalUser!=0){
+                    total.postValue(response.userData.totalUser)
+                    //setSelectedUser(response.userData.userList[0])
 
-                total.postValue(response.userData.totalUser)
-                //setSelectedUser(response.userData.userList[0])
+                    _selectedCherishId.value=response.userData.userList[0].id
+                    _selectedCherishUser.postValue(response.userData.userList[0])
 
-
-                _selectedCherishId.value=response.userData.userList[0].id
-                _selectedCherishUser.postValue(response.userData.userList[0])
-
-                selectedFirst.add(0,response.userData.userList[0])
-                selectedFirst.addAll(response.userData.userList)
+                    selectedFirst.add(0,response.userData.userList[0])
+                    selectedFirst.addAll(response.userData.userList)
+                }
 
             }else{
                 val response = RetrofitBuilder.cherishAPI.getCherishUser(userId)
                 _user.postValue(response.userData.userList)
                 //userAPI.getCherishUser(userId)
 
-                total.postValue(response.userData.totalUser)
-                //setSelectedUser(response.userData.userList[0])
+                if(response.userData.totalUser!=0){
+                    total.postValue(response.userData.totalUser)
+                    //setSelectedUser(response.userData.userList[0])
 
+                    _selectedCherishId.value=response.userData.userList[0].id
+                    _selectedCherishUser.postValue(response.userData.userList[0])
 
-                _selectedCherishId.value=response.userData.userList[0].id
-                _selectedCherishUser.postValue(response.userData.userList[0])
+                    selectedFirst.add(0,response.userData.userList[0])
+                    selectedFirst.addAll(response.userData.userList)
+                }
 
-                selectedFirst.add(0,response.userData.userList[0])
-                selectedFirst.addAll(response.userData.userList)
             }
 
 
