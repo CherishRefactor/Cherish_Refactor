@@ -7,6 +7,7 @@ import com.example.cherish_refactor.data.source.remote.api.PlantEnrollRequest
 import com.example.cherish_refactor.data.source.remote.api.PlantEnrollResponse
 import com.example.cherish_refactor.data.source.remote.singleton.RetrofitBuilder
 import com.example.cherish_refactor.ui.base.BaseViewModel
+import com.example.cherish_refactor.util.MyKeyStore
 import kotlinx.coroutines.launch
 
 class EnrollmentViewModel : BaseViewModel() {
@@ -53,7 +54,7 @@ class EnrollmentViewModel : BaseViewModel() {
                 cycle_date = date.value!!.split(" ")[1].toInt(),
                 notice_time = clock.value?.substring(0, 5)!!,
                 water_notice = true,
-                UserId = 609
+                UserId = MyKeyStore.getUserId()!!
 
             )
         return body

@@ -21,6 +21,7 @@ import com.example.cherish_refactor.databinding.FragmentPhoneBookBinding
 import com.example.cherish_refactor.domain.entity.Phone
 import com.example.cherish_refactor.ui.base.BaseFragment
 import com.example.cherish_refactor.ui.enroll.adapter.PhoneBookAdapter
+import com.example.cherish_refactor.util.MyKeyStore
 import com.example.cherish_refactor.util.dialog.CheckPhoneDialogFragment
 
 
@@ -44,7 +45,7 @@ class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragme
         super.onCreateView(inflater, container, savedInstanceState)
         binding.vm=viewModel
 
-        observer()
+        //observer()
         checkPermission(CAMERA_PERMISSION, CAMERA_PERMISSION_REQUEST)
         checkPermission(STORAGE_PERMISSION, STORAGE_PERMISSION_REQUEST)
 
@@ -59,21 +60,30 @@ class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragme
                     binding.buttonnext.setBackgroundColor(Color.parseColor("#1AD287"))
                     binding.buttonnext.setTextColor(Color.parseColor("#ffffff"))
                     viewModel.nextPhone()
+
                 }
             }
 
         })
         binding.buttonnext.setOnClickListener{
-            viewModel.requestCheckPhone(phoneBookAdapter.phonenumber,args.cherishId)
+            viewModel.requestCheckPhone(phoneBookAdapter.phonenumber,MyKeyStore.getUserId()!!)
+
+
+            viewModel.isCheckPhone.observe(viewLifecycleOwner){
+                if(it==false){
+                    CheckPhoneDialogFragment().show(parentFragmentManager,"phonebook")
+                }else{
+                    findNavController().navigate(PhoneBookFragmentDirections.actionPhoneBookFragmentToEnrollPlantFragment(phoneBookAdapter.phonename,phoneBookAdapter.phonenumber))
+
+                }
+            }
             // 이름 , 전화번호
-
-
         }
     }
 
-    fun observer(){
+    /*fun observer(){
         viewModel.isCheckPhone.observe(viewLifecycleOwner){
-            if(it==true){
+            if(it==false){
                 CheckPhoneDialogFragment().show(parentFragmentManager,"phonebook")
             }else{
                 findNavController().navigate(PhoneBookFragmentDirections.actionPhoneBookFragmentToEnrollPlantFragment(phoneBookAdapter.phonename,phoneBookAdapter.phonenumber))
@@ -81,7 +91,7 @@ class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragme
             }
         }
 
-    }
+    }*/
 
     fun checkPermission(permissions: Array<String>, permissionRequestNumber:Int){
         val permissionResult = ContextCompat.checkSelfPermission(requireContext(), permissions[0])

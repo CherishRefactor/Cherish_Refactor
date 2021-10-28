@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.cherish_refactor.data.mapper.DataToEntity
 import com.example.cherish_refactor.data.source.remote.api.DetailModifyRequest
+import com.example.cherish_refactor.data.source.remote.api.DetailPopUpResponse
 import com.example.cherish_refactor.data.source.remote.singleton.RetrofitBuilder
 import com.example.cherish_refactor.domain.entity.PlantDetail
 import com.example.cherish_refactor.ui.base.BaseViewModel
@@ -18,6 +19,11 @@ class DetailPlantViewModel : BaseViewModel() {
 
     private val _plantDetail = MutableLiveData<PlantDetail>()
     val plantDetail: LiveData<PlantDetail> = _plantDetail
+
+    private val _plantPopUp = MutableLiveData<DetailPopUpResponse>()
+    val plantPopUp: LiveData<DetailPopUpResponse> = _plantPopUp
+
+     val _plantId = MutableLiveData<Int>()
 
     val nickname = MutableLiveData<String>()
     val birth = MutableLiveData<String>()
@@ -48,6 +54,7 @@ class DetailPlantViewModel : BaseViewModel() {
                 val response = RetrofitBuilder.cherishAPI.DetailPlant(cherishId)
                 _plantDetail.postValue(DataToEntity.PlantDetail(response.data))
                 _gage.postValue((response.data.gage*100).toInt())
+                _plantId.postValue(response.data.plantId)
                 if(response.data.reviews.size==0){
                     _isEmptyMemo.postValue(true)
                     _isEmptyMemo2.postValue(true)
@@ -115,6 +122,13 @@ class DetailPlantViewModel : BaseViewModel() {
             val response = RetrofitBuilder.cherishAPI.plantdelete(cherishId)
         }
 
+    }
+
+    fun requestPopUP(plantId:Int){
+        viewModelScope.launch {
+            val response = RetrofitBuilder.cherishAPI.fetchUserPage(plantId)
+            _plantPopUp.postValue(response)
+        }
     }
 
 

@@ -1,6 +1,5 @@
 package com.example.cherish_refactor.ui.enroll
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -24,6 +23,7 @@ class PhoneBookViewModel :BaseViewModel() {
      
      init{
           _isNextPhone.value=false
+          _isCheckPhone.value=false
      }
 
 
@@ -38,14 +38,15 @@ class PhoneBookViewModel :BaseViewModel() {
      fun requestCheckPhone(phoneNumber : String, userId :Int){
 
           viewModelScope.launch {
-               runCatching {
+
+               kotlin.runCatching {
                     val body = CheckPhoneRequest(phone = phoneNumber, UserId = userId)
                     val response = RetrofitBuilder.cherishAPI.checkphone(body)
                }.onSuccess {
-                    Log.d("dddd",it.toString())
-                    _isCheckPhone.postValue(false)
-               }.onFailure {
+
                     _isCheckPhone.postValue(true)
+               }.onFailure {
+                    _isCheckPhone.postValue(false)
                }
 
 

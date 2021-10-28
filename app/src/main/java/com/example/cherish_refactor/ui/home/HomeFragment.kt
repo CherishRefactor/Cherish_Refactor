@@ -34,15 +34,24 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home){
         super.onCreateView(inflater, container, savedInstanceState)
         binding.vm = viewModel
         standardBottomSheetBehavior = BottomSheetBehavior.from(binding.homeStandardBottomSheet)
-        getCherishItem()
+
         setListener()
 
+        getCherishItem()
         setAdapter()
         observer()
+
         setBottom()
         addBottomSheetCallback()
         return binding.root
     }
+
+   /* override fun onResume() {
+        getCherishItem()
+        setAdapter()
+        observer()
+        super.onResume()
+    }*/
 
     fun setBottom(){
         standardBottomSheetBehavior.apply {
@@ -112,9 +121,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home){
     private fun observer(){
         viewModel.user.observe(viewLifecycleOwner){
             //homeCherryListAdapter.data[0]=it[0]
+            if(it.isNotEmpty()) {
+                homeCherryListAdapter.setItem(it)
+            }else{
+                findNavController().navigate(R.id.action_main_home_to_phoneBookFragment)
 
-            homeCherryListAdapter.setItem(it)
-
+            }
         }
 
     }

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.example.cherish_refactor.R
 import com.example.cherish_refactor.data.source.remote.singleton.RetrofitBuilder
 import com.example.cherish_refactor.databinding.FragmentSignUpSecondBinding
@@ -23,6 +24,7 @@ class SignUpSecondFragment : Fragment() {
     var password: String = ""
     private var certificationNumber: String = ""
 
+    private val viewModel: SignUpViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -93,7 +95,11 @@ class SignUpSecondFragment : Fragment() {
     }
 
     private fun requestServer(phoneNumber: String) {
-        //authData = it.data.toString()
+        viewModel.requestAuth(phoneNumber)
+
+        viewModel.isAuth.observe(viewLifecycleOwner){
+            authData=it.toString()
+        }
     }
 
     private fun checkCertificationNumber() {
