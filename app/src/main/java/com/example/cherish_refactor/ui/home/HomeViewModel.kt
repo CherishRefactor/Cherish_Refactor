@@ -22,6 +22,9 @@ class HomeViewModel : BaseViewModel() {
     private val _selectedCherishUser = MutableLiveData<User>()
     val selectedCherishUser: LiveData<User> = _selectedCherishUser
 
+    private val _manageUser = MutableLiveData<ManageResponse>()
+    val manageUser: LiveData<ManageResponse> = _manageUser
+
     private val _selectedCherishId = MutableLiveData<Int>()
     val selectedCherishId: LiveData<Int> = _selectedCherishId
 
@@ -36,9 +39,21 @@ class HomeViewModel : BaseViewModel() {
 
     val isWatered = MutableLiveData<Boolean>()
 
+    val _isRadio = MutableLiveData<Boolean>()
+    val isRadio:LiveData<Boolean> = _isRadio
+
+    fun showRadio(){
+        _isRadio.value=true
+    }
+
+    fun noShowRadio(){
+        _isRadio.value=false
+    }
+
     init{
         _isCalendarChange.value=false
         isWatered.value=false
+        _isRadio.value=true
     }
 
     fun showMemo(){
@@ -193,6 +208,24 @@ class HomeViewModel : BaseViewModel() {
     }
 
 
-    fun requestMainView(id:Int){
+    fun requestManage(id:Int){
+        viewModelScope.launch {
+            val response = RetrofitBuilder.cherishAPI.fetchMyPage(id)
+            _manageUser.postValue(response)
+            total.postValue(response.myPageUserData.result.size)
+
+        }
+    }
+
+    fun searchPlant(search:String):List<ManageResponse.MyPageUserData.MyPageCherishData>{
+        val mulist= mutableListOf<ManageResponse.MyPageUserData.MyPageCherishData>()
+        _manageUser.value?.myPageUserData?.result?.forEach {
+            if(it.nickName.contains(search)){
+                mulist.add(it)
+            }
+        }
+        return mulist
+        //_manageUser.value.myPageUserData.result.va(mulist)
+
     }
 }

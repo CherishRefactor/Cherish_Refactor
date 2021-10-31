@@ -18,6 +18,7 @@
         <entry key="app/src/main/res/layout/activity_detail.xml" value="0.27291666666666664" />
         <entry key="app/src/main/res/layout/activity_enroll.xml" value="0.25885416666666666" />
         <entry key="app/src/main/res/layout/activity_home_blank.xml" value="0.35833333333333334" />
+        <entry key="app/src/main/res/layout/activity_lock.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_onboarding.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_pw_finding.xml" value="0.2421875" />
@@ -56,6 +57,7 @@
         <entry key="app/src/main/res/layout/fragment_onboarding_detail.xml" value="0.2657407407407407" />
         <entry key="app/src/main/res/layout/fragment_phone_book.xml" value="0.24739583333333334" />
         <entry key="app/src/main/res/layout/fragment_plant.xml" value="0.2657407407407407" />
+        <entry key="app/src/main/res/layout/fragment_plant_phone.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/fragment_plant_search.xml" value="0.24114583333333334" />
         <entry key="app/src/main/res/layout/fragment_pw_finding_dialog.xml" value="0.2421875" />
         <entry key="app/src/main/res/layout/fragment_pw_finding_third.xml" value="0.2421875" />
@@ -73,6 +75,7 @@
         <entry key="app/src/main/res/layout/item_layout_plant.xml" value="0.19739583333333333" />
         <entry key="app/src/main/res/layout/main_cherry_item.xml" value="0.23854166666666668" />
         <entry key="app/src/main/res/layout/my_page_cherry_item.xml" value="0.19739583333333333" />
+        <entry key="app/src/main/res/layout/my_page_custom_tab.xml" value="0.2755208333333333" />
         <entry key="app/src/main/res/layout/view_chip_black_action.xml" value="0.35833333333333334" />
         <entry key="app/src/main/res/layout/view_max_keyword.xml" value="0.28177083333333336" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />

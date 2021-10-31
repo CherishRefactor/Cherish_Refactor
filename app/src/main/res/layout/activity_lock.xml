@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+
+    </data>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.setting.LockActivity">
+
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/icon_gnb_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="비밀번호 설정"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageButton4" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="85dp"
+        android:text="새로운 비밀번호를 입력해주세요."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton4" />
+
+    <LinearLayout
+        android:id="@+id/ll_pw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <ImageView
+            android:id="@+id/img_pw1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:src="@drawable/ic_password" />
+
+        <ImageView
+            android:id="@+id/img_pw2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:src="@drawable/ic_password" />
+
+        <ImageView
+            android:id="@+id/img_pw3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:src="@drawable/ic_password" />
+
+        <ImageView
+            android:id="@+id/img_pw4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:src="@drawable/ic_password" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_pw">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow
+                android:layout_marginBottom="16dp">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn1"
+                    android:text="1"
+                    android:background="@android:color/transparent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn2"
+                    android:text="2"
+                    android:background="@android:color/transparent"
+                    android:layout_weight="1"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn3"
+                    android:text="3"
+                    android:background="@android:color/transparent"
+                    android:layout_weight="1"/>
+
+            </TableRow>
+            <TableRow
+                android:layout_marginBottom="16dp">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn4"
+                    android:text="4"
+                    android:background="@android:color/transparent"
+                    android:layout_weight="1"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn5"
+                    android:text="5"
+                    android:background="@android:color/transparent"
+                    android:layout_weight="1"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn6"
+                    android:text="6"
+                    android:background="@android:color/transparent"
+                    android:layout_weight="1"/>
+
+            </TableRow>
+            <TableRow
+                android:layout_marginBottom="16dp">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn7"
+                    android:text="7"
+                    android:background="@android:color/transparent"
+                    android:layout_weight="1"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn8"
+                    android:text="8"
+                    android:background="@android:color/transparent"
+                    android:layout_weight="1"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn9"
+                    android:text="9"
+                    android:background="@android:color/transparent"
+                    android:layout_weight="1"/>
+
+            </TableRow>
+            <TableRow>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible"
+                    android:clickable="false"
+                    android:background="@android:color/transparent"
+                    android:layout_weight="1"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn0"
+                    android:text="0"
+                    android:background="@android:color/transparent"
+                    android:layout_weight="1"/>
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btn1_back"
+                    android:background="@android:color/transparent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:src="@drawable/pw_back"
+                    android:layout_weight="1"
+                    />
+
+            </TableRow>
+
+
+
+
+        </TableLayout>
+
+
+
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/startBtn"
+        style="@style/RoundButton.GreenMain"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginStart="@dimen/margin_16dp"
+        android:layout_marginEnd="@dimen/margin_16dp"
+        android:text="식물 등록하러 가기"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="암호를 분실했을 경우 앱을 삭제하고 재설치해야 됩니다."
+        app:layout_constraintBottom_toTopOf="@+id/startBtn"
+        app:layout_constraintEnd_toEndOf="@+id/startBtn"
+        app:layout_constraintStart_toStartOf="@+id/startBtn" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

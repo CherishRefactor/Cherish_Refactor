@@ -293,13 +293,48 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/pw_cons"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_60dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lock_cons">
+
+
+                    <Switch
+                        android:id="@+id/setting_lock"
+                        android:layout_width="45dp"
+                        android:layout_height="18dp"
+                        android:layout_marginEnd="24dp"
+                        android:thumb="@drawable/switch_thumb"
+                        android:track="@drawable/switch_track"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+                    <TextView
+                        android:id="@+id/textView24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="@font/notosanscjkkr_medium"
+                        android:includeFontPadding="false"
+                        android:text="잠금 설정"
+                        android:textColor="#454545"
+                        android:textSize="15sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <View
                     android:id="@+id/view3"
                     android:layout_width="match_parent"
                     android:layout_height="6dp"
                     android:background="#f5f5f5"
-                    app:layout_constraintTop_toBottomOf="@+id/lock_cons" />
+                    app:layout_constraintTop_toBottomOf="@+id/pw_cons" />
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout

@@ -132,6 +132,7 @@ class DetailPlantFragment : BaseFragment<FragmentDetailPlantBinding>(R.layout.fr
         }
         binding.imbDetailBack.setOnClickListener {
             findNavController().popBackStack()
+            //findNavController().navigateUp()
         }
 
 

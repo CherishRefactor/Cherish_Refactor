@@ -827,3 +827,21 @@ fun delayChangePlantImage(
         }
     }
 }
+
+@BindingAdapter("myPageday")
+fun myPageday(textView: TextView,dDay: Int){
+    if(dDay==0){
+        textView.text = "D-Day"
+        textView.setBackgroundResource(R.drawable.my_page_chip_red) //초록색으로
+        textView.setTextColor(Color.parseColor("#F7596C"))
+    }else if(dDay<0){
+        textView.text="D+${abs(dDay)}"
+        textView.setBackgroundResource(R.drawable.my_page_chip_red)
+        textView.setTextColor(Color.parseColor("#F7596C"))
+    }else{
+        textView.text="D-${dDay}"
+        textView.setBackgroundResource(R.drawable.my_page_chip_green) //초록색으로
+        textView.setTextColor(Color.parseColor("#1AD287"))
+    }
+
+}

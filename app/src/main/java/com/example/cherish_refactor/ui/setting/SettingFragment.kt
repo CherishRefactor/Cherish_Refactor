@@ -8,17 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.cherish_refactor.MainApplication
 import com.example.cherish_refactor.R
 import com.example.cherish_refactor.databinding.FragmentSettingBinding
 import com.example.cherish_refactor.ui.base.BaseFragment
 import com.example.cherish_refactor.ui.splash.SplashActivity
+import com.example.cherish_refactor.util.AppLockConst
 import com.example.cherish_refactor.util.MyKeyStore
 import com.example.cherish_refactor.util.MyKeyStore.deleteToken
 import com.example.cherish_refactor.util.MyKeyStore.deleteUserId
 import com.example.cherish_refactor.util.MyKeyStore.deleteUserPassword
+import com.example.cherish_refactor.util.MySharedPreference
 import com.example.cherish_refactor.util.dialog.DeleteUserDialog
 
 class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_setting) {
@@ -32,7 +33,13 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_s
         binding.vm = settingViewModel
         setListener()
         requestSetting()
+        setLock()
+
+
         return binding.root
+    }
+    fun setLock(){
+        binding.settingLock.isChecked=MySharedPreference.getLockSwitch(requireContext())
     }
 
 
@@ -40,7 +47,38 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_s
         settingViewModel.requestSettingUser(MyKeyStore.getUserId()!!)
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when(requestCode){
+            AppLockConst.ENABLE_PASSLOCK->{
+                Toast.makeText(context,"암호설정",Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
     private fun setListener(){
+        binding.settingLock.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(isChecked){
+                if(!MySharedPreference.getLockSwitch(requireContext())) {
+                    requireActivity().finish()
+                    val intent = Intent(context, LockActivity::class.java).apply {
+                        putExtra(AppLockConst.type, AppLockConst.ENABLE_PASSLOCK)
+                    }
+                    startActivityForResult(intent, AppLockConst.ENABLE_PASSLOCK)
+                }
+                MySharedPreference.setLockSwitch(requireContext(),true)
+
+                buttonView.isChecked=true
+            }else{
+
+                val intent = Intent(context,LockActivity::class.java).apply {
+                    putExtra(AppLockConst.type,AppLockConst.DISABLE_PASSLOCK)
+                }
+                startActivityForResult(intent,AppLockConst.DISABLE_PASSLOCK)
+                MySharedPreference.setLockSwitch(requireContext(),false)
+                buttonView.isChecked=false
+            }
+        }
         binding.constraintLayoutQuestion.setOnClickListener {
             val intent = Intent(Intent.ACTION_SEND)
             intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("Co.Cherishteam@gmail.com"))
