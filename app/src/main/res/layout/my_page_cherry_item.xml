@@ -5,11 +5,12 @@
     <data>
 
         <variable
-            name="myPageCherishData"
-            type="com.example.cherish_refactor.data.source.remote.api.MyPageCherishData" />
+            name="my"
+            type="com.example.cherish_refactor.data.source.remote.api.ManageResponse.MyPageUserData.MyPageCherishData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginHorizontal="16dp"
         android:layout_width="match_parent"
         android:layout_height="80dp">
 
@@ -18,6 +19,7 @@
             android:id="@+id/mypage_user_img"
             android:layout_width="54dp"
             android:layout_height="54dp"
+            app:plantUrl="@{my.thumbnailImageUrl}"
             android:contentDescription="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +35,7 @@
             android:textColor="#454545"
             android:letterSpacing="-0.03"
             android:lineSpacingExtra="20sp"
-            android:text=""
+            android:text="@{my.nickName}"
             android:textAlignment="center"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/mypage_user_img"
@@ -45,7 +47,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_regular"
             android:includeFontPadding="false"
-            android:text=""
+            android:text="@{my.name}"
             android:textSize="14sp"
             android:textColor="#a7a7a7"
             android:letterSpacing="-0.01"
@@ -60,7 +62,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_regular"
             android:includeFontPadding="false"
-            android:text=""
+            android:text="@{`Lv. ` + String.valueOf(my.level)}"
             android:textColor="#a7a7a7"
             android:letterSpacing="-0.01"
             android:lineSpacingExtra="10sp"
@@ -77,7 +79,7 @@
             android:background="@drawable/my_page_chip_red"
             android:gravity="center"
             android:fontFamily="@font/roboto_regular"
-            android:text=""
+            app:myPageday="@{my.DDay}"
             android:includeFontPadding="false"
             android:textColor="@color/cherish_pink_sub"
             app:layout_constraintBottom_toBottomOf="@+id/mypage_user_img"

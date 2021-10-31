@@ -7,7 +7,6 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.cherish_refactor.ui.enroll.PhoneBookFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -51,11 +50,6 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-    }
-
-    private fun initializeFragment() {
-        supportFragmentManager.beginTransaction()
-            .add(R.id.enroll_frame, PhoneBookFragment()).commit()
     }
 
 

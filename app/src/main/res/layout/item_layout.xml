@@ -3,9 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View"/>
         <variable
             name="vm"
             type="com.example.cherish_refactor.domain.entity.Phone" />
+        <variable
+            name="radio"
+            type="com.example.cherish_refactor.ui.home.HomeViewModel" />
     </data>
 
 

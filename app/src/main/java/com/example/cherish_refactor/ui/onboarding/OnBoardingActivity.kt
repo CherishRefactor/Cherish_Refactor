@@ -22,6 +22,11 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingBinding>(R.layout.acti
 
         if (!MySharedPreference.isFirstEnter(this)) {
             startMainActivity()
+            /*if(MySharedPreference.getLockSwitch(this)){
+                startActivity(Intent(this@OnBoardingActivity, LockActivity::class.java))
+            }else {
+                startMainActivity()
+            }*/
             return
         }
 

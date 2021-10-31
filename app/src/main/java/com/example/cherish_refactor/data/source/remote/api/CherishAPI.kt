@@ -25,7 +25,7 @@ interface CherishAPI {
     @GET("user/{id}")
     suspend fun SettingUserPage(
         @Path("id") userId: Int
-    ): MyPageUserRes
+    ): ManageResponse
 
     @Headers("Content-Type:application/json")
     @PUT("addView")
@@ -133,6 +133,11 @@ interface CherishAPI {
     suspend fun fetchUserPage(
         @Path("id") plantId: Int
     ): DetailPopUpResponse
+
+    @GET("user/{id}")
+    suspend fun fetchMyPage(
+        @Path("id") userId: Int
+    ): ManageResponse
 
 
 }

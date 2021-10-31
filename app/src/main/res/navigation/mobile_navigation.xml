@@ -29,6 +29,10 @@
         <action
             android:id="@+id/action_managePlantFragment_to_detailPlantFragment"
             app:destination="@id/detailPlantFragment" />
+        <action
+            android:id="@+id/action_main_manage_plant_to_enrollPlantFragment"
+            app:destination="@id/enrollPlantFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/main_setting"
@@ -190,6 +194,14 @@
         android:id="@+id/signUpFirstFragment"
         android:name="com.example.cherish_refactor.ui.signup.SignUpFirstFragment"
         android:label="SignUpFirstFragment" />
+    <fragment
+        android:id="@+id/plantFragment"
+        android:name="com.example.cherish_refactor.ui.manage.PlantFragment"
+        android:label="PlantFragment" >
+        <action
+            android:id="@+id/action_plantFragment_to_detailPlantFragment"
+            app:destination="@id/detailPlantFragment" />
+    </fragment>
 
 
 </navigation>

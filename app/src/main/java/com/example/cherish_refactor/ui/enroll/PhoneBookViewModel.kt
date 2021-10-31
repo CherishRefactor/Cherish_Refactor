@@ -15,19 +15,20 @@ class PhoneBookViewModel :BaseViewModel() {
      val phone = MutableLiveData<String>()
 
 
-     private val _isCheckPhone = MutableLiveData<Boolean>()
-     val isCheckPhone : LiveData<Boolean> = _isCheckPhone
+      val isCheckPhone = MutableLiveData<Boolean>()
+
 
      private val _isNextPhone = MutableLiveData<Boolean>()
      val isNextPhone : LiveData<Boolean> = _isNextPhone
      
      init{
           _isNextPhone.value=false
-          _isCheckPhone.value=false
+          //_isCheckPhone.value=false
      }
 
 
      fun nextPhone(){
+         // isCheckPhone.value=next
           _isNextPhone.value=true
      }
 
@@ -35,22 +36,25 @@ class PhoneBookViewModel :BaseViewModel() {
           _isNextPhone.value=false
      }
 
-     fun requestCheckPhone(phoneNumber : String, userId :Int){
-
+     fun requestCheckPhone(phoneNumber : String, userId :Int):Boolean{
+          var next=false
           viewModelScope.launch {
 
                kotlin.runCatching {
                     val body = CheckPhoneRequest(phone = phoneNumber, UserId = userId)
                     val response = RetrofitBuilder.cherishAPI.checkphone(body)
+
+                    next = response.success
                }.onSuccess {
 
-                    _isCheckPhone.postValue(true)
+                   // _isCheckPhone.postValue(true)
                }.onFailure {
-                    _isCheckPhone.postValue(false)
+                   // _isCheckPhone.postValue(false)
                }
 
 
           }
+          return next
 
      }
 

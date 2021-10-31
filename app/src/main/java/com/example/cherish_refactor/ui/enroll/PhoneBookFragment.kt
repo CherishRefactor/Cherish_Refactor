@@ -28,7 +28,7 @@ import com.example.cherish_refactor.util.dialog.CheckPhoneDialogFragment
 class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragment_phone_book) {
 
     private val viewModel: PhoneBookViewModel by viewModels()
-    private val phoneBookAdapter: PhoneBookAdapter by lazy { PhoneBookAdapter() }
+    private val phoneBookAdapter: PhoneBookAdapter by lazy { PhoneBookAdapter(true) }
     private val args by navArgs<PhoneBookFragmentArgs>()
 
     var searchText = ""
@@ -46,8 +46,8 @@ class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragme
         binding.vm=viewModel
 
         //observer()
-        checkPermission(CAMERA_PERMISSION, CAMERA_PERMISSION_REQUEST)
-        checkPermission(STORAGE_PERMISSION, STORAGE_PERMISSION_REQUEST)
+        checkPermission()
+
 
         return binding.root
     }
@@ -66,18 +66,19 @@ class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragme
 
         })
         binding.buttonnext.setOnClickListener{
-            viewModel.requestCheckPhone(phoneBookAdapter.phonenumber,MyKeyStore.getUserId()!!)
+            //viewModel.nextPhone(viewModel.requestCheckPhone(phoneBookAdapter.phonenumber,MyKeyStore.getUserId()!!))
+            nextEnroll()
 
+        }
+    }
 
-            viewModel.isCheckPhone.observe(viewLifecycleOwner){
-                if(it==false){
-                    CheckPhoneDialogFragment().show(parentFragmentManager,"phonebook")
-                }else{
-                    findNavController().navigate(PhoneBookFragmentDirections.actionPhoneBookFragmentToEnrollPlantFragment(phoneBookAdapter.phonename,phoneBookAdapter.phonenumber))
+    fun nextEnroll(){
+        if(viewModel.requestCheckPhone(phoneBookAdapter.phonenumber,MyKeyStore.getUserId()!!)==true){
+            findNavController().navigate(PhoneBookFragmentDirections.actionPhoneBookFragmentToEnrollPlantFragment(phoneBookAdapter.phonename,phoneBookAdapter.phonenumber))
 
-                }
-            }
-            // 이름 , 전화번호
+        }else{
+            CheckPhoneDialogFragment().show(parentFragmentManager,"phonebook")
+
         }
     }
 
@@ -92,8 +93,24 @@ class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragme
         }
 
     }*/
+    fun checkPermission(){
+        val read= ContextCompat.checkSelfPermission(requireContext(),android.Manifest.permission.READ_CONTACTS)
+        if(read == PackageManager.PERMISSION_GRANTED){
+            startProcess()
+            setListeners()
+        }
+        else{
+            requestPermission()
+        }
+    }
 
-    fun checkPermission(permissions: Array<String>, permissionRequestNumber:Int){
+    fun requestPermission(){
+        ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.READ_CONTACTS),99)
+    }
+
+
+
+    /*fun checkPermission(permissions: Array<String>, permissionRequestNumber:Int){
         val permissionResult = ContextCompat.checkSelfPermission(requireContext(), permissions[0])
 
         when(permissionResult){
@@ -107,7 +124,7 @@ class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragme
                 ActivityCompat.requestPermissions(requireActivity(), permissions, permissionRequestNumber)
             }
         }
-    }
+    }*/
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -117,6 +134,12 @@ class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragme
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
         when(requestCode){
+            99 -> {
+                if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    startProcess()
+                    setListeners()
+                }
+            }
             CAMERA_PERMISSION_REQUEST -> {
                 if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
                     Toast.makeText(requireContext(), "Camera Permission Granted", Toast.LENGTH_SHORT).show()
@@ -175,15 +198,13 @@ class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragme
 
     }
 
-
     private fun setList() {
         binding.recycler.adapter = phoneBookAdapter
         binding.recycler.layoutManager = LinearLayoutManager(context)
         phoneBookAdapter.setItem(getPhoneNumbers(searchText))
     }
 
-
-    private fun getPhoneNumbers(search: String): List<Phone> {
+    /*private fun getPhoneNumbers(search: String): List<Phone> {
 
         val list = mutableListOf<Phone>()
         val phonUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI
@@ -214,6 +235,54 @@ class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragme
             }
         }
         return list
+    }*/
+    private fun getPhoneNumbers(search:String): List<Phone> {
+        val contactList: MutableList<Phone> = ArrayList()
+        val projections = arrayOf(
+            ContactsContract.CommonDataKinds.Phone.CONTACT_ID,
+            ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
+            ContactsContract.CommonDataKinds.Phone.NUMBER
+        )
+
+            var where =
+                ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " LIKE ?" + " OR " + ContactsContract.CommonDataKinds.Phone.NUMBER + " LIKE ?"
+
+        val contacts = context?.contentResolver?.query(
+            ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+            projections,
+            where,
+            arrayOf("%$search%"),
+            null
+        )
+        while (contacts!!.moveToNext()){
+            val name = contacts.getString(contacts.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
+            val number = contacts.getString(contacts.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
+            val obj = Phone("",name,number)
+
+            contactList.add(obj)
+        }
+
+        var where2 =
+            ContactsContract.CommonDataKinds.Phone.NUMBER  + " LIKE ?" + " OR " + ContactsContract.CommonDataKinds.Phone.NUMBER + " LIKE ?"
+
+        val contacts2 = context?.contentResolver?.query(
+            ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+            projections,
+            where2,
+            arrayOf("%$search%"),
+            null
+        )
+        while (contacts2!!.moveToNext()){
+            val name = contacts2.getString(contacts2.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
+            val number = contacts2.getString(contacts2.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
+            val obj = Phone("",name,number)
+
+            contactList.add(obj)
+        }
+        contacts.close()
+
+        //setStringArrayPref(this,"contact",contactList)
+        return contactList.distinct()
     }
 
 

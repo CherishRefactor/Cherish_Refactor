@@ -4,13 +4,14 @@ import android.util.SparseBooleanArray
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.CompoundButton
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cherish_refactor.databinding.ItemLayoutBinding
 import com.example.cherish_refactor.domain.entity.Phone
 
 
 // created by nayoung : 사용자 연락처들을 받아서 보여주는 adapter
-class PhoneBookAdapter :
+class PhoneBookAdapter(view:Boolean) :
     RecyclerView.Adapter<PhoneBookAdapter.Holder>() {
 
 
@@ -19,6 +20,7 @@ class PhoneBookAdapter :
     var checkedRadioButton: CompoundButton? = null
     lateinit var phonename: String
     lateinit var phonenumber: String
+    var isRadio =view
 
     private var phoneBookList= mutableListOf<Phone>()
 
@@ -42,6 +44,10 @@ class PhoneBookAdapter :
         notifyDataSetChanged()
     }
 
+  /*  fun setRadioVisi(radio:Boolean){
+        isRadio=radio
+    }
+*/
     override fun onBindViewHolder(holder: Holder, position: Int) {
 
         holder.radioButton.isChecked = mStateButtons.get(position, false)
@@ -97,11 +103,21 @@ class PhoneBookAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
 
+
         var radioButton = binding.radioButton
         var consPhoneNumber = binding.searchPhoneItem
 
 
         fun setPhone(phone: Phone) {
+            if(isRadio==false){
+                radioButton.isVisible=false
+                consPhoneNumber.isClickable=false
+
+            }else{
+                radioButton.isVisible=true
+                consPhoneNumber.isClickable=true
+            }
+
             binding.vm = phone
            // binding.textName.text = phone.name
            // binding.textPhone.text = phone.phone

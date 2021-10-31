@@ -3,7 +3,7 @@ package com.example.cherish_refactor.ui.setting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.cherish_refactor.data.source.remote.api.MyPageUserRes
+import com.example.cherish_refactor.data.source.remote.api.ManageResponse
 import com.example.cherish_refactor.data.source.remote.api.UserDeleteRequest
 import com.example.cherish_refactor.data.source.remote.api.nickNameRequest
 import com.example.cherish_refactor.data.source.remote.singleton.RetrofitBuilder
@@ -12,8 +12,8 @@ import kotlinx.coroutines.launch
 
 class SettingViewModel :BaseViewModel() {
 
-    private val _user=MutableLiveData<MyPageUserRes>()
-    var user:LiveData<MyPageUserRes> = _user
+    private val _user=MutableLiveData<ManageResponse>()
+    var user:LiveData<ManageResponse> = _user
 
     val nickName = MutableLiveData<String>()
 
