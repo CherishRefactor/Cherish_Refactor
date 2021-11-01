@@ -27,8 +27,7 @@
         android:theme="@style/Theme.Cherish_refactor"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.setting.LockActivity"
-            android:exported="true" />
+            android:name=".ui.setting.LockActivity" />
         <activity
             android:name=".ui.splash.SplashActivity"
             android:exported="true"

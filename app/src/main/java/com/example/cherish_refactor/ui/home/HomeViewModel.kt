@@ -91,6 +91,7 @@ class HomeViewModel : BaseViewModel() {
                     selectedFirst.add(0,response.userData.userList[0])
                     selectedFirst.addAll(response.userData.userList)
                 }
+                isWatered.value=false
 
             }else{
                 val response = RetrofitBuilder.cherishAPI.getCherishUser(userId)

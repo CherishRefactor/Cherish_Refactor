@@ -14,6 +14,7 @@ import com.example.cherish_refactor.databinding.DialogLoadingBinding
 import com.example.cherish_refactor.databinding.DialogWarningKeywordLimitErrorBinding
 import com.example.cherish_refactor.databinding.DialogWarningKeywordWordcountLimitErrorBinding
 import com.example.cherish_refactor.databinding.DialogWarningReviewLimitErrorBinding
+import com.example.cherish_refactor.util.DialogUtil
 
 
 class MultiViewDialog(
@@ -66,8 +67,8 @@ class MultiViewDialog(
         dismiss()
     }
 
-   /*override fun onResume() {
+   override fun onResume() {
         super.onResume()
         DialogUtil.adjustDialogSize(this, widthRatio = widthRatio, heightRatio = heightRatio)
-    }*/
+    }
 }

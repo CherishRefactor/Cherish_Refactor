@@ -112,7 +112,7 @@ class ReviewFragment : BaseFragment<FragmentReviewBinding>(R.layout.fragment_rev
                             )!!.text.toString(),
 
                     )
-                   // showLoadingDialog()
+                    showLoadingDialog()
                 } else {
                     MultiViewDialog(
                         R.layout.dialog_warning_review_limit_error,
