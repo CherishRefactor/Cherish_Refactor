@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
             bottomNavigationView.isVisible =
                 !(destination.id == R.id.calendarFragment || destination.id == R.id.aboutCherishFragment || destination.id == R.id.reviewFragment
-                    || destination.id == R.id.detailModifyFragment)
+                    || destination.id == R.id.detailModifyFragment || destination.id == R.id.plantFragment)
 
         }
 

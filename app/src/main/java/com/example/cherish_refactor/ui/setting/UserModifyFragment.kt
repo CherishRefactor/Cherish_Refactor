@@ -41,6 +41,10 @@ class UserModifyFragment : BaseFragment<FragmentUserModifyBinding>(R.layout.frag
 
 
     fun setListener(){
+        binding.settingModifyBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         binding.buttonNickchange.setOnClickListener {
             viewModel.requestNickNameChange(MyKeyStore.getUserId()!!)
             findNavController().popBackStack()

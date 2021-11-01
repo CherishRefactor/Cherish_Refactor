@@ -53,6 +53,8 @@ class PlantPhoneFragment(view:Boolean) : BaseFragment<FragmentPlantPhoneBinding>
         if(radio==true){
             binding.searchBg.isVisible=true
             binding.myPageAddPhoneBtn.isVisible=true
+            //android:scrollbarStyle="outsideOverlay"
+            binding.rvPlantPhone.isFocusableInTouchMode=false
 
         }else{
 

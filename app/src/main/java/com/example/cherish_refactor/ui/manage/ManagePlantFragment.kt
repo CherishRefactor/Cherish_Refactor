@@ -206,12 +206,12 @@ class ManagePlantFragment : BaseFragment<FragmentManagePlantBinding>(R.layout.fr
 
     fun setListener(){
         binding.myPageAddPlantBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_managePlantFragment_to_detailPlantFragment)
+            findNavController().navigate(R.id.action_main_manage_plant_to_phoneBookFragment)
 
         }
 
         binding.userTouch.setOnClickListener {
-            //user modify
+            findNavController().navigate(R.id.action_main_manage_plant_to_userModifyFragment)
         }
         binding.cancelBtn.setOnClickListener {
             binding.searchBox.visibility = View.VISIBLE

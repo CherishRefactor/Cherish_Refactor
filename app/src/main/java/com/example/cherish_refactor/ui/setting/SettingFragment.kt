@@ -9,11 +9,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.example.cherish_refactor.MainActivity
 import com.example.cherish_refactor.MainApplication
 import com.example.cherish_refactor.R
 import com.example.cherish_refactor.databinding.FragmentSettingBinding
 import com.example.cherish_refactor.ui.base.BaseFragment
 import com.example.cherish_refactor.ui.splash.SplashActivity
+import com.example.cherish_refactor.util.AppLock
 import com.example.cherish_refactor.util.AppLockConst
 import com.example.cherish_refactor.util.MyKeyStore
 import com.example.cherish_refactor.util.MyKeyStore.deleteToken
@@ -36,10 +38,12 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_s
         setLock()
 
 
+
         return binding.root
     }
     fun setLock(){
         binding.settingLock.isChecked=MySharedPreference.getLockSwitch(requireContext())
+
     }
 
 
@@ -52,29 +56,27 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_s
         when(requestCode){
             AppLockConst.ENABLE_PASSLOCK->{
                 Toast.makeText(context,"암호설정",Toast.LENGTH_SHORT).show()
+                requireActivity().finish()
+                startActivity(Intent(requireActivity(),MainActivity::class.java))
             }
         }
     }
 
     private fun setListener(){
         binding.settingLock.setOnCheckedChangeListener { buttonView, isChecked ->
-            if(isChecked){
-                if(!MySharedPreference.getLockSwitch(requireContext())) {
+            if(isChecked){ //켰을 때
+                if(MySharedPreference.isFirstLock(requireContext())){ //앱 잠금이 처음이면
                     requireActivity().finish()
                     val intent = Intent(context, LockActivity::class.java).apply {
                         putExtra(AppLockConst.type, AppLockConst.ENABLE_PASSLOCK)
                     }
                     startActivityForResult(intent, AppLockConst.ENABLE_PASSLOCK)
+                    MySharedPreference.saveFirstLock(requireContext())
                 }
                 MySharedPreference.setLockSwitch(requireContext(),true)
 
                 buttonView.isChecked=true
-            }else{
-
-                val intent = Intent(context,LockActivity::class.java).apply {
-                    putExtra(AppLockConst.type,AppLockConst.DISABLE_PASSLOCK)
-                }
-                startActivityForResult(intent,AppLockConst.DISABLE_PASSLOCK)
+            }else{ // 껐을 때
                 MySharedPreference.setLockSwitch(requireContext(),false)
                 buttonView.isChecked=false
             }
@@ -94,7 +96,15 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_s
             startActivity(intent)
         }
         binding.constraintLayoutAboutCherish.setOnClickListener {
-            findNavController().navigate(R.id.action_main_setting_to_aboutCherishFragment)
+           // findNavController().navigate(R.id.action_main_setting_to_aboutCherishFragment)
+           /* val intent = Intent(context,LockActivity::class.java).apply {
+                putExtra(AppLockConst.type,AppLockConst.DISABLE_PASSLOCK)
+            }
+            startActivityForResult(intent,AppLockConst.hashCode())*/
+
+            AppLock(requireContext()).removePassLock()
+            MySharedPreference.removelock(requireContext())
+
         }
 
         binding.constraintLayoutInfo.setOnClickListener {
