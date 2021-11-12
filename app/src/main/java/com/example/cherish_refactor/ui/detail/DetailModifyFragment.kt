@@ -65,6 +65,9 @@ class DetailModifyFragment : BaseFragment<FragmentDetailModifyPlantBinding>(R.la
     }
 
     fun setListener() {
+        binding.imbDetailModifyBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
         binding.editclock.setOnClickListener {
 
 

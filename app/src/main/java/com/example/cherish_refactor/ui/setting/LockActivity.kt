@@ -119,6 +119,7 @@ class LockActivity : BaseActivity<ActivityLockBinding>(R.layout.activity_lock) {
                 viewModel.imgPw4.value=true
                 Log.d("lock1234","4")
                 pwd4 = strCurrent
+                viewModel.isLockBtnOk.value=true
                 inputType(intent.getIntExtra("type",0))
             }
 
@@ -128,7 +129,7 @@ class LockActivity : BaseActivity<ActivityLockBinding>(R.layout.activity_lock) {
     fun setListener(){
 
         binding.startBtn.setOnClickListener {
-
+            viewModel.isLockBtnOk.value=false
             if(viewModel.isLockOk.value == true){
                 AppLock(this).setPassLock(inputedPassword())
                 setResult(Activity.RESULT_OK)
@@ -136,6 +137,7 @@ class LockActivity : BaseActivity<ActivityLockBinding>(R.layout.activity_lock) {
                 startActivity(Intent(this,SignInActivity::class.java))
             }else{
                 Toast.makeText(this,"비밀번호 틀림!",Toast.LENGTH_SHORT).show()
+                onClear()
             }
 
         }
@@ -146,29 +148,29 @@ class LockActivity : BaseActivity<ActivityLockBinding>(R.layout.activity_lock) {
     fun onDeleteKey(){
         if(viewModel.imgPw4.value == true){
             viewModel.imgPw4.value=false
-
+            viewModel.isLockBtnOk.value=false
             pwd4=""
-            count-=1
+            count=3
 
         }
         else if(viewModel.imgPw3.value==true){
             viewModel.imgPw3.value=false
             pwd3=""
 
-            count-=1
+            count=2
 
 
         }
         else if(viewModel.imgPw2.value==true){
             viewModel.imgPw2.value=false
             pwd2=""
-            count-=1
+            count=1
 
         }
         else if(viewModel.imgPw1.value==true){
             viewModel.imgPw1.value=false
             pwd1=""
-            count-=1
+            count=0
 
         }
 
@@ -195,7 +197,11 @@ class LockActivity : BaseActivity<ActivityLockBinding>(R.layout.activity_lock) {
     fun inputType(type:Int){
         when(type){
             AppLockConst.ENABLE_PASSLOCK ->{
-                if(oldPwd.isEmpty()){
+                //ㅅㅐ로 설정
+                viewModel.isLockOk.value=true
+                Toast.makeText(this,"비밀번호 등록",Toast.LENGTH_SHORT).show()
+                count=0
+                /*if(oldPwd.isEmpty()){
                     oldPwd=inputedPassword()
                     onClear()
                     count = 0
@@ -205,9 +211,9 @@ class LockActivity : BaseActivity<ActivityLockBinding>(R.layout.activity_lock) {
                 }
                 else{
                     if(oldPwd == inputedPassword()){
-                        /*AppLock(this).setPassLock(inputedPassword())
+                        *//*AppLock(this).setPassLock(inputedPassword())
                         setResult(Activity.RESULT_OK)
-                        finish()*/
+                        finish()*//*
                         viewModel.isLockOk.value=true
                         Toast.makeText(this,"비밀번호 일치",Toast.LENGTH_SHORT).show()
 
@@ -220,7 +226,7 @@ class LockActivity : BaseActivity<ActivityLockBinding>(R.layout.activity_lock) {
                         Toast.makeText(this,"비밀번호를 확인해주세요.",Toast.LENGTH_SHORT).show()
                     }
 
-                }
+                }*/
 
             }
             AppLockConst.UNLOCK_PASSWORD ->{
@@ -229,8 +235,9 @@ class LockActivity : BaseActivity<ActivityLockBinding>(R.layout.activity_lock) {
                    // setResult(Activity.RESULT_OK)
                     //finish()
                     count = 0
+                    //onClear()
                 }else{
-                    onClear()
+                    //onClear()
                     count = 0
                 }
             }

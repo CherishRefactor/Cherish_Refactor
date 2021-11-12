@@ -70,6 +70,9 @@ class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragme
             nextEnroll()
 
         }
+        binding.backPhone.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     fun nextEnroll(){

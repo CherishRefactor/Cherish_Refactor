@@ -14,7 +14,7 @@
         android:tag="manage_plant"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#eff1f5"
+        android:background="@{vm.isManageBg() ? @color/white : @color/cherish_my_page_bg }"
         android:id="@+id/my_page_bg"
         tools:context=".ui.main.manageplant.ManagePlantFragment">
 
@@ -273,6 +273,7 @@
                     style="?attr/bottomSheetStyle"
                     android:layout_width="match_parent"
                     android:layout_height="58dp"
+                    android:layout_marginStart="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

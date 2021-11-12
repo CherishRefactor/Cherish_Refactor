@@ -48,7 +48,7 @@
         android:textSize="16sp"
         android:includeFontPadding="false"
         android:textColor="@color/black"
-        android:text="새로운 비밀번호를 입력해주세요."
+        android:text="@{vm.isLockOk() ==true ? @string/lock_pw_ok : @string/lock_pw_no}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageButton4" />
@@ -259,7 +259,8 @@
 
     <Button
         android:id="@+id/startBtn"
-        style="@style/RoundButton.GreenMain"
+        style="@style/RoundButton.pinkish_Gray"
+        btnStyle="@{vm.isLockBtnOk()}"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginBottom="30dp"
