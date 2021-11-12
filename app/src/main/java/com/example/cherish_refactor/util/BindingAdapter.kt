@@ -845,3 +845,11 @@ fun myPageday(textView: TextView,dDay: Int){
     }
 
 }
+
+@BindingAdapter("btnStyle")
+fun setBtnStyle(button: Button,isLock:Boolean){
+    if(isLock){
+        button.setBackgroundColor(Color.parseColor("#1AD287"))
+
+    }
+}

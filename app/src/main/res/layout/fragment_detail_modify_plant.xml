@@ -24,6 +24,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <ImageButton
+        android:id="@+id/imb_detail_modify_back"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/icon_gnb_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tb_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="식물 카드 수정"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"
+        android:textColor="#454545"
+        android:letterSpacing="-0.03"
+        android:lineSpacingExtra="8sp"
+        android:textSize="@dimen/text_16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tb_detail_modify"
+        app:layout_constraintEnd_toEndOf="@+id/tb_detail_modify"
+        app:layout_constraintStart_toStartOf="@+id/tb_detail_modify"
+        app:layout_constraintTop_toTopOf="@+id/tb_detail_modify" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

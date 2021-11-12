@@ -70,6 +70,9 @@ class EnrollPlantFragment : BaseFragment<FragmentEnrollPlantBinding>(R.layout.fr
             }, 4000)
 
         }
+        binding.backEnroll.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
 
     }

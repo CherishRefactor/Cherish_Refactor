@@ -39,6 +39,8 @@ class HomeViewModel : BaseViewModel() {
 
     val isWatered = MutableLiveData<Boolean>()
 
+    val isManageBg = MutableLiveData<Boolean>()
+
     val _isRadio = MutableLiveData<Boolean>()
     val isRadio:LiveData<Boolean> = _isRadio
 
@@ -54,6 +56,7 @@ class HomeViewModel : BaseViewModel() {
         _isCalendarChange.value=false
         isWatered.value=false
         _isRadio.value=true
+        isManageBg.value=false
     }
 
     fun showMemo(){

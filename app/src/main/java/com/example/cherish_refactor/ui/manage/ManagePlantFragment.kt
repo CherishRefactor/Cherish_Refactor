@@ -76,7 +76,7 @@ class ManagePlantFragment : BaseFragment<FragmentManagePlantBinding>(R.layout.fr
                 if(BottomSheetBehavior.STATE_EXPANDED==newState){
                     binding.myPageAddPlantBtn.isVisible=true
                     manageViewModel.showRadio()
-
+                    manageViewModel.isManageBg.value=true
                     if(binding.myPageBottomTab.getTabAt(1)?.isSelected==true) {
                         binding.myPageViewpager.currentItem=1
 
@@ -85,6 +85,7 @@ class ManagePlantFragment : BaseFragment<FragmentManagePlantBinding>(R.layout.fr
 
 
                 }else{
+                    manageViewModel.isManageBg.value=false
                     binding.myPageAddPlantBtn.isVisible=false
                     manageViewModel.noShowRadio()
                     myPageBottomSheetAdapter?.setRadioVisi(false)

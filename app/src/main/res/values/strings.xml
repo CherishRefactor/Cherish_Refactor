@@ -164,4 +164,7 @@
     <string name="empty_date">_ _</string>
     <string name="empty_note">메모를 입력하지 않았어요!</string>
     <string name="empty_keyword">등록된 키워드가 없어요</string>
+
+    <string name="lock_pw_no">비밀번호를 확인해주세요.</string>
+    <string name="lock_pw_ok">새로운 비밀번호를 입력해주세요.</string>
 </resources>

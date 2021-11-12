@@ -29,14 +29,13 @@ class UserModifyFragment : BaseFragment<FragmentUserModifyBinding>(R.layout.frag
         binding.vm = viewModel
 
         setListener()
-
+        requestSetting()
 
         return binding.root
     }
 
-    fun setView(){
-
-
+    private fun requestSetting(){
+        viewModel.requestSettingUser(MyKeyStore.getUserId()!!)
     }
 
 
