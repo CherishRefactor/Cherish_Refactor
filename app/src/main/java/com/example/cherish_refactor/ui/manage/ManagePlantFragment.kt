@@ -1,6 +1,7 @@
 package com.example.cherish_refactor.ui.manage
 
 
+import android.graphics.Color
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.view.LayoutInflater
@@ -191,9 +192,33 @@ class ManagePlantFragment : BaseFragment<FragmentManagePlantBinding>(R.layout.fr
         binding.myPageBottomTab.addOnTabSelectedListener(object : OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) { // 선택 X -> 선택 O
                 binding.myPageViewpager.currentItem = tab.position
+
+                when(binding.myPageViewpager.currentItem) {
+                    0 -> {
+                        tabBindingFirst.tabName.setTextAppearance(R.style.MyPageTabSelected)
+                        tabBindingFirst.tabCount.setTextAppearance(R.style.MyPageTabSelected)
+
+                        tabBindingSecond.tabName.setTextAppearance(R.style.MyPageTab)
+                        tabBindingSecond.tabCount.setTextAppearance(R.style.MyPageTab)
+
+                        tabBindingFirst.tabName.setTextColor(Color.parseColor("#454545"))
+                        tabBindingFirst.tabCount.setTextColor(Color.parseColor("#1AD287"))
+                    }
+                    1->{
+                        tabBindingFirst.tabName.setTextAppearance(R.style.MyPageTab)
+                        tabBindingFirst.tabCount.setTextAppearance(R.style.MyPageTab)
+
+                        tabBindingSecond.tabName.setTextAppearance(R.style.MyPageTabSelected)
+                        tabBindingSecond.tabCount.setTextAppearance(R.style.MyPageTabSelected)
+
+                        tabBindingSecond.tabName.setTextColor(Color.parseColor("#454545"))
+                        tabBindingSecond.tabCount.setTextColor(Color.parseColor("#1AD287"))
+                    }
+                }
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) { // 선택 O -> 선택
+
             }
 
             override fun onTabReselected(tab: TabLayout.Tab) { // 선택 O -> 선택 O
