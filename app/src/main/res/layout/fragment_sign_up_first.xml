@@ -6,7 +6,6 @@
             name="vm"
             type="com.example.cherish_refactor.ui.signup.SignUpViewModel" />
 
-
     </data>
 
 
@@ -83,10 +82,10 @@
         android:id="@+id/is_usable_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
+        android:text="@{vm.isEmail==true?  @string/sign_up_email_ok : @string/sign_up_email_no}"
         app:layout_constraintTop_toBottomOf="@+id/user_email"
         app:layout_constraintEnd_toEndOf="@+id/user_email"
-        android:textColor="@color/cherish_green_main"
+        android:textColor="@{vm.isEmail==true?  @color/cherish_green_main:@color/cherish_pink_sub}"
         android:fontFamily="@font/notosanscjkkr_regular" />
 
     <TextView

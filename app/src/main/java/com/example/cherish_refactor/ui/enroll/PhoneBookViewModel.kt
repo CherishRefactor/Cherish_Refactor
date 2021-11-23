@@ -36,26 +36,25 @@ class PhoneBookViewModel :BaseViewModel() {
           _isNextPhone.value=false
      }
 
-     fun requestCheckPhone(phoneNumber : String, userId :Int):Boolean{
-          var next=false
+     fun requestCheckPhone(phoneNumber : String, userId :Int){
           viewModelScope.launch {
+
+                    val body = CheckPhoneRequest(phone = phoneNumber, UserId = userId)
+                    val response = RetrofitBuilder.cherishAPI.checkphone(body)
+                    _isNextPhone.postValue(true)
 
                kotlin.runCatching {
                     val body = CheckPhoneRequest(phone = phoneNumber, UserId = userId)
                     val response = RetrofitBuilder.cherishAPI.checkphone(body)
-
-                    next = response.success
                }.onSuccess {
 
-                   // _isCheckPhone.postValue(true)
+                    _isNextPhone.postValue(true)
                }.onFailure {
-                   // _isCheckPhone.postValue(false)
+                    _isNextPhone.postValue(false)
                }
 
 
           }
-          return next
-
      }
 
 }

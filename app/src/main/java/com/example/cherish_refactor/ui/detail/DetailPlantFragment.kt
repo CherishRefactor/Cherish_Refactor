@@ -92,8 +92,21 @@ class DetailPlantFragment : BaseFragment<FragmentDetailPlantBinding>(R.layout.fr
         }
         detailPlantViewModel.isEmptyMemo.observe(viewLifecycleOwner){
             if(it==false){
+                binding.memocons.setOnClickListener {
 
+                    findNavController().navigate(DetailPlantFragmentDirections.actionDetailPlantFragmentToCalendarFragment(args.cherishId,
+                        detailPlantViewModel.plantDetail.value!!.reviews[0].water_date))
 
+                }
+                binding.memocons2.setOnClickListener {
+                    findNavController().navigate(DetailPlantFragmentDirections.actionDetailPlantFragmentToCalendarFragment(args.cherishId,
+                        detailPlantViewModel.plantDetail.value!!.reviews[1].water_date))
+                }
+
+            }
+        }
+        detailPlantViewModel.isEmptyMemo2.observe(viewLifecycleOwner){
+            if(it==false){
                 binding.memocons.setOnClickListener {
 
                     findNavController().navigate(DetailPlantFragmentDirections.actionDetailPlantFragmentToCalendarFragment(args.cherishId,

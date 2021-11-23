@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.cherish_refactor.R
 import com.example.cherish_refactor.databinding.FragmentResultPlantBinding
@@ -35,8 +34,10 @@ class ResultPlantFragment : BaseFragment<FragmentResultPlantBinding>(R.layout.fr
     }
 
     private fun setListener(){
+
         binding.startbtn.setOnClickListener {
-            findNavController().navigate(R.id.action_resultPlantFragment_to_main_home)
+            activity?.finish()
+            //findNavController().navigate(R.id.action_resultPlantFragment_to_main_home)
         }
     }
 }

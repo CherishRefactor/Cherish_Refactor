@@ -35,7 +35,7 @@ class EnrollPlantFragment : BaseFragment<FragmentEnrollPlantBinding>(R.layout.fr
         // Inflate the layout for this fragment
         super.onCreateView(inflater, container, savedInstanceState)
         binding.vm=enrollmentViewModel
-
+        observer()
         setListener()
         requestEnroll()
         return binding.root
@@ -55,11 +55,13 @@ class EnrollPlantFragment : BaseFragment<FragmentEnrollPlantBinding>(R.layout.fr
             ClockPickerDialog{
                 enrollmentViewModel.requestclock(it)
             }.show(childFragmentManager, "")
+            enrollmentViewModel.isClock.value=true
         }
         binding.editweek.setOnClickListener {
             DatePickerDialog{
                 enrollmentViewModel.requestdate(it)
             }.show(childFragmentManager, "")
+            enrollmentViewModel.isWeek.value=true
         }
         binding.detailOkBtn.setOnClickListener {
             //enrollmentViewModel.requestEnrollPlant(609)
@@ -76,6 +78,18 @@ class EnrollPlantFragment : BaseFragment<FragmentEnrollPlantBinding>(R.layout.fr
 
 
     }
+    fun observer(){
+        enrollmentViewModel.isWeek.observe(viewLifecycleOwner){week->
+            enrollmentViewModel.isClock.observe(viewLifecycleOwner){clock->
+                if(week==true && clock==true){
+                    binding.detailOkBtn.setBackgroundColor(Color.parseColor("#1AD287"))
+                    binding.detailOkBtn.setTextColor(Color.parseColor("#ffffff"))
+                }
+            }
+        }
+    }
+
+
     fun progressON() {
 
         progressDialog = AppCompatDialog(context)
