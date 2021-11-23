@@ -19,7 +19,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
+        requestCherishPermissions()
 
+    }
+
+    private fun setnav(){
         bottomNavigationView = findViewById(R.id.nav_view)
 
         val navController = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main)?.findNavController()
@@ -31,29 +35,26 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
         val inflater = navHostFragment.navController.navInflater
 
-        requestCherishPermissions()
-
         navController?.addOnDestinationChangedListener { controller, destination, arguments ->
             if(destination.id==R.id.home_fragment){
                 if(intent.getStringExtra("setView").toString()=="Phone"){
                     Log.d("setVIew 333",intent.getStringExtra("setView").toString())
-                   controller.navigate(R.id.action_main_home_to_phoneBookFragment)
+                    controller.navigate(R.id.action_main_home_to_phoneBookFragment)
                 }
             }
 
 
             bottomNavigationView.isVisible =
                 !(destination.id == R.id.calendarFragment || destination.id == R.id.aboutCherishFragment || destination.id == R.id.reviewFragment
-                    || destination.id == R.id.detailModifyFragment || destination.id == R.id.plantFragment)
+                        || destination.id == R.id.detailModifyFragment || destination.id == R.id.plantFragment)
 
         }
-
 
     }
     private fun requestCherishPermissions() {
         PermissionUtil.requestCherishPermission(this, object : PermissionUtil.PermissionListener {
             override fun onPermissionGranted() {
-
+                setnav()
             }
 
             override fun onPermissionShouldBeGranted(deniedPermissions: List<String>) {

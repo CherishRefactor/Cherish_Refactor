@@ -38,9 +38,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home){
 
         setListener()
 
-        getCherishItem()
+        /*getCherishItem()
         setAdapter()
-        observer()
+        observer()*/
 
         setBottom()
         addBottomSheetCallback()
@@ -52,12 +52,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home){
 
 
 
-   /* override fun onResume() {
+    override fun onResume() {
         getCherishItem()
         setAdapter()
         observer()
         super.onResume()
-    }*/
+    }
 
     fun setBottom(){
         standardBottomSheetBehavior.apply {

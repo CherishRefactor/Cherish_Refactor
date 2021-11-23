@@ -142,6 +142,9 @@
             android:name="cherishId"
             android:defaultValue="0"
             app:argType="integer"/>
+        <action
+            android:id="@+id/action_detailModifyFragment_to_main_home"
+            app:destination="@id/main_home" />
     </fragment>
     <fragment
         android:id="@+id/calendarFragment"

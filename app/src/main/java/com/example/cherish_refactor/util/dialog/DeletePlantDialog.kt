@@ -28,16 +28,14 @@ class DeletePlantDialog(cherishId : Int) : DialogFragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.dialog_delete_plant, container, false)
         binding = DialogDeletePlantBinding.bind(view)
-
-
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
+        setListener()
         return binding.root
 
 
     }
 
-    fun setListener(){
+    private fun setListener(){
         binding.buttonCancel.setOnClickListener {
             dismiss()
         }
@@ -46,7 +44,7 @@ class DeletePlantDialog(cherishId : Int) : DialogFragment() {
 
             viewModel.requestPlantDelete(cherishId)
             dismiss()
-            findNavController().navigate(R.id.action_deletePlantDialog_to_main_home)
+            findNavController().navigate(R.id.action_detailModifyFragment_to_main_home)
 
         }
     }
