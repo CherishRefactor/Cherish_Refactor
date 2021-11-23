@@ -17,12 +17,19 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cherish_refactor.R
+import com.example.cherish_refactor.data.source.remote.api.CheckPhoneRequest
+import com.example.cherish_refactor.data.source.remote.singleton.RetrofitBuilder
 import com.example.cherish_refactor.databinding.FragmentPhoneBookBinding
 import com.example.cherish_refactor.domain.entity.Phone
 import com.example.cherish_refactor.ui.base.BaseFragment
 import com.example.cherish_refactor.ui.enroll.adapter.PhoneBookAdapter
 import com.example.cherish_refactor.util.MyKeyStore
 import com.example.cherish_refactor.util.dialog.CheckPhoneDialogFragment
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragment_phone_book) {
@@ -66,16 +73,28 @@ class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragme
 
         })
         binding.buttonnext.setOnClickListener{
-            //viewModel.nextPhone(viewModel.requestCheckPhone(phoneBookAdapter.phonenumber,MyKeyStore.getUserId()!!))
-            nextEnroll()
+            CoroutineScope(IO).launch {
+                    val body = CheckPhoneRequest(phoneBookAdapter.phonenumber, MyKeyStore.getUserId()!!)
+                    val response = RetrofitBuilder.cherishAPI.checkphone(body)
+                withContext(Main){
+                    if(response.success){
+                        findNavController().navigate(PhoneBookFragmentDirections.actionPhoneBookFragmentToEnrollPlantFragment(phoneBookAdapter.phonename,phoneBookAdapter.phonenumber))
 
+                    }else{
+                        CheckPhoneDialogFragment().show(parentFragmentManager,"phonebook")
+                    }
+
+                }
+            }
+            //viewModel.requestCheckPhone(phoneBookAdapter.phonenumber,MyKeyStore.getUserId()!!)
+            //observer()
         }
         binding.backPhone.setOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigate(R.id.action_phoneBookFragment_to_main_home)
         }
     }
 
-    fun nextEnroll(){
+   /* fun nextEnroll(){
         if(viewModel.requestCheckPhone(phoneBookAdapter.phonenumber,MyKeyStore.getUserId()!!)==true){
             findNavController().navigate(PhoneBookFragmentDirections.actionPhoneBookFragmentToEnrollPlantFragment(phoneBookAdapter.phonename,phoneBookAdapter.phonenumber))
 
@@ -84,9 +103,9 @@ class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragme
 
         }
     }
-
-    /*fun observer(){
-        viewModel.isCheckPhone.observe(viewLifecycleOwner){
+*/
+    fun observer(){
+        viewModel.isNextPhone.observe(viewLifecycleOwner){
             if(it==false){
                 CheckPhoneDialogFragment().show(parentFragmentManager,"phonebook")
             }else{
@@ -95,7 +114,7 @@ class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragme
             }
         }
 
-    }*/
+    }
     fun checkPermission(){
         val read= ContextCompat.checkSelfPermission(requireContext(),android.Manifest.permission.READ_CONTACTS)
         if(read == PackageManager.PERMISSION_GRANTED){
@@ -112,22 +131,6 @@ class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragme
     }
 
 
-
-    /*fun checkPermission(permissions: Array<String>, permissionRequestNumber:Int){
-        val permissionResult = ContextCompat.checkSelfPermission(requireContext(), permissions[0])
-
-        when(permissionResult){
-            PackageManager.PERMISSION_GRANTED -> {
-                //Toast.makeText(requireContext(), "Permission Granted", Toast.LENGTH_SHORT).show()
-                // Go Main Function
-                startProcess()
-                setListeners()
-            }
-            PackageManager.PERMISSION_DENIED -> {
-                ActivityCompat.requestPermissions(requireActivity(), permissions, permissionRequestNumber)
-            }
-        }
-    }*/
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -190,14 +193,15 @@ class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragme
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     searchText = s.toString()
-                    changeList()
+                    if(searchText.length>=0) {
+                        changeList()
+                    }
                 }
             })
     }
 
     fun changeList() {
         phoneBookAdapter.setItem(getPhoneNumbers(searchText))
-        phoneBookAdapter.notifyDataSetChanged()
 
     }
 
@@ -207,38 +211,7 @@ class PhoneBookFragment : BaseFragment<FragmentPhoneBookBinding>(R.layout.fragme
         phoneBookAdapter.setItem(getPhoneNumbers(searchText))
     }
 
-    /*private fun getPhoneNumbers(search: String): List<Phone> {
 
-        val list = mutableListOf<Phone>()
-        val phonUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI
-        // 2.1 전화번호에서 가져올 컬럼 정의
-        val projections = arrayOf(
-            ContactsContract.CommonDataKinds.Phone.CONTACT_ID,
-            ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
-            ContactsContract.CommonDataKinds.Phone.NUMBER
-        )
-        // 2.2 조건 정의
-        var where: String? = null
-        var whereValues: Array<String>? = null
-        // searchName에 값이 있을 때만 검색을 사용한다
-        if (search.isNotEmpty()) {
-
-            where = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " LIKE ? OR "+ContactsContract.CommonDataKinds.Phone.NUMBER + " LIKE ?"
-            whereValues = arrayOf("%$search%")
-        }
-
-        context?.run {
-            val cursor = contentResolver.query(phonUri, projections, where, whereValues,null)
-            while (cursor?.moveToNext() == true) {
-                val id = cursor.getString(0)
-                val name = cursor.getString(1)
-                val number = cursor.getString(2)
-                val phone = Phone(id, name, number)
-                list.add(phone)
-            }
-        }
-        return list
-    }*/
     private fun getPhoneNumbers(search:String): List<Phone> {
         val contactList: MutableList<Phone> = ArrayList()
         val projections = arrayOf(

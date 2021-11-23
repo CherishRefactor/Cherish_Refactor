@@ -45,6 +45,8 @@ class DetailPlantViewModel : BaseViewModel() {
 
     init{
         _isTouch.value=false
+        _isEmptyMemo.value=true
+        _isEmptyMemo2.value=true
     }
 
 

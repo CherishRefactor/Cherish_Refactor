@@ -40,14 +40,12 @@ class PhoneBookAdapter(view:Boolean) :
     }
 
     fun setItem(phone: List<Phone>){
-        phoneBookList=phone as MutableList<Phone>
-        notifyDataSetChanged()
+        if(phone.isNotEmpty()) {
+            phoneBookList = phone as MutableList<Phone>
+            notifyDataSetChanged()
+        }
     }
 
-  /*  fun setRadioVisi(radio:Boolean){
-        isRadio=radio
-    }
-*/
     override fun onBindViewHolder(holder: Holder, position: Int) {
 
         holder.radioButton.isChecked = mStateButtons.get(position, false)
@@ -74,8 +72,6 @@ class PhoneBookAdapter(view:Boolean) :
         }
 
         holder.radioButton.setOnCheckedChangeListener { compoundButton, isChecked ->
-
-
             checkedRadioButton?.apply { setChecked(!isChecked) }
             checkedRadioButton = compoundButton.apply {
 
@@ -84,11 +80,12 @@ class PhoneBookAdapter(view:Boolean) :
 
                 radiobutton = true
             }
-
             if (isChecked) {
                 radiobutton = true
                 phonename = phoneBookList[position].name.toString()
                 phonenumber = phoneBookList[position].phone.toString()
+            }else{
+                radiobutton=false
             }
         }
         val phone = phoneBookList[position]

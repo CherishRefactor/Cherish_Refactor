@@ -7,6 +7,7 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.cherish_refactor.util.PermissionUtil
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -29,11 +30,8 @@ class MainActivity : AppCompatActivity() {
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
         val inflater = navHostFragment.navController.navInflater
-        val graph = inflater.inflate(R.navigation.mobile_navigation)
 
-        //navHostFragment.navController.graph = graph
-        //navController?.graph = graph
-
+        requestCherishPermissions()
 
         navController?.addOnDestinationChangedListener { controller, destination, arguments ->
             if(destination.id==R.id.home_fragment){
@@ -50,8 +48,31 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-    }
 
+    }
+    private fun requestCherishPermissions() {
+        PermissionUtil.requestCherishPermission(this, object : PermissionUtil.PermissionListener {
+            override fun onPermissionGranted() {
+
+            }
+
+            override fun onPermissionShouldBeGranted(deniedPermissions: List<String>) {
+                //shortToast(this@MainActivity, "권한 허용이 안되어있습니다. $deniedPermissions")
+                openSettings()
+            }
+
+            override fun onAnyPermissionPermanentlyDenied(
+                deniedPermissions: List<String>,
+                permanentDeniedPermissions: List<String>
+            ) {
+                //shortToast(this@MainActivity, "권한 허용이 영구적으로 거부되었습니다. $permanentDeniedPermissions")
+                openSettings()
+            }
+        })
+    }
+    private fun openSettings() {
+        PermissionUtil.openPermissionSettings(this)
+    }
 
 
 }

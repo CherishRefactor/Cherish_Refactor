@@ -3,6 +3,7 @@ package com.example.cherish_refactor.ui.signin
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.cherish_refactor.MainActivity
 import com.example.cherish_refactor.R
@@ -64,6 +65,11 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
                 intent.putExtra("setView","Home")
                 startActivity(intent)
 
+            }
+        }
+        signInViewModel.isSignIn.observe(this){
+            if(it==false){
+                Toast.makeText(this,"비밀번호가 일치하지 않습니다.",Toast.LENGTH_SHORT).show()
             }
         }
     }

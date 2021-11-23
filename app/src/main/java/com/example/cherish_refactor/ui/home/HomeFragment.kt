@@ -26,6 +26,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home){
     private val viewModel: HomeViewModel by activityViewModels()
     private lateinit var standardBottomSheetBehavior: BottomSheetBehavior<View>
     private val homeCherryListAdapter by lazy{ HomeCherryListAdapter()}
+    val MY_PERMISSION_ACCESS_ALL = 100
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,8 +44,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home){
 
         setBottom()
         addBottomSheetCallback()
+
+
+
         return binding.root
     }
+
+
 
    /* override fun onResume() {
         getCherishItem()

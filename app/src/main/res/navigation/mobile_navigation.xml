@@ -84,6 +84,9 @@
         <action
             android:id="@+id/action_phoneBookFragment_to_enrollPlantFragment"
             app:destination="@id/enrollPlantFragment" />
+        <action
+            android:id="@+id/action_phoneBookFragment_to_main_home"
+            app:destination="@id/main_home" />
     </fragment>
     <fragment
         android:id="@+id/enrollPlantFragment"

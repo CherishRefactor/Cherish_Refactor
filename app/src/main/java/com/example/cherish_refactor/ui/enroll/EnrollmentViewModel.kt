@@ -21,6 +21,14 @@ class EnrollmentViewModel : BaseViewModel() {
      val date = MutableLiveData<String>()
      val clock = MutableLiveData<String>()
 
+    val isClock=MutableLiveData<Boolean>()
+    val isWeek=MutableLiveData<Boolean>()
+
+    init{
+        isClock.value=false
+        isWeek.value=false
+    }
+
     fun requestnickname(nickName: String, phoneNum:String){
         nickname.value=nickName
         phone.value=phoneNum

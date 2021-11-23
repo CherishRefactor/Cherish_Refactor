@@ -28,31 +28,28 @@ class SignInViewModel:BaseViewModel() {
 
     fun requestLogIn(){
         viewModelScope.launch {
-            val body = SignInRequest(email.value!!,passWord.value!!)
-            val response = RetrofitBuilder.cherishAPI.postLogin(body)
+            try{
+                val body = SignInRequest(email.value!!,passWord.value!!)
+                val response = RetrofitBuilder.cherishAPI.postLogin(body)
+                if(response.success) {
+                    val userResponse = RetrofitBuilder.cherishAPI.hasUser(response.editUserData.userId)
+                    _isFirst.value = userResponse.userData.totalUser
 
-            //RetrofitBuilder.userAPI.hasUser(userId).enqueue(object : Callback<UserResult>
+                    MainApplication.apply {
+                        MyKeyStore.setUserId(response.editUserData.userId)
+                        MyKeyStore.setUserNickname(response.editUserData.userNickName)
+                        MyKeyStore.setToken(response.editUserData.token)
+                    }
 
-            if(response.success){
-                val userResponse = RetrofitBuilder.cherishAPI.hasUser(response.editUserData.userId)
-                _isFirst.value = userResponse.userData.totalUser
-
-                MainApplication.apply {
-                    MyKeyStore.setUserId(response.editUserData.userId)
-                    MyKeyStore.setUserNickname(response.editUserData.userNickName)
-                    MyKeyStore.setToken(response.editUserData.token)
                 }
-
+            }catch (e:Exception){
+                _isSignIn.value=false
             }
-            _isSignIn.value=response.success
+
+            //_isSignIn.value=response.success
 
 
         }
-
-    }
-    fun requestUser(){
-
-
 
     }
 
